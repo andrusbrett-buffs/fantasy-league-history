@@ -787,3 +787,377 @@ document.querySelectorAll('.nav-link').forEach(link => {
         }
     });
 });
+
+// ============================================
+// 2026 Destination Bracket Functionality
+// ============================================
+
+const destinations = {
+    aspen: {
+        name: "Aspen",
+        region: "Colorado, USA",
+        vibe: "Luxury Mountain Town",
+        bestFor: "Winter Sports & Fine Dining",
+        attractions: ["Aspen Mountain Skiing", "Maroon Bells", "Independence Pass", "Aspen Art Museum", "Rio Grande Trail"],
+        restaurants: ["Matsuhisa", "Element 47", "The Wild Fig", "Ajax Tavern", "Meatball Shack"],
+        nightlife: ["Belly Up Aspen", "Escobar", "The Living Room", "Silver City Saloon"],
+        sports: ["Ajax Mountain", "Buttermilk Ski Area", "Aspen Ice Garden", "Rio Grande Park"]
+    },
+    traverse: {
+        name: "Traverse City",
+        region: "Michigan, USA",
+        vibe: "Wine Country Beach Town",
+        bestFor: "Wineries & Lake Life",
+        attractions: ["Sleeping Bear Dunes", "Old Mission Peninsula", "Downtown TC", "Clinch Park Beach", "Leelanau Peninsula"],
+        restaurants: ["The Cooks' House", "Trattoria Stella", "Red Ginger", "Amical", "The Franklin"],
+        nightlife: ["Low Bar", "Workshop Brewing", "The Little Fleet", "Mackinaw Brewing"],
+        sports: ["TART Trails", "Hickory Hills", "Grand Traverse Bay", "Crystal Mountain"]
+    },
+    houston: {
+        name: "Houston",
+        region: "Texas, USA",
+        vibe: "Diverse Mega-City",
+        bestFor: "Food Scene & Space Center",
+        attractions: ["Space Center Houston", "Museum District", "Buffalo Bayou Park", "Galleria", "San Jacinto Monument"],
+        restaurants: ["Underbelly Hospitality", "Pappas Bros Steakhouse", "Uchi", "The Breakfast Klub", "Killen's BBQ"],
+        nightlife: ["White Oak Music Hall", "Barbarella", "Present Company", "The Rustic"],
+        sports: ["NRG Stadium (Texans)", "Minute Maid Park (Astros)", "Toyota Center (Rockets)", "Shell Energy Stadium"]
+    },
+    tahoe: {
+        name: "Lake Tahoe",
+        region: "California/Nevada, USA",
+        vibe: "Alpine Paradise",
+        bestFor: "Skiing & Lake Activities",
+        attractions: ["Emerald Bay", "Heavenly Gondola", "Sand Harbor", "Vikingsholm Castle", "Donner Pass"],
+        restaurants: ["Evan's American Gourmet Cafe", "Sunnyside Restaurant", "The Lone Eagle Grille", "Artemis Lakefront Cafe"],
+        nightlife: ["Stateline Casinos", "The Loft", "Crystal Bay Club", "Moe's BBQ"],
+        sports: ["Palisades Tahoe", "Heavenly Mountain", "Northstar California", "Edgewood Golf Course"]
+    },
+    chattanooga: {
+        name: "Chattanooga",
+        region: "Tennessee, USA",
+        vibe: "Outdoor Adventure Hub",
+        bestFor: "Rock Climbing & River Sports",
+        attractions: ["Lookout Mountain", "Tennessee Aquarium", "Ruby Falls", "Walnut Street Bridge", "Rock City"],
+        restaurants: ["St. John's Meeting Place", "Public House", "Easy Bistro", "STIR", "Taqueria Jalisco"],
+        nightlife: ["The Signal", "Songbirds Guitar Museum", "JJ's Bohemia", "Flying Squirrel"],
+        sports: ["AT&T Field (Lookouts)", "Finley Stadium", "Tennessee River Paddle", "Stringers Ridge"]
+    },
+    richmond: {
+        name: "Richmond",
+        region: "Virginia, USA",
+        vibe: "Historic River City",
+        bestFor: "Craft Beer & History",
+        attractions: ["Belle Isle", "Virginia Museum of Fine Arts", "Hollywood Cemetery", "Carytown", "Canal Walk"],
+        restaurants: ["The Roosevelt", "L'Opossum", "Brenner Pass", "ZZQ", "Mama J's Kitchen"],
+        nightlife: ["The Broadberry", "The Camel", "Garden Grove Brewing", "Hardywood Park"],
+        sports: ["The Diamond (Flying Squirrels)", "City Stadium", "James River Park", "Pocahontas State Park"]
+    },
+    columbus: {
+        name: "Columbus",
+        region: "Ohio, USA",
+        vibe: "College Town Energy",
+        bestFor: "OSU Football & Food Scene",
+        attractions: ["Ohio Stadium", "Short North Arts District", "German Village", "COSI", "Franklin Park Conservatory"],
+        restaurants: ["The Refectory", "Wolf's Ridge Brewing", "Lindey's", "Schmidt's Sausage Haus", "Hot Chicken Takeover"],
+        nightlife: ["Newport Music Hall", "Skully's", "Ace of Cups", "Brothers Drake Meadery"],
+        sports: ["Ohio Stadium (Buckeyes)", "Nationwide Arena (Blue Jackets)", "Huntington Park (Clippers)", "Crew Stadium"]
+    },
+    omaha: {
+        name: "Omaha",
+        region: "Nebraska, USA",
+        vibe: "Underrated Midwest Gem",
+        bestFor: "Steakhouses & Zoo",
+        attractions: ["Henry Doorly Zoo", "Old Market District", "Bob Kerrey Pedestrian Bridge", "Joslyn Art Museum", "Durham Museum"],
+        restaurants: ["Gorat's Steakhouse", "Dante Pizzeria", "Block 16", "V. Mertz", "The Drover"],
+        nightlife: ["Waiting Room Lounge", "The Slowdown", "Benson District Bars", "Krug Park"],
+        sports: ["Charles Schwab Field (CWS)", "CHI Health Center", "Werner Park", "Baxter Arena"]
+    },
+    bozeman: {
+        name: "Bozeman",
+        region: "Montana, USA",
+        vibe: "Mountain Adventure Base",
+        bestFor: "Yellowstone Gateway & Skiing",
+        attractions: ["Yellowstone National Park", "Big Sky Resort", "Museum of the Rockies", "Main Street Downtown", "Hyalite Canyon"],
+        restaurants: ["Blackbird Kitchen", "Plonk Wine", "The Mint Cafe", "Roost Fried Chicken", "Open Range"],
+        nightlife: ["Rocking R Bar", "The Crystal Bar", "MAP Brewing", "Mountains Walking Brewery"],
+        sports: ["Big Sky Resort", "Bridger Bowl", "Bobcat Stadium (MSU)", "Story Mill Park"]
+    },
+    santafe: {
+        name: "Santa Fe",
+        region: "New Mexico, USA",
+        vibe: "Artistic Desert Oasis",
+        bestFor: "Art Galleries & Southwest Culture",
+        attractions: ["Canyon Road", "Georgia O'Keeffe Museum", "Santa Fe Plaza", "Meow Wolf", "Loretto Chapel"],
+        restaurants: ["The Shed", "Geronimo", "Cafe Pasqual's", "Tia Sophia's", "La Choza"],
+        nightlife: ["Secreto Lounge", "Cowgirl BBQ", "El Farol", "Santa Fe Brewing"],
+        sports: ["Santa Fe Ski Basin", "Dale Ball Trails", "Santa Fe Fuego", "Hyde Memorial Park"]
+    },
+    greenville: {
+        name: "Greenville",
+        region: "South Carolina, USA",
+        vibe: "Charming Downtown Revival",
+        bestFor: "Falls Park & Food Scene",
+        attractions: ["Falls Park on the Reedy", "Liberty Bridge", "Downtown Main Street", "Peace Center", "Fluor Field"],
+        restaurants: ["The Lazy Goat", "Soby's", "Jianna", "Nose Dive", "The Anchorage"],
+        nightlife: ["The Radio Room", "Smiley's Acoustic Cafe", "Jack n Diane's", "Ink n Ivy"],
+        sports: ["Fluor Field (Drive)", "Bon Secours Wellness Arena", "Swamp Rabbit Trail", "Paris Mountain"]
+    },
+    la: {
+        name: "Los Angeles",
+        region: "California, USA",
+        vibe: "Entertainment Capital",
+        bestFor: "Beaches & Nightlife",
+        attractions: ["Santa Monica Pier", "Hollywood Walk of Fame", "Getty Center", "Griffith Observatory", "Venice Beach"],
+        restaurants: ["Bestia", "n/naka", "Gjusta", "Providence", "Guerrilla Tacos"],
+        nightlife: ["The Viper Room", "Catch One", "The Dresden", "Good Times at Davey Wayne's"],
+        sports: ["SoFi Stadium (Rams/Chargers)", "Crypto.com Arena (Lakers)", "Dodger Stadium", "Rose Bowl"]
+    },
+    birmingham: {
+        name: "Birmingham",
+        region: "Alabama, USA",
+        vibe: "Southern Renaissance City",
+        bestFor: "BBQ & Civil Rights History",
+        attractions: ["Birmingham Civil Rights Institute", "Vulcan Park", "Regions Field", "Railroad Park", "Barber Motorsports"],
+        restaurants: ["Highlands Bar and Grill", "Saw's BBQ", "Hot and Hot Fish Club", "Bottega", "Automatic Seafood"],
+        nightlife: ["Saturn Birmingham", "The Nick", "Good People Brewing", "Avondale Brewing"],
+        sports: ["Protective Stadium (UAB)", "Regions Field (Barons)", "Barber Motorsports Park", "Oak Mountain"]
+    },
+    mexicocity: {
+        name: "Mexico City",
+        region: "Mexico",
+        vibe: "Historic Mega-Metropolis",
+        bestFor: "Tacos & Museums",
+        attractions: ["Zócalo", "Museo Frida Kahlo", "Chapultepec Castle", "Teotihuacán", "Coyoacán"],
+        restaurants: ["Pujol", "Contramar", "El Huequito", "El Califa de León", "Quintonil"],
+        nightlife: ["Mama Rumba", "Patrick Miller", "Hanky Panky", "La Clandestina"],
+        sports: ["Estadio Azteca", "Foro Sol", "Arena México", "Hipódromo de las Américas"]
+    },
+    durham: {
+        name: "Durham",
+        region: "North Carolina, USA",
+        vibe: "Research Triangle Creative Hub",
+        bestFor: "BBQ & Bull City Culture",
+        attractions: ["Duke University", "American Tobacco Campus", "Durham Bulls Athletic Park", "Sarah P. Duke Gardens", "Brightleaf Square"],
+        restaurants: ["Mateo Bar de Tapas", "The Pit", "M Kokko", "Dame's Chicken & Waffles", "Pizzeria Toro"],
+        nightlife: ["Motorco Music Hall", "The Pinhook", "Fullsteam Brewery", "Arcana"],
+        sports: ["Durham Bulls Athletic Park", "Cameron Indoor (Duke)", "Wallace Wade Stadium", "Eno River Trails"]
+    },
+    madison: {
+        name: "Madison",
+        region: "Wisconsin, USA",
+        vibe: "Progressive College Town",
+        bestFor: "Badgers Football & Lakes",
+        attractions: ["State Street", "Wisconsin State Capitol", "Olbrich Gardens", "Henry Vilas Zoo", "Chazen Museum"],
+        restaurants: ["Heritage Tavern", "Merchant", "Graze", "The Old Fashioned", "Ian's Pizza"],
+        nightlife: ["High Noon Saloon", "The Majestic", "State Street Brats", "Great Dane Pub"],
+        sports: ["Camp Randall Stadium (Badgers)", "Kohl Center", "Breese Stevens Field", "Devil's Lake"]
+    },
+    boise: {
+        name: "Boise",
+        region: "Idaho, USA",
+        vibe: "Hidden Gem Mountain City",
+        bestFor: "Outdoor Access & Blue Turf",
+        attractions: ["Boise River Greenbelt", "Idaho State Capitol", "Basque Block", "Old Idaho Penitentiary", "Table Rock"],
+        restaurants: ["Richard's", "Fork", "Bittercreek Alehouse", "Goldy's Breakfast Bistro", "Chandlers"],
+        nightlife: ["Neurolux", "Pengilly's Saloon", "Reef", "Modern Hotel Bar"],
+        sports: ["Albertsons Stadium (Blue Turf)", "Idaho Central Arena", "Bogus Basin", "Boise River Rafting"]
+    },
+    vegas: {
+        name: "Las Vegas",
+        region: "Nevada, USA",
+        vibe: "Entertainment Epicenter",
+        bestFor: "Nightlife & Sports",
+        attractions: ["The Strip", "Fremont Street", "Red Rock Canyon", "High Roller", "Bellagio Fountains"],
+        restaurants: ["Joel Robuchon", "Momofuku", "Bacchanal Buffet", "é by José Andrés", "Carson Kitchen"],
+        nightlife: ["XS", "Omnia", "Marquee", "Hakkasan", "On The Record"],
+        sports: ["Allegiant Stadium (Raiders)", "T-Mobile Arena (Knights)", "Las Vegas Motor Speedway", "Wynn Golf Club"]
+    },
+    cabo: {
+        name: "Cabo San Lucas",
+        region: "Baja California Sur, Mexico",
+        vibe: "Beach Party Paradise",
+        bestFor: "Beaches & Margaritas",
+        attractions: ["El Arco", "Lover's Beach", "Medano Beach", "San José del Cabo", "Land's End"],
+        restaurants: ["Edith's", "Nick-San", "Flora's Field Kitchen", "The Office on the Beach", "Manta"],
+        nightlife: ["Squid Roe", "Cabo Wabo Cantina", "El Squid Roe", "Mandala", "Pink Kitty"],
+        sports: ["Deep Sea Fishing", "Quivira Golf Club", "Surf Breaks", "Whale Watching Tours"]
+    },
+    coeurdalene: {
+        name: "Coeur d'Alene",
+        region: "Idaho, USA",
+        vibe: "Lake Resort Town",
+        bestFor: "Lake Activities & Golf",
+        attractions: ["Lake Coeur d'Alene", "Floating Green Golf Course", "Tubbs Hill", "Downtown Sherman Ave", "Silver Mountain"],
+        restaurants: ["Beverly's", "Tony's on the Lake", "Syringa Japanese Cafe", "Dockside Restaurant"],
+        nightlife: ["Iron Horse Bar", "Tito Macaroni's", "The Beacon", "Capone's Sports Pub"],
+        sports: ["The Coeur d'Alene Golf Course", "Schweitzer Mountain", "Lake Paddleboarding", "Hiawatha Trail"]
+    },
+    nyc: {
+        name: "New York City",
+        region: "New York, USA",
+        vibe: "The City That Never Sleeps",
+        bestFor: "Everything, Really",
+        attractions: ["Central Park", "Times Square", "Statue of Liberty", "Brooklyn Bridge", "High Line"],
+        restaurants: ["Eleven Madison Park", "Le Bernardin", "Katz's Deli", "Di Fara Pizza", "Peter Luger"],
+        nightlife: ["Brooklyn Mirage", "Le Bain", "Death & Co", "House of Yes", "Comedy Cellar"],
+        sports: ["Madison Square Garden", "Yankee Stadium", "MetLife Stadium", "Citi Field", "Barclays Center"]
+    },
+    tulsa: {
+        name: "Tulsa",
+        region: "Oklahoma, USA",
+        vibe: "Art Deco Renaissance",
+        bestFor: "Route 66 & Gathering Place",
+        attractions: ["Gathering Place", "Philbrook Museum", "Blue Whale of Catoosa", "BOK Center", "Cherry Street"],
+        restaurants: ["Burn Co BBQ", "Juniper", "Bodean Seafood", "The Tavern", "Kilkenny's Irish Pub"],
+        nightlife: ["Cain's Ballroom", "The Vanguard", "Arnie's Bar", "Soundpony Lounge"],
+        sports: ["ONEOK Field (Drillers)", "BOK Center", "Gathering Place Sports Courts", "Mohawk Park Golf"]
+    },
+    puertovallarta: {
+        name: "Puerto Vallarta",
+        region: "Jalisco, Mexico",
+        vibe: "Romantic Beach Town",
+        bestFor: "Sunsets & Malecón",
+        attractions: ["Malecón Boardwalk", "Los Muertos Beach", "Zona Romántica", "El Centro", "Marietas Islands"],
+        restaurants: ["Café des Artistes", "La Palapa", "Tintoque", "Mariscos 8 Tostadas", "Barcelona Tapas"],
+        nightlife: ["La Vaquita", "Zoo Bar", "Roxy Rock House", "Mandala", "La Santa"],
+        sports: ["Surfing at Sayulita", "Deep Sea Fishing", "Vista Vallarta Golf", "Sierra Madre Hiking"]
+    },
+    saugatuck: {
+        name: "Saugatuck",
+        region: "Michigan, USA",
+        vibe: "Artsy Beach Village",
+        bestFor: "Galleries & Dunes",
+        attractions: ["Oval Beach", "Saugatuck Dunes State Park", "Downtown Galleries", "Chain Ferry", "Mount Baldhead"],
+        restaurants: ["Everyday People Cafe", "Bowdie's Chophouse", "Phil's Bar & Grille", "Marro's Italian"],
+        nightlife: ["The Butler", "Saugatuck Brewing Company", "Wally's Bar", "The Dunes Resort"],
+        sports: ["Oval Beach Swimming", "Kal-Haven Trail", "Kayaking Kalamazoo River", "Dune Climbing"]
+    }
+};
+
+const destProTips = {
+    aspen: "Book restaurants early - Aspen spots fill up fast during ski season!",
+    traverse: "Visit during Cherry Festival in July or catch the wine harvest in September.",
+    houston: "Don't skip the BBQ trail - Killen's and Truth are worth the drive.",
+    tahoe: "Stay on the South Shore for nightlife, North Shore for quieter luxury.",
+    chattanooga: "The Incline Railway up Lookout Mountain is a must-do for views.",
+    richmond: "The Scott's Addition neighborhood has the best craft brewery concentration.",
+    columbus: "Game day at the Horseshoe is an unforgettable experience - plan ahead!",
+    omaha: "The Old Market comes alive at night - great for bar hopping on foot.",
+    bozeman: "Yellowstone is an hour away - build in a full day for the park.",
+    santafe: "Canyon Road has 100+ galleries - pace yourself and wear comfy shoes.",
+    greenville: "Walk the Swamp Rabbit Trail for the best views of the falls.",
+    la: "Rent a car. Seriously. You'll need it to experience the full city.",
+    birmingham: "Saw's Soul Kitchen for breakfast is worth any wait.",
+    mexicocity: "Uber is cheap and safe - skip renting a car in the chaotic traffic.",
+    durham: "Catch a Bulls game at the park featured in Bull Durham!",
+    madison: "Tailgate at Camp Randall starts 5 hours before kickoff - come early!",
+    boise: "The blue turf at Albertsons Stadium is a bucket list experience.",
+    vegas: "Most club reservations open 2 weeks out - book early for weekends.",
+    cabo: "The Office on the Beach: toes in sand, drink in hand, life figured out.",
+    coeurdalene: "The floating golf green is the only one in the world - try it!",
+    nyc: "Get a MetroCard, walk everywhere, and embrace the chaos.",
+    tulsa: "Gathering Place is free and one of the best parks in America.",
+    puertovallarta: "Zona Romántica is the heart of the city - stay there if you can.",
+    saugatuck: "Climb Mount Baldhead at sunset for incredible Lake Michigan views."
+};
+
+function openDestModal(locationKey) {
+    const data = destinations[locationKey];
+    if (!data) return;
+
+    document.getElementById('dest-modal-title').textContent = data.name;
+    document.getElementById('dest-modal-subtitle').textContent = data.region;
+
+    const content = `
+        <div class="dest-quick-stats">
+            <div class="dest-stat-box">
+                <div class="dest-stat-icon">🎯</div>
+                <div class="dest-stat-label">Vibe</div>
+                <div class="dest-stat-value">${data.vibe}</div>
+            </div>
+            <div class="dest-stat-box">
+                <div class="dest-stat-icon">⭐</div>
+                <div class="dest-stat-label">Best For</div>
+                <div class="dest-stat-value">${data.bestFor}</div>
+            </div>
+            <div class="dest-stat-box">
+                <div class="dest-stat-icon">📍</div>
+                <div class="dest-stat-label">Attractions</div>
+                <div class="dest-stat-value">${data.attractions.length} spots</div>
+            </div>
+        </div>
+
+        <div class="dest-info-section">
+            <h3>Top Attractions</h3>
+            <ul class="dest-info-list">
+                ${data.attractions.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="dest-info-section">
+            <h3>Must-Try Restaurants</h3>
+            <ul class="dest-info-list">
+                ${data.restaurants.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="dest-info-section">
+            <h3>Nightlife & Entertainment</h3>
+            <ul class="dest-info-list">
+                ${data.nightlife.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="dest-info-section">
+            <h3>Sports & Recreation</h3>
+            <ul class="dest-info-list">
+                ${data.sports.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="dest-highlight-box">
+            <p><strong>Pro Tip:</strong> ${destProTips[locationKey] || "Get ready for an amazing trip!"}</p>
+        </div>
+    `;
+
+    document.getElementById('dest-modal-content').innerHTML = content;
+    document.getElementById('dest-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDestModal() {
+    document.getElementById('dest-modal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Initialize destination bracket event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // Click handlers for destination teams
+    document.querySelectorAll('.dest-team[data-location]').forEach(team => {
+        team.addEventListener('click', () => {
+            const location = team.getAttribute('data-location');
+            if (location) openDestModal(location);
+        });
+    });
+
+    // Close modal on overlay click
+    const destModal = document.getElementById('dest-modal');
+    if (destModal) {
+        destModal.addEventListener('click', (e) => {
+            if (e.target === destModal) {
+                closeDestModal();
+            }
+        });
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const destModal = document.getElementById('dest-modal');
+            if (destModal && destModal.classList.contains('active')) {
+                closeDestModal();
+            }
+        }
+    });
+});
