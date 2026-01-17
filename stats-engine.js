@@ -178,16 +178,23 @@ class StatsEngine {
             }
         }
 
+        // Playoff tier types that indicate actual playoff games
+        const PLAYOFF_TIERS = ['WINNERS_BRACKET', 'LOSERS_BRACKET', 'WINNERS_CONSOLATION_LADDER', 'LOSERS_CONSOLATION_LADDER'];
+
         const regularMatchups = matchups.filter(m => {
-            // If playoffTierType exists and is set, trust it
-            if (m.playoffTierType) return false;
-            // Otherwise use week number
+            // Check if it's a real playoff tier type (not NONE or undefined)
+            if (m.playoffTierType && PLAYOFF_TIERS.includes(m.playoffTierType)) {
+                return false; // It's a playoff game
+            }
+            // Otherwise use week number as fallback
             return m.matchupPeriodId <= regularSeasonWeeks;
         }).map(m => ({ ...m, isPlayoffGame: false }));
 
         const playoffMatchups = matchups.filter(m => {
-            // If playoffTierType exists, it's definitely a playoff game
-            if (m.playoffTierType) return true;
+            // Check if it's a real playoff tier type
+            if (m.playoffTierType && PLAYOFF_TIERS.includes(m.playoffTierType)) {
+                return true;
+            }
             // Otherwise check week number
             return m.matchupPeriodId > regularSeasonWeeks;
         }).map(m => ({ ...m, isPlayoffGame: true }));
@@ -445,12 +452,12 @@ class StatsEngine {
      * Calculate record book entries
      */
     calculateRecordBook(stats) {
-        // Filter high scores: 2015 and earlier = weeks 1-12 only, 2016+ = all weeks
+        // Filter high scores: 2017 and earlier = weeks 1-12 only, 2018+ = all weeks
         const filteredHighScores = stats.highScores.filter(s => {
-            if (s.year <= 2015) {
+            if (s.year <= 2017) {
                 return s.week <= 12;
             }
-            return true; // Include all games from 2016 onwards
+            return true; // Include all games from 2018 onwards
         });
 
         const sortedScores = [...filteredHighScores].sort((a, b) => b.score - a.score);
@@ -725,7 +732,7 @@ class StatsEngine {
     }
 
     // Cache version - increment this when data structure changes to invalidate old cache
-    static CACHE_VERSION = 3;
+    static CACHE_VERSION = 4;
 
     /**
      * Save aggregated stats to localStorage
