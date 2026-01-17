@@ -133,7 +133,8 @@ class StatsEngine {
             h2hRecords: new Map(), // Head-to-head records between teams
             streaks: new Map(), // Win/loss streaks
             playoffAppearances: new Map(),
-            regularSeasonRecords: new Map()
+            regularSeasonRecords: new Map(),
+            championshipAppearances: new Map() // Teams that made championship game
         };
 
         const years = Object.keys(this.allSeasonData).sort();
@@ -165,20 +166,35 @@ class StatsEngine {
         const settings = espnAPI.parseSettings(data);
 
         // Determine regular season vs playoff matchups
-        const regularSeasonWeeks = settings.regularSeasonMatchupPeriods || 14;
+        // Use settings if available, otherwise default based on year
+        // ESPN changed regular season length over time: typically 13-14 weeks
+        let regularSeasonWeeks = settings.regularSeasonMatchupPeriods;
+        if (!regularSeasonWeeks) {
+            // Default regular season lengths by era
+            if (year <= 2020) {
+                regularSeasonWeeks = 13; // Most leagues had 13-week regular seasons
+            } else {
+                regularSeasonWeeks = 14; // NFL expanded to 17 games in 2021
+            }
+        }
 
-        const regularMatchups = matchups.filter(m =>
-            m.matchupPeriodId <= regularSeasonWeeks &&
-            !m.playoffTierType
-        );
+        const regularMatchups = matchups.filter(m => {
+            // If playoffTierType exists and is set, trust it
+            if (m.playoffTierType) return false;
+            // Otherwise use week number
+            return m.matchupPeriodId <= regularSeasonWeeks;
+        }).map(m => ({ ...m, isPlayoffGame: false }));
 
-        const playoffMatchups = matchups.filter(m =>
-            m.matchupPeriodId > regularSeasonWeeks ||
-            m.playoffTierType
-        );
+        const playoffMatchups = matchups.filter(m => {
+            // If playoffTierType exists, it's definitely a playoff game
+            if (m.playoffTierType) return true;
+            // Otherwise check week number
+            return m.matchupPeriodId > regularSeasonWeeks;
+        }).map(m => ({ ...m, isPlayoffGame: true }));
 
-        // Find champion - use rankCalculatedFinal = 1 (most reliable)
+        // Find champion and championship game participants
         let champion = null;
+        let championshipParticipants = []; // Both teams in championship game
 
         // Method 1: Look for team with rankCalculatedFinal === 1 (the champion)
         const championTeam = teams.find(t => t.rankCalculatedFinal === 1);
@@ -188,7 +204,7 @@ class StatsEngine {
         }
 
         // Method 2: Find the championship game winner (WINNERS_BRACKET final)
-        if (!champion && playoffMatchups.length > 0) {
+        if (playoffMatchups.length > 0) {
             // Look for the final championship matchup
             const championshipGames = playoffMatchups.filter(m =>
                 m.playoffTierType === 'WINNERS_BRACKET'
@@ -199,12 +215,27 @@ class StatsEngine {
                 const lastWeek = Math.max(...championshipGames.map(m => m.matchupPeriodId));
                 const championship = championshipGames.find(m => m.matchupPeriodId === lastWeek);
 
-                if (championship && championship.homeScore !== championship.awayScore) {
-                    champion = championship.homeScore > championship.awayScore
-                        ? championship.homeTeamId
-                        : championship.awayTeamId;
-                    console.log(`${year} Champion (by game): Team ${champion}`);
+                if (championship) {
+                    // Track both participants in the championship game
+                    championshipParticipants = [championship.homeTeamId, championship.awayTeamId];
+
+                    if (!champion && championship.homeScore !== championship.awayScore) {
+                        champion = championship.homeScore > championship.awayScore
+                            ? championship.homeTeamId
+                            : championship.awayTeamId;
+                        console.log(`${year} Champion (by game): Team ${champion}`);
+                    }
                 }
+            }
+        }
+
+        // If we found a champion but no championship participants, add the champion and runner-up by rank
+        if (champion && championshipParticipants.length === 0) {
+            const runnerUp = teams.find(t => t.rankCalculatedFinal === 2);
+            if (runnerUp) {
+                championshipParticipants = [champion, runnerUp.id];
+            } else {
+                championshipParticipants = [champion];
             }
         }
 
@@ -227,6 +258,7 @@ class StatsEngine {
             playoffMatchups,
             settings,
             champion,
+            championshipParticipants,
             standings: teams.sort((a, b) => {
                 const aWinPct = a.record.wins / (a.record.wins + a.record.losses) || 0;
                 const bWinPct = b.record.wins / (b.record.wins + b.record.losses) || 0;
@@ -273,6 +305,7 @@ class StatsEngine {
                     pointsFor: 0,
                     pointsAgainst: 0,
                     championships: 0,
+                    championshipAppearances: 0,
                     playoffAppearances: 0,
                     seasonsPlayed: 0
                 });
@@ -290,6 +323,11 @@ class StatsEngine {
                 career.championships++;
             }
 
+            // Track championship game appearances
+            if (seasonStats.championshipParticipants && seasonStats.championshipParticipants.includes(teamId)) {
+                career.championshipAppearances++;
+            }
+
             if (team.playoffSeed && team.playoffSeed <= (seasonStats.settings.playoffTeamCount || 6)) {
                 career.playoffAppearances++;
             }
@@ -305,7 +343,9 @@ class StatsEngine {
                 awayTeamName: this.getTeamName(matchup.awayTeamId)
             });
 
-            // Track high scores
+            // Track high scores - use isPlayoffGame flag we set, or fall back to playoffTierType
+            const isPlayoff = matchup.isPlayoffGame !== undefined ? matchup.isPlayoffGame : !!matchup.playoffTierType;
+
             aggregate.highScores.push({
                 teamId: matchup.homeTeamId,
                 teamName: this.getTeamName(matchup.homeTeamId),
@@ -314,7 +354,7 @@ class StatsEngine {
                 opponentScore: matchup.awayScore,
                 year,
                 week: matchup.matchupPeriodId,
-                isPlayoff: !!matchup.playoffTierType
+                isPlayoff
             });
 
             aggregate.highScores.push({
@@ -325,7 +365,7 @@ class StatsEngine {
                 opponentScore: matchup.homeScore,
                 year,
                 week: matchup.matchupPeriodId,
-                isPlayoff: !!matchup.playoffTierType
+                isPlayoff
             });
 
             // Update H2H records
@@ -357,7 +397,7 @@ class StatsEngine {
                 week: matchup.matchupPeriodId,
                 team1Score: matchup.homeTeamId === h2h.team1 ? matchup.homeScore : matchup.awayScore,
                 team2Score: matchup.homeTeamId === h2h.team2 ? matchup.homeScore : matchup.awayScore,
-                isPlayoff: !!matchup.playoffTierType
+                isPlayoff
             });
         }
     }
@@ -369,19 +409,26 @@ class StatsEngine {
         const records = Array.from(stats.careerRecords.values());
 
         return {
-            mostWins: [...records].sort((a, b) => b.wins - a.wins).slice(0, 10),
-            bestWinPct: [...records]
-                .filter(r => r.wins + r.losses >= 10) // Minimum games
+            // Career wins with win % included - show all 12 teams
+            mostWins: [...records]
                 .map(r => ({
                     ...r,
-                    winPct: r.wins / (r.wins + r.losses + r.ties)
+                    winPct: r.wins / (r.wins + r.losses + r.ties) || 0
                 }))
-                .sort((a, b) => b.winPct - a.winPct)
-                .slice(0, 10),
+                .sort((a, b) => b.wins - a.wins)
+                .slice(0, 12),
+            // Championships - show all teams that have won
             mostChampionships: [...records]
-                .filter(r => r.championships > 0)
-                .sort((a, b) => b.championships - a.championships),
-            mostPlayoffs: [...records].sort((a, b) => b.playoffAppearances - a.playoffAppearances).slice(0, 10),
+                .sort((a, b) => b.championships - a.championships)
+                .slice(0, 12),
+            // Championship appearances - show all 12 teams
+            mostChampionshipAppearances: [...records]
+                .sort((a, b) => b.championshipAppearances - a.championshipAppearances)
+                .slice(0, 12),
+            // Playoff appearances - show all 12 teams
+            mostPlayoffs: [...records]
+                .sort((a, b) => b.playoffAppearances - a.playoffAppearances)
+                .slice(0, 12),
             mostPointsFor: [...records].sort((a, b) => b.pointsFor - a.pointsFor).slice(0, 10),
             avgPointsPerGame: [...records]
                 .filter(r => r.wins + r.losses >= 10)
@@ -398,8 +445,16 @@ class StatsEngine {
      * Calculate record book entries
      */
     calculateRecordBook(stats) {
-        const sortedScores = [...stats.highScores].sort((a, b) => b.score - a.score);
-        const sortedLowScores = [...stats.highScores].sort((a, b) => a.score - b.score);
+        // Filter high scores: 2015 and earlier = weeks 1-12 only, 2016+ = all weeks
+        const filteredHighScores = stats.highScores.filter(s => {
+            if (s.year <= 2015) {
+                return s.week <= 12;
+            }
+            return true; // Include all games from 2016 onwards
+        });
+
+        const sortedScores = [...filteredHighScores].sort((a, b) => b.score - a.score);
+        const sortedLowScores = [...filteredHighScores].sort((a, b) => a.score - b.score);
 
         // Calculate margins
         const margins = stats.allMatchups.map(m => ({

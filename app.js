@@ -359,18 +359,11 @@ class FantasyApp {
 
         const { careerLeaders, recordBook } = stats;
 
-        // Career wins
+        // Career wins with win % included
         this.renderLeaderboard('career-wins', careerLeaders.mostWins, (t) => ({
             name: t.teamName,
             value: `${t.wins}-${t.losses}`,
-            subtitle: `${t.seasonsPlayed} seasons`
-        }));
-
-        // Win percentage
-        this.renderLeaderboard('career-win-pct', careerLeaders.bestWinPct, (t) => ({
-            name: t.teamName,
-            value: `${(t.winPct * 100).toFixed(1)}%`,
-            subtitle: `${t.wins}-${t.losses}`
+            subtitle: `${(t.winPct * 100).toFixed(1)}% · ${t.seasonsPlayed} seasons`
         }));
 
         // Championships
@@ -378,6 +371,13 @@ class FantasyApp {
             name: t.teamName,
             value: `🏆 ${t.championships}`,
             subtitle: ''
+        }));
+
+        // Championship appearances
+        this.renderLeaderboard('championship-appearances', careerLeaders.mostChampionshipAppearances, (t) => ({
+            name: t.teamName,
+            value: t.championshipAppearances,
+            subtitle: `${t.championships} wins`
         }));
 
         // Playoff appearances
