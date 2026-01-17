@@ -150,3 +150,43 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .sidebar-overlay.active{display:block}
 @media(max-width:1024px){.mobile-menu-toggle{display:flex}.main-content{padding-top:70px}}
 @media(max-width:768px){.main-content{padding:16px;padding-top:70px}.section-header h2{font-size:2rem}.stat-value{font-size:2.25rem}.card-header{padding:16px}.card-body{padding:16px}.h2h-wins{font-size:3rem}}
+/* Landing Page Styles */
+.landing-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 96px);text-align:center;padding:48px 24px}
+.landing-header{margin-bottom:48px}
+.league-title{font-family:var(--font-display);font-size:clamp(3rem,10vw,6rem);font-weight:800;text-transform:uppercase;background:linear-gradient(135deg,var(--gold) 0%,var(--amber) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:0.05em;line-height:1;margin-bottom:16px;animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%,100%{filter:brightness(1)}50%{filter:brightness(1.2)}}
+.league-tagline{font-family:var(--font-mono);font-size:1rem;color:var(--ghost);letter-spacing:0.2em;text-transform:uppercase}
+.trophy-showcase{position:relative;margin-bottom:48px}
+.trophy-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(201,162,39,0.3) 0%,transparent 70%);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.2);opacity:0.8}}
+.trophy-container{position:relative;z-index:1}
+.trophy-icon{width:120px;height:120px;stroke:var(--gold);filter:drop-shadow(0 0 20px rgba(201,162,39,0.5));animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.trophy-name{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-top:24px}
+.champion-showcase{background:linear-gradient(135deg,var(--slate) 0%,var(--charcoal) 100%);border:2px solid var(--gold);border-radius:24px;padding:48px 64px;margin-bottom:48px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(201,162,39,0.2)}
+.champion-showcase::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--amber),var(--gold))}
+.champion-label{font-family:var(--font-mono);font-size:0.875rem;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:16px}
+.champion-showcase .champion-name{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:800;color:var(--cream);text-transform:uppercase;line-height:1.1;margin-bottom:16px}
+.champion-subtitle{font-family:var(--font-mono);font-size:0.875rem;color:var(--silver);letter-spacing:0.1em}
+.champion-confetti{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+.champion-confetti span{position:absolute;width:10px;height:10px;background:var(--gold);opacity:0;animation:confetti 3s ease-in-out infinite}
+.champion-confetti span:nth-child(1){left:10%;animation-delay:0s;background:var(--gold)}
+.champion-confetti span:nth-child(2){left:20%;animation-delay:0.2s;background:var(--amber)}
+.champion-confetti span:nth-child(3){left:30%;animation-delay:0.4s;background:var(--teal)}
+.champion-confetti span:nth-child(4){left:40%;animation-delay:0.6s;background:var(--gold)}
+.champion-confetti span:nth-child(5){left:50%;animation-delay:0.8s;background:var(--mint)}
+.champion-confetti span:nth-child(6){left:60%;animation-delay:1s;background:var(--amber)}
+.champion-confetti span:nth-child(7){left:70%;animation-delay:1.2s;background:var(--gold)}
+.champion-confetti span:nth-child(8){left:80%;animation-delay:1.4s;background:var(--teal)}
+.champion-confetti span:nth-child(9){left:90%;animation-delay:1.6s;background:var(--gold)}
+.champion-confetti span:nth-child(10){left:95%;animation-delay:1.8s;background:var(--amber)}
+@keyframes confetti{0%{top:-10%;opacity:1;transform:rotate(0deg)}100%{top:110%;opacity:0;transform:rotate(720deg)}}
+.landing-stats{display:flex;gap:64px;margin-bottom:48px}
+.landing-stat{text-align:center}
+.landing-stat-value{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--cream);line-height:1}
+.landing-stat-label{font-family:var(--font-mono);font-size:0.75rem;color:var(--ghost);letter-spacing:0.1em;text-transform:uppercase;margin-top:8px}
+.explore-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--gold),var(--amber));color:var(--void);font-family:var(--font-display);font-size:1.25rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:20px 48px;border:none;border-radius:12px;cursor:pointer;transition:var(--transition-smooth);box-shadow:0 4px 24px rgba(201,162,39,0.3)}
+.explore-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,162,39,0.4)}
+.explore-btn .icon{width:24px;height:24px;transition:transform 0.3s ease}
+.explore-btn:hover .icon{transform:translateX(4px)}
+@media(max-width:768px){.landing-page{padding:24px 16px}.league-title{font-size:2.5rem}.trophy-icon{width:80px;height:80px}.trophy-name{font-size:1.5rem}.champion-showcase{padding:32px 24px}.champion-showcase .champion-name{font-size:2rem}.landing-stats{flex-direction:column;gap:24px}.landing-stat-value{font-size:2.5rem}.explore-btn{padding:16px 32px;font-size:1rem}}

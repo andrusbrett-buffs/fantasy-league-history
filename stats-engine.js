@@ -725,7 +725,7 @@ class StatsEngine {
     }
 
     // Cache version - increment this when data structure changes to invalidate old cache
-    static CACHE_VERSION = 2;
+    static CACHE_VERSION = 3;
 
     /**
      * Save aggregated stats to localStorage

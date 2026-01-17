@@ -37,8 +37,9 @@ class FantasyApp {
         if (cacheValid && statsEngine.loadFromStorage()) {
             this.dataLoaded = true;
             this.renderAllSections();
-            this.showSection('dashboard');
-            document.querySelector('[data-section="dashboard"]').classList.add('active');
+            this.renderLandingPage();
+            this.showSection('home');
+            document.querySelector('[data-section="home"]').classList.add('active');
             this.updateDataStatus('Data loaded from cache (refreshes daily)');
         } else {
             // Fetch fresh data
@@ -106,7 +107,7 @@ class FantasyApp {
             espnS2: 'AEAKFObDwOm3E7GRJ0QBZKS1wSGiucZZsHVko5wP6kXyjLGixBLzgYhDiG0FhA49%2BQ5NvC5q46LrnlaE9EJx2pGsA3u8NxvcGx06nYcpWZPZxIw2BlYwE4ouA9aODzkDhV7cAGkf6zA0fvcBWE1zRWAYNQ%2F4Nve%2F0pwYOF%2FZFzdSWoB7vyJlmSkUGKc0qsfUinwTLGojGQTh6bsEdtIztGhpdwErCho2845NF4i6sIAPnwamaISOjI3pgtPFXm4j52r0WKoH4Vf2yVf45V1C4b8Y3ry0QOXB7AA%2B3yJHMwVoag%3D%3D',
             swid: '{691768BD-FEF6-4631-96B6-657E9D470FD7}',
             startYear: 2011,
-            currentYear: 2024
+            currentYear: 2025
         };
 
         // Pre-fill with hardcoded values (or saved values if they exist)
@@ -143,7 +144,7 @@ class FantasyApp {
             espnS2: 'AEAKFObDwOm3E7GRJ0QBZKS1wSGiucZZsHVko5wP6kXyjLGixBLzgYhDiG0FhA49%2BQ5NvC5q46LrnlaE9EJx2pGsA3u8NxvcGx06nYcpWZPZxIw2BlYwE4ouA9aODzkDhV7cAGkf6zA0fvcBWE1zRWAYNQ%2F4Nve%2F0pwYOF%2FZFzdSWoB7vyJlmSkUGKc0qsfUinwTLGojGQTh6bsEdtIztGhpdwErCho2845NF4i6sIAPnwamaISOjI3pgtPFXm4j52r0WKoH4Vf2yVf45V1C4b8Y3ry0QOXB7AA%2B3yJHMwVoag%3D%3D',
             swid: '{691768BD-FEF6-4631-96B6-657E9D470FD7}',
             startYear: 2011,
-            currentYear: 2024
+            currentYear: 2025
         };
 
         const leagueId = config.leagueId;
@@ -191,6 +192,7 @@ class FantasyApp {
 
             this.dataLoaded = true;
             this.renderAllSections();
+            this.renderLandingPage();
 
             // Show detailed status
             let statusMsg = `Successfully loaded ${successfulYears.length} seasons of data`;
@@ -199,9 +201,9 @@ class FantasyApp {
             }
             this.updateDataStatus(statusMsg);
 
-            // Show dashboard
-            this.showSection('dashboard');
-            document.querySelector('[data-section="dashboard"]').classList.add('active');
+            // Show home/landing page
+            this.showSection('home');
+            document.querySelector('[data-section="home"]').classList.add('active');
 
         } catch (error) {
             console.error('Error loading league data:', error);
@@ -263,6 +265,33 @@ class FantasyApp {
         this.populateTeamSelects();
         this.renderH2HMatrix();
         this.populateSeasonSelect();
+    }
+
+    /**
+     * Render landing page with current champion
+     */
+    renderLandingPage() {
+        const stats = statsEngine.aggregatedStats;
+        if (!stats) return;
+
+        // Get the most recent champion (2024 season)
+        const sortedChampions = [...stats.champions].sort((a, b) => b.year - a.year);
+        const currentChampion = sortedChampions[0];
+
+        // Update champion name
+        const championNameEl = document.getElementById('current-champion-name');
+        if (championNameEl && currentChampion) {
+            championNameEl.textContent = currentChampion.teamName;
+        }
+
+        // Update landing stats
+        const seasons = statsEngine.getAllSeasons();
+        document.getElementById('landing-seasons').textContent = seasons.length;
+        document.getElementById('landing-games').textContent = stats.allMatchups.length.toLocaleString();
+
+        // Count unique champions
+        const uniqueChampions = new Set(stats.champions.map(c => c.teamName));
+        document.getElementById('landing-champions').textContent = uniqueChampions.size;
     }
 
     /**

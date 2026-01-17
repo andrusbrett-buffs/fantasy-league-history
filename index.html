@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy Football League History</title>
+    <title>Fadunkadunk Fantasy Football</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -55,18 +55,71 @@
         <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
         <aside class="sidebar">
             <div class="logo">
-                <h1><span>League History</span></h1>
-                <p class="subtitle">Since 2011</p>
+                <h1><span>Fadunkadunk</span></h1>
+                <p class="subtitle">Est. 2011</p>
             </div>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" data-section="dashboard"><span class="nav-icon"><svg class="icon"><use href="#icon-dashboard"/></svg></span><span>Dashboard</span></a></li>
+                <li><a href="#" class="nav-link active" data-section="home"><span class="nav-icon"><svg class="icon"><use href="#icon-trophy"/></svg></span><span>Home</span></a></li>
+                <li><a href="#" class="nav-link" data-section="dashboard"><span class="nav-icon"><svg class="icon"><use href="#icon-dashboard"/></svg></span><span>Dashboard</span></a></li>
                 <li><a href="#" class="nav-link" data-section="records"><span class="nav-icon"><svg class="icon"><use href="#icon-medal"/></svg></span><span>All-Time Records</span></a></li>
                 <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon"><svg class="icon"><use href="#icon-swords"/></svg></span><span>Head-to-Head</span></a></li>
                 <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
             </ul>
         </aside>
         <main class="main-content">
-            <section id="dashboard" class="section active">
+            <!-- Landing Page / Home -->
+            <section id="home" class="section active">
+                <div class="landing-page">
+                    <div class="landing-header">
+                        <h1 class="league-title">FADUNKADUNK</h1>
+                        <p class="league-tagline">Fantasy Football Excellence Since 2011</p>
+                    </div>
+
+                    <div class="trophy-showcase">
+                        <div class="trophy-glow"></div>
+                        <div class="trophy-container">
+                            <svg class="trophy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M6 9H4a2 2 0 01-2-2V5a2 2 0 012-2h2M18 9h2a2 2 0 002-2V5a2 2 0 00-2-2h-2M6 3h12v6a6 6 0 11-12 0V3zM9 21h6M12 15v6"/>
+                            </svg>
+                        </div>
+                        <h2 class="trophy-name">THE SWISH</h2>
+                    </div>
+
+                    <div class="champion-showcase">
+                        <div class="champion-label">2024 CHAMPION</div>
+                        <div class="champion-name" id="current-champion-name">Loading...</div>
+                        <div class="champion-subtitle">Holder of The Swish</div>
+                        <div class="champion-confetti">
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+
+                    <div class="landing-stats">
+                        <div class="landing-stat">
+                            <div class="landing-stat-value" id="landing-seasons">--</div>
+                            <div class="landing-stat-label">Seasons</div>
+                        </div>
+                        <div class="landing-stat">
+                            <div class="landing-stat-value" id="landing-games">--</div>
+                            <div class="landing-stat-label">Games Played</div>
+                        </div>
+                        <div class="landing-stat">
+                            <div class="landing-stat-value" id="landing-champions">--</div>
+                            <div class="landing-stat-label">Different Champions</div>
+                        </div>
+                    </div>
+
+                    <button class="explore-btn" onclick="document.querySelector('[data-section=dashboard]').click()">
+                        Explore League History
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <section id="dashboard" class="section">
                 <div class="section-header"><h2>Dashboard</h2><p>Your league at a glance</p></div>
                 <div class="stats-grid" id="quick-stats">
                     <div class="stat-card"><div class="stat-value" id="total-seasons">--</div><div class="stat-label">Seasons</div></div>
