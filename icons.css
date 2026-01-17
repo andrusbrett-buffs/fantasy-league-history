@@ -1,0 +1,13 @@
+/* Gridiron Archive Custom Icons */
+.icon{display:inline-block;width:1.25em;height:1.25em;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon-sm{width:1em;height:1em}
+.icon-lg{width:1.5em;height:1.5em}
+.icon-gold{stroke:var(--gold)}
+.icon-teal{stroke:var(--teal)}
+.icon-amber{stroke:var(--amber)}
+.icon-mint{stroke:var(--mint)}
+.nav-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px}
+.nav-icon .icon{stroke:var(--ghost);transition:stroke .2s}
+.nav-link:hover .nav-icon .icon,.nav-link.active .nav-icon .icon{stroke:var(--gold)}
+.card-icon{display:inline-flex;align-items:center;justify-content:center;margin-right:8px}
+.card-icon .icon{stroke:var(--gold)}

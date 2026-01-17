@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football League History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><span>League History</span></h1>
+                <p class="subtitle">Since 2011</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-section="dashboard"><span class="nav-icon">📊</span><span>Dashboard</span></a></li>
+                <li><a href="#" class="nav-link" data-section="records"><span class="nav-icon">🏅</span><span>All-Time Records</span></a></li>
+                <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon">⚔️</span><span>Head-to-Head</span></a></li>
+                <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon">📅</span><span>Season History</span></a></li>
+                <li><a href="#" class="nav-link" data-section="settings"><span class="nav-icon">⚙️</span><span>Settings</span></a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <section id="dashboard" class="section active">
+                <div class="section-header"><h2>Dashboard</h2><p>Your league at a glance</p></div>
+                <div class="stats-grid" id="quick-stats">
+                    <div class="stat-card"><div class="stat-value" id="total-seasons">--</div><div class="stat-label">Seasons</div></div>
+                    <div class="stat-card"><div class="stat-value" id="total-games">--</div><div class="stat-label">Games Played</div></div>
+                    <div class="stat-card"><div class="stat-value" id="total-points">--</div><div class="stat-label">Total Points</div></div>
+                    <div class="stat-card"><div class="stat-value" id="avg-score">--</div><div class="stat-label">Avg Score</div></div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">🏆</span> League Champions</h3></div><div id="champions-list" class="champions-container"><p class="no-data">Loading champions...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">📈</span> Current Season Standings</h3></div><div id="current-standings"><p class="no-data">Loading standings...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">🎯</span> This Week's Matchups</h3></div><div id="current-matchups"><p class="no-data">Loading matchups...</p></div></div>
+                </div>
+            </section>
+            <section id="records" class="section">
+                <div class="section-header"><h2>All-Time Records</h2><p>The best (and worst) performances in league history</p></div>
+                <div class="records-grid">
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">🥇</span> Career Wins Leaders</h3></div><div class="card-body" id="career-wins"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">📊</span> Career Win Percentage</h3></div><div class="card-body" id="career-win-pct"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">🏆</span> Championship Counts</h3></div><div class="card-body" id="championship-counts"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">🎪</span> Playoff Appearances</h3></div><div class="card-body" id="playoff-appearances"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">🔥</span> Highest Single-Game Score</h3></div><div class="card-body" id="highest-score"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">📉</span> Lowest Single-Game Score</h3></div><div class="card-body" id="lowest-score"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">💪</span> Most Points For (Season)</h3></div><div class="card-body" id="most-pf-season"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">💥</span> Biggest Blowout</h3></div><div class="card-body" id="biggest-blowout"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">😰</span> Closest Game</h3></div><div class="card-body" id="closest-game"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon">🔥</span> Longest Win Streak</h3></div><div class="card-body" id="longest-streak"><p class="no-data">Loading...</p></div></div>
+                </div>
+            </section>
+            <section id="h2h" class="section">
+                <div class="section-header"><h2>Head-to-Head History</h2><p>Compare any two teams' all-time matchup history</p></div>
+                <div class="h2h-controls"><select id="team1-select"><option value="">Select Team 1...</option></select><select id="team2-select"><option value="">Select Team 2...</option></select></div>
+                <div id="h2h-results" class="h2h-container"><p class="no-data">Select two teams to see their head-to-head history</p></div>
+                <div class="card" style="margin-top: 32px;"><div class="card-header"><h3><span class="card-icon">📋</span> All-Time Head-to-Head Matrix</h3></div><div id="h2h-matrix" class="matrix-container" style="overflow-x: auto;"><p class="no-data">Loading matrix...</p></div></div>
+            </section>
+            <section id="seasons" class="section">
+                <div class="section-header"><h2>Season-by-Season History</h2><p>Explore detailed stats from every season</p></div>
+                <div class="season-controls"><select id="season-select"><option value="">Loading seasons...</option></select></div>
+                <div id="season-details">
+                    <div class="season-grid">
+                        <div class="card"><div class="card-header"><h3><span class="card-icon">🏅</span> Final Standings</h3></div><div id="season-standings"><p class="no-data">Select a season to view details</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon">🎯</span> Playoff Bracket</h3></div><div id="season-playoffs"><p class="no-data">Select a season to view playoffs</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon">⭐</span> Season Leaders</h3></div><div id="season-leaders"><p class="no-data">Select a season to view leaders</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon">📅</span> Weekly Results</h3></div><div class="week-selector"><select id="week-select"><option value="">Select Week...</option></select></div><div id="season-weekly"><p class="no-data">Select a season to view weekly results</p></div></div>
+                    </div>
+                </div>
+            </section>
+            <section id="settings" class="section">
+                <div class="section-header"><h2>League Settings</h2><p>Configure your ESPN league connection</p></div>
+                <div class="dashboard-grid">
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">🔧</span> ESPN League Configuration</h3></div>
+                        <form id="league-config-form">
+                            <div class="form-group"><label for="league-id">League ID</label><input type="text" id="league-id" placeholder="Enter your ESPN league ID"></div>
+                            <div class="form-group"><label for="espn-s2">ESPN S2 Cookie</label><input type="password" id="espn-s2" placeholder="Enter espn_s2 cookie value"></div>
+                            <div class="form-group"><label for="swid">SWID Cookie</label><input type="text" id="swid" placeholder="Enter SWID cookie value (include braces)"></div>
+                            <div class="form-row"><div class="form-group"><label for="start-year">League Start Year</label><input type="number" id="start-year" min="2000" max="2025" placeholder="e.g., 2011"></div><div class="form-group"><label for="current-year">Current Year</label><input type="number" id="current-year" min="2000" max="2025" value="2025"></div></div>
+                            <div class="btn-group"><button type="submit" class="btn btn-primary">Save & Load Data</button><button type="button" id="clear-cache" class="btn btn-secondary">Clear Cache</button></div>
+                        </form>
+                    </div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">📡</span> Data Status</h3></div><div id="data-status"><p>Credentials are pre-configured. Click "Save & Load Data" to fetch your league history.</p></div><div id="loading-progress" class="hidden"><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div><p id="progress-text">Loading...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon">❓</span> How to Find Your Credentials</h3></div><div class="instructions"><h4 style="color: var(--text-primary); margin-bottom: 12px;">Finding Your League ID:</h4><ol style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 24px;"><li style="margin-bottom: 8px;">Go to your ESPN Fantasy Football league page</li><li style="margin-bottom: 8px;">Look at the URL - it will contain leagueId=XXXXXXX</li><li>Copy that number</li></ol><h4 style="color: var(--text-primary); margin-bottom: 12px;">Finding espn_s2 and SWID (Private Leagues):</h4><ol style="color: var(--text-secondary); margin-left: 20px;"><li style="margin-bottom: 8px;">Log into ESPN Fantasy Football</li><li style="margin-bottom: 8px;">Open browser Developer Tools (F12 or right-click > Inspect)</li><li style="margin-bottom: 8px;">Go to Application tab > Cookies > espn.com</li><li>Find and copy the values for espn_s2 and SWID</li></ol></div></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="espn-api.js"></script>
+    <script src="stats-engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

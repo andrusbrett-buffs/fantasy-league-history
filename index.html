@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football League History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="icons.css">
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+        <symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M6 9H4a2 2 0 01-2-2V5a2 2 0 012-2h2M18 9h2a2 2 0 002-2V5a2 2 0 00-2-2h-2M6 3h12v6a6 6 0 11-12 0V3zM9 21h6M12 15v6"/></symbol>
+        <symbol id="icon-medal" viewBox="0 0 24 24"><circle cx="12" cy="14" r="6"/><path d="M8 6L6 2h12l-2 4M15 6l-3 2-3-2"/><path d="M12 11v2M10 14h4" stroke-width="1"/></symbol>
+        <symbol id="icon-swords" viewBox="0 0 24 24"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M19 13l-6 6M22 22l-3-3M16 16l-2 2"/><path d="M9.5 17.5L21 6V3h-3L6.5 14.5M11 19l-6-6M5 13l6 6M2 22l3-3M8 16l2 2"/></symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" stroke-width="2"/></symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></symbol>
+        <symbol id="icon-crown" viewBox="0 0 24 24"><path d="M2 20h20L19 8l-5 4-2-6-2 6-5-4-3 12zM2 20a2 2 0 002 2h16a2 2 0 002-2"/></symbol>
+        <symbol id="icon-trending" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></symbol>
+        <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+        <symbol id="icon-fire" viewBox="0 0 24 24"><path d="M12 22c4.97 0 8-3.58 8-8 0-2.52-1.08-5.25-2.5-7.5-.28-.44-1-.44-1.28 0-.52.82-.98 1.7-1.32 2.5-.34-.76-.81-1.56-1.4-2.4-.28-.4-.92-.4-1.2 0C10.58 9.1 9 12.28 9 14.5c0 .5.08 1 .22 1.5C8.44 14.5 8 12.74 8 11c0-.93.22-1.86.55-2.72.14-.36-.22-.7-.58-.58C5.5 8.62 4 11.5 4 14c0 4.42 3.03 8 8 8z"/></symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></symbol>
+        <symbol id="icon-down" viewBox="0 0 24 24"><path d="M18 4v12M12 20V4M6 12v8"/><path d="M15 13l3 3 3-3M3 17l3 3 3-3"/></symbol>
+        <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+        <symbol id="icon-explosion" viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4.5 2 7L12 16l-5.5 4.5 2-7L3 9h7z"/></symbol>
+        <symbol id="icon-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="9"/><path d="M12 9v4l2 2M10 2h4M21 6l-2 2"/></symbol>
+        <symbol id="icon-streak" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/><path d="M6 2h3M2 6v3M20 6v3M18 2h3" stroke-width="2"/></symbol>
+        <symbol id="icon-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke-width="2"/></symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></symbol>
+        <symbol id="icon-bracket" viewBox="0 0 24 24"><path d="M4 4v6a2 2 0 002 2h2M4 20v-6a2 2 0 012-2h2M20 4v6a2 2 0 01-2 2h-2M20 20v-6a2 2 0 00-2-2h-2"/><circle cx="12" cy="12" r="2"/></symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+        <symbol id="icon-week" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="2"/></symbol>
+        <symbol id="icon-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></symbol>
+        <symbol id="icon-signal" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></symbol>
+        <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+        <symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+        <symbol id="icon-percent" viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M20 4L4 20"/></symbol>
+        <symbol id="icon-tent" viewBox="0 0 24 24"><path d="M3 21h18L12 3 3 21zM12 3v18"/><path d="M7.5 21l4.5-9 4.5 9"/></symbol>
+        <symbol id="icon-bicep" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V8s-1 1-4 1-5-2-8-2-4 1-4 1v7z"/><path d="M9 17v4M15 17v4M4 8c0-1.5 2-3 4.5-3 1.5 0 3 .5 4.5 1.5 1.5-1 3-1.5 4.5-1.5 2.5 0 4.5 1.5 4.5 3"/></symbol>
+    </svg>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><span>League History</span></h1>
+                <p class="subtitle">Since 2011</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-section="dashboard"><span class="nav-icon"><svg class="icon"><use href="#icon-dashboard"/></svg></span><span>Dashboard</span></a></li>
+                <li><a href="#" class="nav-link" data-section="records"><span class="nav-icon"><svg class="icon"><use href="#icon-medal"/></svg></span><span>All-Time Records</span></a></li>
+                <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon"><svg class="icon"><use href="#icon-swords"/></svg></span><span>Head-to-Head</span></a></li>
+                <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
+                <li><a href="#" class="nav-link" data-section="settings"><span class="nav-icon"><svg class="icon"><use href="#icon-settings"/></svg></span><span>Settings</span></a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <section id="dashboard" class="section active">
+                <div class="section-header"><h2>Dashboard</h2><p>Your league at a glance</p></div>
+                <div class="stats-grid" id="quick-stats">
+                    <div class="stat-card"><div class="stat-value" id="total-seasons">--</div><div class="stat-label">Seasons</div></div>
+                    <div class="stat-card"><div class="stat-value" id="total-games">--</div><div class="stat-label">Games Played</div></div>
+                    <div class="stat-card"><div class="stat-value" id="total-points">--</div><div class="stat-label">Total Points</div></div>
+                    <div class="stat-card"><div class="stat-value" id="avg-score">--</div><div class="stat-label">Avg Score</div></div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-trophy"/></svg></span> League Champions</h3></div><div id="champions-list" class="champions-container"><p class="no-data">Loading champions...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-trending"/></svg></span> Current Season Standings</h3></div><div id="current-standings"><p class="no-data">Loading standings...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-target"/></svg></span> This Week's Matchups</h3></div><div id="current-matchups"><p class="no-data">Loading matchups...</p></div></div>
+                </div>
+            </section>
+            <section id="records" class="section">
+                <div class="section-header"><h2>All-Time Records</h2><p>The best (and worst) performances in league history</p></div>
+                <div class="records-grid">
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-award"/></svg></span> Career Wins Leaders</h3></div><div class="card-body" id="career-wins"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-percent"/></svg></span> Career Win Percentage</h3></div><div class="card-body" id="career-win-pct"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-crown"/></svg></span> Championship Counts</h3></div><div class="card-body" id="championship-counts"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-mint"><use href="#icon-tent"/></svg></span> Playoff Appearances</h3></div><div class="card-body" id="playoff-appearances"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-fire"/></svg></span> Highest Single-Game Score</h3></div><div class="card-body" id="highest-score"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-down"/></svg></span> Lowest Single-Game Score</h3></div><div class="card-body" id="lowest-score"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-mint"><use href="#icon-bicep"/></svg></span> Most Points For (Season)</h3></div><div class="card-body" id="most-pf-season"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-explosion"/></svg></span> Biggest Blowout</h3></div><div class="card-body" id="biggest-blowout"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-timer"/></svg></span> Closest Game</h3></div><div class="card-body" id="closest-game"><p class="no-data">Loading...</p></div></div>
+                    <div class="card record-card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-bolt"/></svg></span> Longest Win Streak</h3></div><div class="card-body" id="longest-streak"><p class="no-data">Loading...</p></div></div>
+                </div>
+            </section>
+            <section id="h2h" class="section">
+                <div class="section-header"><h2>Head-to-Head History</h2><p>Compare any two teams' all-time matchup history</p></div>
+                <div class="h2h-controls"><select id="team1-select"><option value="">Select Team 1...</option></select><select id="team2-select"><option value="">Select Team 2...</option></select></div>
+                <div id="h2h-results" class="h2h-container"><p class="no-data">Select two teams to see their head-to-head history</p></div>
+                <div class="card" style="margin-top: 32px;"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-grid"/></svg></span> All-Time Head-to-Head Matrix</h3></div><div id="h2h-matrix" class="matrix-container" style="overflow-x: auto;"><p class="no-data">Loading matrix...</p></div></div>
+            </section>
+            <section id="seasons" class="section">
+                <div class="section-header"><h2>Season-by-Season History</h2><p>Explore detailed stats from every season</p></div>
+                <div class="season-controls"><select id="season-select"><option value="">Loading seasons...</option></select></div>
+                <div id="season-details">
+                    <div class="season-grid">
+                        <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-medal"/></svg></span> Final Standings</h3></div><div id="season-standings"><p class="no-data">Select a season to view details</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-bracket"/></svg></span> Playoff Bracket</h3></div><div id="season-playoffs"><p class="no-data">Select a season to view playoffs</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-gold"><use href="#icon-star"/></svg></span> Season Leaders</h3></div><div id="season-leaders"><p class="no-data">Select a season to view leaders</p></div></div>
+                        <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-week"/></svg></span> Weekly Results</h3></div><div class="week-selector"><select id="week-select"><option value="">Select Week...</option></select></div><div id="season-weekly"><p class="no-data">Select a season to view weekly results</p></div></div>
+                    </div>
+                </div>
+            </section>
+            <section id="settings" class="section">
+                <div class="section-header"><h2>League Settings</h2><p>Configure your ESPN league connection</p></div>
+                <div class="dashboard-grid">
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-wrench"/></svg></span> ESPN League Configuration</h3></div>
+                        <form id="league-config-form">
+                            <div class="form-group"><label for="league-id">League ID</label><input type="text" id="league-id" placeholder="Enter your ESPN league ID"></div>
+                            <div class="form-group"><label for="espn-s2">ESPN S2 Cookie</label><input type="password" id="espn-s2" placeholder="Enter espn_s2 cookie value"></div>
+                            <div class="form-group"><label for="swid">SWID Cookie</label><input type="text" id="swid" placeholder="Enter SWID cookie value (include braces)"></div>
+                            <div class="form-row"><div class="form-group"><label for="start-year">League Start Year</label><input type="number" id="start-year" min="2000" max="2025" placeholder="e.g., 2011"></div><div class="form-group"><label for="current-year">Current Year</label><input type="number" id="current-year" min="2000" max="2025" value="2025"></div></div>
+                            <div class="btn-group"><button type="submit" class="btn btn-primary">Save & Load Data</button><button type="button" id="clear-cache" class="btn btn-secondary">Clear Cache</button></div>
+                        </form>
+                    </div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-signal"/></svg></span> Data Status</h3></div><div id="data-status"><p>Credentials are pre-configured. Click "Save & Load Data" to fetch your league history.</p></div><div id="loading-progress" class="hidden"><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div><p id="progress-text">Loading...</p></div></div>
+                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-mint"><use href="#icon-help"/></svg></span> How to Find Your Credentials</h3></div><div class="instructions"><h4 style="color: var(--cream); margin-bottom: 12px;">Finding Your League ID:</h4><ol style="color: var(--pearl); margin-left: 20px; margin-bottom: 24px;"><li style="margin-bottom: 8px;">Go to your ESPN Fantasy Football league page</li><li style="margin-bottom: 8px;">Look at the URL - it will contain leagueId=XXXXXXX</li><li>Copy that number</li></ol><h4 style="color: var(--cream); margin-bottom: 12px;">Finding espn_s2 and SWID (Private Leagues):</h4><ol style="color: var(--pearl); margin-left: 20px;"><li style="margin-bottom: 8px;">Log into ESPN Fantasy Football</li><li style="margin-bottom: 8px;">Open browser Developer Tools (F12 or right-click > Inspect)</li><li style="margin-bottom: 8px;">Go to Application tab > Cookies > espn.com</li><li>Find and copy the values for espn_s2 and SWID</li></ol></div></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="espn-api.js"></script>
+    <script src="stats-engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
