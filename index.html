@@ -42,6 +42,17 @@
         <symbol id="icon-bicep" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V8s-1 1-4 1-5-2-8-2-4 1-4 1v7z"/><path d="M9 17v4M15 17v4M4 8c0-1.5 2-3 4.5-3 1.5 0 3 .5 4.5 1.5 1.5-1 3-1.5 4.5-1.5 2.5 0 4.5 1.5 4.5 3"/></symbol>
     </svg>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <span>Menu</span>
+        </button>
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
         <aside class="sidebar">
             <div class="logo">
                 <h1><span>League History</span></h1>

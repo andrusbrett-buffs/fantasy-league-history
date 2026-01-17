@@ -141,3 +141,12 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 @media(max-width:1400px){.dashboard-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:1024px){.app-container{grid-template-columns:1fr}.sidebar{position:fixed;left:-280px;z-index:100;transition:var(--transition-smooth)}.sidebar.open{left:0}.main-content{padding:32px}.section-header h2{font-size:2.5rem}}
 @media(max-width:768px){.stats-grid,.dashboard-grid,.season-grid{grid-template-columns:1fr}.h2h-controls{flex-direction:column}.h2h-summary{grid-template-columns:1fr;text-align:center}.form-row{grid-template-columns:1fr}}
+
+/* Mobile Menu */
+.mobile-menu-toggle{display:none;position:fixed;top:16px;left:16px;z-index:200;background:var(--slate);border:1px solid var(--graphite);border-radius:8px;padding:8px 16px;color:var(--cream);cursor:pointer;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.875rem}
+.mobile-menu-toggle:hover{background:var(--charcoal);border-color:var(--teal)}
+.mobile-menu-toggle .icon{width:20px;height:20px;stroke:currentColor}
+.sidebar-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(5,5,8,0.85);z-index:90}
+.sidebar-overlay.active{display:block}
+@media(max-width:1024px){.mobile-menu-toggle{display:flex}.main-content{padding-top:70px}}
+@media(max-width:768px){.main-content{padding:16px;padding-top:70px}.section-header h2{font-size:2rem}.stat-value{font-size:2.25rem}.card-header{padding:16px}.card-body{padding:16px}.h2h-wins{font-size:3rem}}

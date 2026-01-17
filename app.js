@@ -719,3 +719,24 @@ class FantasyApp {
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new FantasyApp();
 });
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+}
+
+// Close mobile menu when clicking nav links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar.classList.contains('open')) {
+                toggleMobileMenu();
+            }
+        }
+    });
+});
