@@ -783,6 +783,7 @@ class StatsEngine {
     clearStorage() {
         if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('fantasy_league_data');
+            localStorage.removeItem('espn_last_fetch');
         }
         this.allSeasonData = {};
         this.aggregatedStats = null;

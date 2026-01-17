@@ -29,22 +29,26 @@ class FantasyApp {
      * Automatically load data - checks cache freshness and loads if needed
      */
     async autoLoadData() {
-        const lastFetch = localStorage.getItem('espn_last_fetch');
-        const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
-        const cacheValid = lastFetch && parseInt(lastFetch) > oneDayAgo;
+        // Try to load from cache first (loadFromStorage checks cache version internally)
+        if (statsEngine.loadFromStorage()) {
+            // Check if cache is fresh enough (less than 24 hours old)
+            const lastFetch = localStorage.getItem('espn_last_fetch');
+            const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+            const cacheValid = lastFetch && parseInt(lastFetch) > oneDayAgo;
 
-        // Try to load from cache first
-        if (cacheValid && statsEngine.loadFromStorage()) {
-            this.dataLoaded = true;
-            this.renderAllSections();
-            this.renderLandingPage();
-            this.showSection('home');
-            document.querySelector('[data-section="home"]').classList.add('active');
-            this.updateDataStatus('Data loaded from cache (refreshes daily)');
-        } else {
-            // Fetch fresh data
-            await this.loadLeagueData();
+            if (cacheValid) {
+                this.dataLoaded = true;
+                this.renderAllSections();
+                this.renderLandingPage();
+                this.showSection('home');
+                document.querySelector('[data-section="home"]').classList.add('active');
+                this.updateDataStatus('Data loaded from cache (refreshes daily)');
+                return;
+            }
         }
+
+        // Fetch fresh data if cache is invalid, outdated, or missing
+        await this.loadLeagueData();
     }
 
     /**
@@ -107,7 +111,7 @@ class FantasyApp {
             espnS2: 'AEAKFObDwOm3E7GRJ0QBZKS1wSGiucZZsHVko5wP6kXyjLGixBLzgYhDiG0FhA49%2BQ5NvC5q46LrnlaE9EJx2pGsA3u8NxvcGx06nYcpWZPZxIw2BlYwE4ouA9aODzkDhV7cAGkf6zA0fvcBWE1zRWAYNQ%2F4Nve%2F0pwYOF%2FZFzdSWoB7vyJlmSkUGKc0qsfUinwTLGojGQTh6bsEdtIztGhpdwErCho2845NF4i6sIAPnwamaISOjI3pgtPFXm4j52r0WKoH4Vf2yVf45V1C4b8Y3ry0QOXB7AA%2B3yJHMwVoag%3D%3D',
             swid: '{691768BD-FEF6-4631-96B6-657E9D470FD7}',
             startYear: 2011,
-            currentYear: 2025
+            currentYear: 2026
         };
 
         // Pre-fill with hardcoded values (or saved values if they exist)
@@ -144,7 +148,7 @@ class FantasyApp {
             espnS2: 'AEAKFObDwOm3E7GRJ0QBZKS1wSGiucZZsHVko5wP6kXyjLGixBLzgYhDiG0FhA49%2BQ5NvC5q46LrnlaE9EJx2pGsA3u8NxvcGx06nYcpWZPZxIw2BlYwE4ouA9aODzkDhV7cAGkf6zA0fvcBWE1zRWAYNQ%2F4Nve%2F0pwYOF%2FZFzdSWoB7vyJlmSkUGKc0qsfUinwTLGojGQTh6bsEdtIztGhpdwErCho2845NF4i6sIAPnwamaISOjI3pgtPFXm4j52r0WKoH4Vf2yVf45V1C4b8Y3ry0QOXB7AA%2B3yJHMwVoag%3D%3D',
             swid: '{691768BD-FEF6-4631-96B6-657E9D470FD7}',
             startYear: 2011,
-            currentYear: 2025
+            currentYear: 2026
         };
 
         const leagueId = config.leagueId;
@@ -274,14 +278,15 @@ class FantasyApp {
         const stats = statsEngine.aggregatedStats;
         if (!stats) return;
 
-        // Get the most recent champion (2024 season)
-        const sortedChampions = [...stats.champions].sort((a, b) => b.year - a.year);
-        const currentChampion = sortedChampions[0];
+        // Get the 2025 champion specifically (most recent completed season)
+        const champion2025 = stats.champions.find(c => c.year === 2025);
 
-        // Update champion name
+        // Update champion name - use actual team name, not owner name
         const championNameEl = document.getElementById('current-champion-name');
-        if (championNameEl && currentChampion) {
-            championNameEl.textContent = currentChampion.teamName;
+        if (championNameEl && champion2025) {
+            // Get the actual team name for the champion
+            const teamName = statsEngine.getActualTeamName(champion2025.teamId);
+            championNameEl.textContent = teamName;
         }
 
         // Update landing stats
