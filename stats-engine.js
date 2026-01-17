@@ -724,6 +724,9 @@ class StatsEngine {
             .sort((a, b) => b - a);
     }
 
+    // Cache version - increment this when data structure changes to invalidate old cache
+    static CACHE_VERSION = 2;
+
     /**
      * Save aggregated stats to localStorage
      */
@@ -734,7 +737,8 @@ class StatsEngine {
                 const serializable = {
                     allSeasonData: this.allSeasonData,
                     teamNameMap: Object.fromEntries(this.teamNameMap),
-                    timestamp: Date.now()
+                    timestamp: Date.now(),
+                    cacheVersion: StatsEngine.CACHE_VERSION
                 };
                 localStorage.setItem('fantasy_league_data', JSON.stringify(serializable));
                 return true;
@@ -755,6 +759,12 @@ class StatsEngine {
                 const saved = localStorage.getItem('fantasy_league_data');
                 if (saved) {
                     const data = JSON.parse(saved);
+                    // Check cache version - if outdated, return false to trigger fresh fetch
+                    if (data.cacheVersion !== StatsEngine.CACHE_VERSION) {
+                        console.log('Cache version mismatch, fetching fresh data...');
+                        this.clearStorage();
+                        return false;
+                    }
                     this.allSeasonData = data.allSeasonData;
                     this.teamNameMap = new Map(Object.entries(data.teamNameMap));
                     this.aggregatedStats = this.aggregateAllStats();
