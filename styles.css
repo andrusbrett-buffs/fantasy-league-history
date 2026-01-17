@@ -95,6 +95,27 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .matrix-table td.negative{background:rgba(220,38,38,0.2);color:#f87171}
 .matrix-table td.neutral{background:var(--steel);color:var(--pearl)}
 .matrix-table td.self{background:var(--void);color:var(--graphite)}
+
+/* H2H Matchup History Table */
+.h2h-history{margin-top:32px}
+.h2h-history h4{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--cream);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--graphite)}
+.h2h-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;background:var(--charcoal)}
+.h2h-table thead{background:linear-gradient(135deg,var(--slate),var(--charcoal))}
+.h2h-table th{font-family:var(--font-mono);font-size:0.6875rem;font-weight:600;color:var(--ghost);text-transform:uppercase;letter-spacing:0.08em;padding:16px 20px;text-align:center;border-bottom:2px solid var(--graphite)}
+.h2h-table th:first-child{text-align:left;padding-left:24px}
+.h2h-table th:nth-child(3),.h2h-table th:nth-child(4){color:var(--teal)}
+.h2h-table tbody tr{transition:var(--transition-fast)}
+.h2h-table tbody tr:hover{background:rgba(20,184,166,0.05)}
+.h2h-table tbody tr:nth-child(even){background:rgba(0,0,0,0.15)}
+.h2h-table tbody tr:nth-child(even):hover{background:rgba(20,184,166,0.08)}
+.h2h-table td{font-family:var(--font-mono);font-size:0.875rem;color:var(--pearl);padding:14px 20px;text-align:center;border-bottom:1px solid var(--graphite)}
+.h2h-table td:first-child{text-align:left;padding-left:24px;font-weight:600;color:var(--cream)}
+.h2h-table td.winner{color:var(--teal);font-weight:700;position:relative}
+.h2h-table td.winner::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:60%;background:var(--teal);border-radius:2px}
+.h2h-table tbody tr:last-child td{border-bottom:none}
+.h2h-table .playoff-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(201,162,39,0.2),rgba(201,162,39,0.1));color:var(--gold);padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600}
+.h2h-table .regular-badge{color:var(--ghost);font-size:0.75rem}
+
 .season-controls{margin-bottom:32px}
 .season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .week-selector{padding:16px 32px;border-bottom:1px solid var(--graphite)}

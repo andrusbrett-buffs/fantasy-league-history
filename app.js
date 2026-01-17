@@ -589,7 +589,7 @@ class FantasyApp {
                                 <td>${m.week}</td>
                                 <td class="${m.team1Score > m.team2Score ? 'winner' : ''}">${m.team1Score.toFixed(1)}</td>
                                 <td class="${m.team2Score > m.team1Score ? 'winner' : ''}">${m.team2Score.toFixed(1)}</td>
-                                <td>${m.isPlayoff ? '🏆 Playoff' : 'Regular'}</td>
+                                <td>${m.isPlayoff ? '<span class="playoff-badge">🏆 Playoff</span>' : '<span class="regular-badge">Regular</span>'}</td>
                             </tr>
                         `).join('')}
                     </tbody>
