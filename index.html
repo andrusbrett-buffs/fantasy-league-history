@@ -63,7 +63,6 @@
                 <li><a href="#" class="nav-link" data-section="records"><span class="nav-icon"><svg class="icon"><use href="#icon-medal"/></svg></span><span>All-Time Records</span></a></li>
                 <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon"><svg class="icon"><use href="#icon-swords"/></svg></span><span>Head-to-Head</span></a></li>
                 <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
-                <li><a href="#" class="nav-link" data-section="settings"><span class="nav-icon"><svg class="icon"><use href="#icon-settings"/></svg></span><span>Settings</span></a></li>
             </ul>
         </aside>
         <main class="main-content">
@@ -114,21 +113,12 @@
                     </div>
                 </div>
             </section>
-            <section id="settings" class="section">
-                <div class="section-header"><h2>League Settings</h2><p>Configure your ESPN league connection</p></div>
-                <div class="dashboard-grid">
-                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-wrench"/></svg></span> ESPN League Configuration</h3></div>
-                        <form id="league-config-form">
-                            <div class="form-group"><label for="league-id">League ID</label><input type="text" id="league-id" placeholder="Enter your ESPN league ID"></div>
-                            <div class="form-group"><label for="espn-s2">ESPN S2 Cookie</label><input type="password" id="espn-s2" placeholder="Enter espn_s2 cookie value"></div>
-                            <div class="form-group"><label for="swid">SWID Cookie</label><input type="text" id="swid" placeholder="Enter SWID cookie value (include braces)"></div>
-                            <div class="form-row"><div class="form-group"><label for="start-year">League Start Year</label><input type="number" id="start-year" min="2000" max="2025" placeholder="e.g., 2011"></div><div class="form-group"><label for="current-year">Current Year</label><input type="number" id="current-year" min="2000" max="2025" value="2025"></div></div>
-                            <div class="btn-group"><button type="submit" class="btn btn-primary">Save & Load Data</button><button type="button" id="clear-cache" class="btn btn-secondary">Clear Cache</button></div>
-                        </form>
-                    </div>
-                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-signal"/></svg></span> Data Status</h3></div><div id="data-status"><p>Credentials are pre-configured. Click "Save & Load Data" to fetch your league history.</p></div><div id="loading-progress" class="hidden"><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div><p id="progress-text">Loading...</p></div></div>
-                    <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-mint"><use href="#icon-help"/></svg></span> How to Find Your Credentials</h3></div><div class="instructions"><h4 style="color: var(--cream); margin-bottom: 12px;">Finding Your League ID:</h4><ol style="color: var(--pearl); margin-left: 20px; margin-bottom: 24px;"><li style="margin-bottom: 8px;">Go to your ESPN Fantasy Football league page</li><li style="margin-bottom: 8px;">Look at the URL - it will contain leagueId=XXXXXXX</li><li>Copy that number</li></ol><h4 style="color: var(--cream); margin-bottom: 12px;">Finding espn_s2 and SWID (Private Leagues):</h4><ol style="color: var(--pearl); margin-left: 20px;"><li style="margin-bottom: 8px;">Log into ESPN Fantasy Football</li><li style="margin-bottom: 8px;">Open browser Developer Tools (F12 or right-click > Inspect)</li><li style="margin-bottom: 8px;">Go to Application tab > Cookies > espn.com</li><li>Find and copy the values for espn_s2 and SWID</li></ol></div></div>
-                </div>
+            <!-- Hidden settings section - data loads automatically -->
+            <section id="settings" class="section" style="display:none;">
+                <form id="league-config-form"><input type="hidden" id="league-id"><input type="hidden" id="espn-s2"><input type="hidden" id="swid"><input type="hidden" id="start-year"><input type="hidden" id="current-year"></form>
+                <button type="button" id="clear-cache" style="display:none;"></button>
+                <div id="data-status"></div>
+                <div id="loading-progress" class="hidden"><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div><p id="progress-text">Loading...</p></div>
             </section>
         </main>
     </div>

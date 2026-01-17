@@ -21,13 +21,28 @@ class FantasyApp {
         this.setupH2HControls();
         this.setupSeasonSelector();
 
-        // Try to load saved data
-        if (espnAPI.loadCredentials() && statsEngine.loadFromStorage()) {
+        // Auto-load data on page load
+        this.autoLoadData();
+    }
+
+    /**
+     * Automatically load data - checks cache freshness and loads if needed
+     */
+    async autoLoadData() {
+        const lastFetch = localStorage.getItem('espn_last_fetch');
+        const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+        const cacheValid = lastFetch && parseInt(lastFetch) > oneDayAgo;
+
+        // Try to load from cache first
+        if (cacheValid && statsEngine.loadFromStorage()) {
             this.dataLoaded = true;
             this.renderAllSections();
-            this.updateDataStatus('Data loaded from cache');
+            this.showSection('dashboard');
+            document.querySelector('[data-section="dashboard"]').classList.add('active');
+            this.updateDataStatus('Data loaded from cache (refreshes daily)');
         } else {
-            this.showSection('settings');
+            // Fetch fresh data
+            await this.loadLeagueData();
         }
     }
 
@@ -122,28 +137,23 @@ class FantasyApp {
      * Load league data from ESPN API
      */
     async loadLeagueData() {
-        const leagueId = document.getElementById('league-id').value.trim();
-        const espnS2 = document.getElementById('espn-s2').value.trim();
-        const swid = document.getElementById('swid').value.trim();
-        const startYear = parseInt(document.getElementById('start-year').value);
-        const currentYear = parseInt(document.getElementById('current-year').value);
+        // Hardcoded league configuration
+        const config = {
+            leagueId: '533683',
+            espnS2: 'AEAKFObDwOm3E7GRJ0QBZKS1wSGiucZZsHVko5wP6kXyjLGixBLzgYhDiG0FhA49%2BQ5NvC5q46LrnlaE9EJx2pGsA3u8NxvcGx06nYcpWZPZxIw2BlYwE4ouA9aODzkDhV7cAGkf6zA0fvcBWE1zRWAYNQ%2F4Nve%2F0pwYOF%2FZFzdSWoB7vyJlmSkUGKc0qsfUinwTLGojGQTh6bsEdtIztGhpdwErCho2845NF4i6sIAPnwamaISOjI3pgtPFXm4j52r0WKoH4Vf2yVf45V1C4b8Y3ry0QOXB7AA%2B3yJHMwVoag%3D%3D',
+            swid: '{691768BD-FEF6-4631-96B6-657E9D470FD7}',
+            startYear: 2011,
+            currentYear: 2024
+        };
 
-        if (!leagueId) {
-            alert('Please enter your League ID');
-            return;
-        }
-
-        if (!startYear || !currentYear) {
-            alert('Please enter start and current year');
-            return;
-        }
+        const leagueId = config.leagueId;
+        const espnS2 = config.espnS2;
+        const swid = config.swid;
+        const startYear = config.startYear;
+        const currentYear = config.currentYear;
 
         // Configure API
-        espnAPI.configure(leagueId, espnS2 || null, swid || null);
-        espnAPI.saveCredentials();
-
-        // Save years
-        localStorage.setItem('espn_league_years', JSON.stringify({ startYear, currentYear }));
+        espnAPI.configure(leagueId, espnS2, swid);
 
         // Show loading UI
         this.showLoadingProgress(true);
@@ -175,6 +185,9 @@ class FantasyApp {
             // Process the data
             await statsEngine.loadAllSeasons(rawData);
             statsEngine.saveToStorage();
+
+            // Save fetch timestamp for daily refresh check
+            localStorage.setItem('espn_last_fetch', Date.now().toString());
 
             this.dataLoaded = true;
             this.renderAllSections();
