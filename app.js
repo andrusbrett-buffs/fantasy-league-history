@@ -876,7 +876,7 @@ class FantasyApp {
                 <!-- Season Selector -->
                 <div class="analytics-season-picker">
                     <label class="analytics-season-label">By Season:</label>
-                    <select class="analytics-season-select" id="luck-season-select">
+                    <select class="analytics-season-select" id="luck-season-select" data-seasons='${JSON.stringify(report.luck.bySeasonSummary)}'>
                         ${report.luck.bySeasonSummary.map((season, i) => `
                             <option value="${i}" ${i === report.luck.bySeasonSummary.length - 1 ? 'selected' : ''}>${season.year}</option>
                         `).join('')}
@@ -899,26 +899,6 @@ class FantasyApp {
                         `;
                     })()}
                 </div>
-                <script>
-                    (function() {
-                        const luckData = ${JSON.stringify(report.luck.bySeasonSummary)};
-                        document.getElementById('luck-season-select').addEventListener('change', function() {
-                            const season = luckData[this.value];
-                            document.getElementById('luck-season-display').innerHTML = \`
-                                <div class="analytics-season-row">
-                                    <span class="analytics-season-row-label">Luckiest</span>
-                                    <span class="analytics-season-row-team">\${season.luckiest.displayName}</span>
-                                    <span class="analytics-season-row-value positive">+\${season.luckiest.luckScore.toFixed(1)}</span>
-                                </div>
-                                <div class="analytics-season-row">
-                                    <span class="analytics-season-row-label">Unluckiest</span>
-                                    <span class="analytics-season-row-team">\${season.unluckiest.displayName}</span>
-                                    <span class="analytics-season-row-value negative">\${season.unluckiest.luckScore.toFixed(1)}</span>
-                                </div>
-                            \`;
-                        });
-                    })();
-                </script>
 
                 <!-- Team Rankings -->
                 <div class="analytics-rankings">
@@ -1286,6 +1266,30 @@ class FantasyApp {
                 }
             });
         });
+
+        // Setup season dropdown for Luck section
+        const luckSelect = document.getElementById('luck-season-select');
+        const luckDisplay = document.getElementById('luck-season-display');
+        if (luckSelect && luckDisplay) {
+            const luckData = JSON.parse(luckSelect.dataset.seasons || '[]');
+            luckSelect.addEventListener('change', function() {
+                const season = luckData[this.value];
+                if (season) {
+                    luckDisplay.innerHTML = `
+                        <div class="analytics-season-row">
+                            <span class="analytics-season-row-label">Luckiest</span>
+                            <span class="analytics-season-row-team">${season.luckiest.displayName}</span>
+                            <span class="analytics-season-row-value positive">+${season.luckiest.luckScore.toFixed(1)}</span>
+                        </div>
+                        <div class="analytics-season-row">
+                            <span class="analytics-season-row-label">Unluckiest</span>
+                            <span class="analytics-season-row-team">${season.unluckiest.displayName}</span>
+                            <span class="analytics-season-row-value negative">${season.unluckiest.luckScore.toFixed(1)}</span>
+                        </div>
+                    `;
+                }
+            });
+        }
     }
 }
 
