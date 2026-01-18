@@ -26,15 +26,37 @@ class FantasyApp {
     }
 
     /**
-     * Automatically load data - checks cache first, then fetches from ESPN API
+     * Automatically load data - tries static JSON first, then cache, then live API
      */
     async autoLoadData() {
-        // Try to load from browser cache (localStorage)
+        // STEP 1: Try to load from pre-built static JSON file first
+        try {
+            const response = await fetch('/data/league-data.json');
+            if (response.ok) {
+                const staticData = await response.json();
+                // Check if static data is valid (has actual season data, not just errors)
+                if (staticData.meta && staticData.meta.successCount > 0) {
+                    console.log('Loading from static pre-built data...');
+                    await statsEngine.loadAllSeasons(staticData.seasons);
+                    this.dataLoaded = true;
+                    this.renderAllSections();
+                    this.renderLandingPage();
+                    this.showSection('home');
+                    document.querySelector('[data-section="home"]').classList.add('active');
+                    this.updateDataStatus(`Data loaded from static file (built ${new Date(staticData.meta.generatedAt).toLocaleDateString()})`);
+                    return;
+                }
+            }
+        } catch (e) {
+            console.log('No valid static data file, checking localStorage cache...');
+        }
+
+        // STEP 2: Try to load from browser cache (localStorage)
         if (statsEngine.loadFromStorage()) {
-            // Check if cache is fresh enough (less than 24 hours old)
+            // Check if cache is fresh enough (less than 7 days old for mobile reliability)
             const lastFetch = localStorage.getItem('espn_last_fetch');
-            const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
-            const cacheValid = lastFetch && parseInt(lastFetch) > oneDayAgo;
+            const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+            const cacheValid = lastFetch && parseInt(lastFetch) > sevenDaysAgo;
 
             if (cacheValid) {
                 this.dataLoaded = true;
@@ -42,12 +64,12 @@ class FantasyApp {
                 this.renderLandingPage();
                 this.showSection('home');
                 document.querySelector('[data-section="home"]').classList.add('active');
-                this.updateDataStatus('Data loaded from cache (refreshes daily)');
+                this.updateDataStatus('Data loaded from cache (refreshes weekly)');
                 return;
             }
         }
 
-        // Fetch fresh data if cache is invalid, outdated, or missing
+        // STEP 3: Fetch fresh data if nothing else worked
         await this.loadLeagueData();
     }
 

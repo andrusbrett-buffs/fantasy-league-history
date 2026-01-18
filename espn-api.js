@@ -16,6 +16,7 @@ class ESPNFantasyAPI {
         this.cache = new Map();
         this.cacheExpiry = 5 * 60 * 1000; // 5 minutes
         this.legacyCutoffYear = 2018; // Years before this use the old API
+        this.requestTimeout = 30000; // 30 second timeout for API requests
     }
 
     /**
@@ -147,47 +148,63 @@ class ESPNFantasyAPI {
     }
 
     /**
-     * Fetch with credentials handling
+     * Fetch with credentials handling and timeout
      * Uses a local proxy server for browser-based requests to private leagues
      */
     async fetchWithCredentials(url) {
-        // For public leagues without proxy, try direct fetch
-        if (!this.espnS2 && !this.swid && !this.useProxy) {
-            return fetch(url, {
-                headers: this.buildHeaders()
-            });
-        }
+        // Create abort controller for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.requestTimeout);
 
-        // Use proxy server to handle CORS and cookies
-        if (this.useProxy) {
-            const proxyParams = new URLSearchParams();
-            proxyParams.append('url', url);
-
-            if (this.espnS2) {
-                proxyParams.append('espn_s2', this.espnS2);
-            }
-            if (this.swid) {
-                proxyParams.append('swid', this.swid);
-            }
-
-            const proxyRequestUrl = `${this.proxyUrl}?${proxyParams.toString()}`;
-            console.log('Using proxy for ESPN API request');
-
-            return fetch(proxyRequestUrl, {
-                headers: this.buildHeaders()
-            });
-        }
-
-        // Fallback: Try direct fetch with credentials
         try {
+            // For public leagues without proxy, try direct fetch
+            if (!this.espnS2 && !this.swid && !this.useProxy) {
+                const response = await fetch(url, {
+                    headers: this.buildHeaders(),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                return response;
+            }
+
+            // Use proxy server to handle CORS and cookies
+            if (this.useProxy) {
+                const proxyParams = new URLSearchParams();
+                proxyParams.append('url', url);
+
+                if (this.espnS2) {
+                    proxyParams.append('espn_s2', this.espnS2);
+                }
+                if (this.swid) {
+                    proxyParams.append('swid', this.swid);
+                }
+
+                const proxyRequestUrl = `${this.proxyUrl}?${proxyParams.toString()}`;
+                console.log('Using proxy for ESPN API request');
+
+                const response = await fetch(proxyRequestUrl, {
+                    headers: this.buildHeaders(),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                return response;
+            }
+
+            // Fallback: Try direct fetch with credentials
             const response = await fetch(url, {
                 headers: this.buildHeaders(),
-                credentials: 'include'
+                credentials: 'include',
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
             return response;
         } catch (e) {
-            console.error('Direct fetch failed:', e);
-            throw new Error('CORS error - please use the proxy server (run: node server.js)');
+            clearTimeout(timeoutId);
+            if (e.name === 'AbortError') {
+                throw new Error('Request timed out - network may be slow');
+            }
+            console.error('Fetch failed:', e);
+            throw new Error('Network error - please check your connection');
         }
     }
 
