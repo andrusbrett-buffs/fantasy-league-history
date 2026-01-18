@@ -67,6 +67,7 @@
                 <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
                 <li><a href="#" class="nav-link" data-section="destination"><span class="nav-icon"><svg class="icon"><use href="#icon-target"/></svg></span><span>2026 Destination</span></a></li>
                 <li><a href="#" class="nav-link" data-section="triphistory"><span class="nav-icon"><svg class="icon"><use href="#icon-map"/></svg></span><span>Trip History</span></a></li>
+                <li><a href="#" class="nav-link" data-section="settings"><span class="nav-icon"><svg class="icon"><use href="#icon-settings"/></svg></span><span>Settings</span></a></li>
             </ul>
         </aside>
         <main class="main-content">
@@ -643,12 +644,125 @@
                 </div>
             </section>
 
-            <!-- Hidden settings section - data loads automatically -->
-            <section id="settings" class="section" style="display:none;">
-                <form id="league-config-form"><input type="hidden" id="league-id"><input type="hidden" id="espn-s2"><input type="hidden" id="swid"><input type="hidden" id="start-year"><input type="hidden" id="current-year"></form>
-                <button type="button" id="clear-cache" style="display:none;"></button>
-                <div id="data-status"></div>
-                <div id="loading-progress" class="hidden"><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div><p id="progress-text">Loading...</p></div>
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                    <p>Customize your Fadunkadunk experience</p>
+                </div>
+
+                <!-- Theme Selection -->
+                <div class="settings-card">
+                    <h3>🎨 Choose Your Theme</h3>
+                    <p class="settings-description">Select a color scheme that matches your style</p>
+
+                    <div class="theme-selector">
+                        <div class="theme-option" data-theme="classic">
+                            <div class="theme-preview classic">
+                                <div class="preview-header"></div>
+                                <div class="preview-accent"></div>
+                                <div class="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <span class="theme-name">Classic</span>
+                                <span class="theme-desc">Gold & Teal</span>
+                            </div>
+                            <div class="theme-check">✓</div>
+                        </div>
+
+                        <div class="theme-option" data-theme="lions">
+                            <div class="theme-preview lions">
+                                <div class="preview-header"></div>
+                                <div class="preview-accent"></div>
+                                <div class="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <span class="theme-name">Detroit Lions</span>
+                                <span class="theme-desc">Honolulu Blue & Silver</span>
+                            </div>
+                            <div class="theme-check">✓</div>
+                        </div>
+
+                        <div class="theme-option" data-theme="broncos">
+                            <div class="theme-preview broncos">
+                                <div class="preview-header"></div>
+                                <div class="preview-accent"></div>
+                                <div class="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <span class="theme-name">Denver Broncos</span>
+                                <span class="theme-desc">Orange & Navy</span>
+                            </div>
+                            <div class="theme-check">✓</div>
+                        </div>
+                        <div class="theme-option" data-theme="seahawks">
+                            <div class="theme-preview seahawks">
+                                <div class="preview-header"></div>
+                                <div class="preview-accent"></div>
+                                <div class="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <span class="theme-name">Seattle Seahawks</span>
+                                <span class="theme-desc">Action Green & Navy</span>
+                            </div>
+                            <div class="theme-check">✓</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="settings-card">
+                    <h3>📊 Data Management</h3>
+                    <p class="settings-description">Manage your cached league data</p>
+
+                    <div class="settings-row">
+                        <div class="settings-info">
+                            <span class="settings-label">Cache Status</span>
+                            <span class="settings-value" id="cache-status-display">Checking...</span>
+                        </div>
+                        <button type="button" id="refresh-data-btn" class="settings-btn">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                            </svg>
+                            Refresh Data
+                        </button>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-info">
+                            <span class="settings-label">Clear All Data</span>
+                            <span class="settings-value">Remove cached data and reset</span>
+                        </div>
+                        <button type="button" id="clear-cache" class="settings-btn danger">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                            </svg>
+                            Clear Cache
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hidden form for league config -->
+                <form id="league-config-form" style="display:none;">
+                    <input type="hidden" id="league-id">
+                    <input type="hidden" id="espn-s2">
+                    <input type="hidden" id="swid">
+                    <input type="hidden" id="start-year">
+                    <input type="hidden" id="current-year">
+                </form>
+                <div id="data-status" style="display:none;"></div>
+                <div id="loading-progress" class="hidden">
+                    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+                    <p id="progress-text">Loading...</p>
+                </div>
             </section>
         </main>
     </div>

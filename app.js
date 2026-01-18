@@ -1210,4 +1210,69 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'all 0.3s ease';
         });
     });
+
+    // Theme Selector
+    const themeOptions = document.querySelectorAll('.theme-option');
+    const savedTheme = localStorage.getItem('fadunkadunk-theme') || 'classic';
+
+    // Apply saved theme on load
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeOptions.forEach(opt => {
+        if (opt.dataset.theme === savedTheme) {
+            opt.classList.add('active');
+        }
+    });
+
+    // Theme selection handler
+    themeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const theme = option.dataset.theme;
+
+            // Update active state
+            themeOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+
+            // Apply theme
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // Save preference
+            localStorage.setItem('fadunkadunk-theme', theme);
+
+            // Visual feedback
+            option.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                option.style.transform = '';
+            }, 150);
+        });
+    });
+
+    // Update cache status display
+    const cacheStatusDisplay = document.getElementById('cache-status-display');
+    if (cacheStatusDisplay) {
+        const lastFetch = localStorage.getItem('espn_last_fetch');
+        if (lastFetch) {
+            const fetchDate = new Date(parseInt(lastFetch));
+            const now = new Date();
+            const diffHours = Math.floor((now - fetchDate) / (1000 * 60 * 60));
+            if (diffHours < 1) {
+                cacheStatusDisplay.textContent = 'Updated just now';
+            } else if (diffHours < 24) {
+                cacheStatusDisplay.textContent = `Updated ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            } else {
+                const diffDays = Math.floor(diffHours / 24);
+                cacheStatusDisplay.textContent = `Updated ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            }
+        } else {
+            cacheStatusDisplay.textContent = 'No cached data';
+        }
+    }
+
+    // Refresh data button
+    const refreshBtn = document.getElementById('refresh-data-btn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            localStorage.removeItem('espn_last_fetch');
+            location.reload();
+        });
+    }
 });
