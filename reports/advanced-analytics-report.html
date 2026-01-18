@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fadunkadunk Fantasy League - Advanced Analytics Report</title>
+    <style>
+        :root {
+            --primary: #002244;
+            --secondary: #69BE28;
+            --accent: #A5ACAF;
+            --bg-dark: #0a1628;
+            --bg-card: #1a2a44;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --positive: #48bb78;
+            --negative: #fc8181;
+            --warning: #f6e05e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--bg-card));
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-stat {
+            background: rgba(105, 190, 40, 0.1);
+            border: 1px solid var(--secondary);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-stat .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .meta-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        section h2 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2 .icon {
+            font-size: 1.5rem;
+        }
+
+        section .description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(0, 34, 68, 0.5);
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        th.sortable:hover {
+            background: rgba(105, 190, 40, 0.2);
+        }
+
+        th.sortable::after {
+            content: '⇅';
+            position: absolute;
+            right: 5px;
+            opacity: 0.4;
+            font-size: 0.7rem;
+        }
+
+        th.sortable.asc::after {
+            content: '↑';
+            opacity: 1;
+        }
+
+        th.sortable.desc::after {
+            content: '↓';
+            opacity: 1;
+        }
+
+        tr:hover {
+            background: rgba(105, 190, 40, 0.05);
+        }
+
+        .rank {
+            font-weight: bold;
+            color: var(--accent);
+            width: 40px;
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .positive {
+            color: var(--positive);
+        }
+
+        .negative {
+            color: var(--negative);
+        }
+
+        .neutral {
+            color: var(--warning);
+        }
+
+        .highlight-row {
+            background: rgba(105, 190, 40, 0.1);
+        }
+
+        .bar-container {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .bar-positive {
+            background: linear-gradient(90deg, var(--positive), #68d391);
+        }
+
+        .bar-negative {
+            background: linear-gradient(90deg, var(--negative), #feb2b2);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary), var(--bg-card));
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .highlight-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .highlight-card .label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .highlight-card .value {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .highlight-card .team {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        .season-carousel {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--secondary) var(--bg-dark);
+        }
+
+        .season-card {
+            flex-shrink: 0;
+            width: 280px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .season-card h4 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .season-card .luck-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .luck-pair .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .luck-pair .team {
+            font-size: 0.9rem;
+        }
+
+        .luck-pair .score {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .methodology {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .methodology h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ Fadunkadunk League Analytics</h1>
+        <p class="subtitle">Advanced Performance Metrics & Luck Analysis</p>
+        <div class="meta-info">
+            <div class="meta-stat">
+                <div class="value">15</div>
+                <div class="label">Seasons Analyzed</div>
+            </div>
+            <div class="meta-stat">
+                <div class="value">1393</div>
+                <div class="label">Total Matchups</div>
+            </div>
+            <div class="meta-stat">
+                <div class="value">15</div>
+                <div class="label">Owners Tracked</div>
+            </div>
+            <div class="meta-stat">
+                <div class="value">2011-2026</div>
+                <div class="label">Years Covered</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- LUCK ANALYSIS SECTION -->
+        <section id="luck">
+            <h2><span class="icon">🎲</span> Luck Analysis</h2>
+            <p class="description">
+                Luck is measured using the "All-Play" method: how many wins would you have each week if you played ALL teams?
+                Expected wins are calculated from this, and compared against actual wins. Positive = lucky, Negative = unlucky.
+            </p>
+
+            <div class="highlight-box">
+                <h3>🏆 All-Time Luck Extremes</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <div class="label">Most Unlucky (All-Time)</div>
+                        <div class="value negative">-6.5 wins</div>
+                        <div class="team">Mark Parrish</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Most Lucky (All-Time)</div>
+                        <div class="value positive">+5.2 wins</div>
+                        <div class="team">Jeremy Hess</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--text-primary); margin: 20px 0 10px;">Season-by-Season Luck</h3>
+            <div class="season-carousel">
+                
+                    <div class="season-card">
+                        <h4>2011</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Nard Dog (Jordan Perkins)</div>
+                            </div>
+                            <div class="score positive">+3.8</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Godfather and Sahns (David Hearn)</div>
+                            </div>
+                            <div class="score negative">-2.3</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2012</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">MÃ¼nchen  on BÃ¼ndchen (Mike Dougherty)</div>
+                            </div>
+                            <div class="score positive">+1.7</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Matt Millen's Miracles  (Brett Andrus)</div>
+                            </div>
+                            <div class="score negative">-2.6</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2013</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Natural Born Spiller? (Jeremy Hess)</div>
+                            </div>
+                            <div class="score positive">+2.0</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Fear My BOWEner (Jeff Hudson)</div>
+                            </div>
+                            <div class="score negative">-2.0</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2014</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Best  In Klas (Rob Klas)</div>
+                            </div>
+                            <div class="score positive">+2.4</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">It's On Like Gronky Kong! (Daniel Gallagher)</div>
+                            </div>
+                            <div class="score negative">-1.8</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2015</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Russell and Flow (David Hearn)</div>
+                            </div>
+                            <div class="score positive">+1.4</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Switch Hitters (Mike Dougherty)</div>
+                            </div>
+                            <div class="score negative">-2.6</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2016</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">My Super Sweet Christeen (Jeremy Hess)</div>
+                            </div>
+                            <div class="score positive">+2.3</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">#LiveYour DuJuan (Jeff Hudson)</div>
+                            </div>
+                            <div class="score negative">-1.6</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2017</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Team Dad Bod (Daniel Gallagher)</div>
+                            </div>
+                            <div class="score positive">+1.1</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Scrubs City (Mark Parrish)</div>
+                            </div>
+                            <div class="score negative">-2.8</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2018</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Eat. Pray.  DuJuan.  (Jeff Hudson)</div>
+                            </div>
+                            <div class="score positive">+2.3</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Ace and Garys Wild Ride (Jordan Perkins)</div>
+                            </div>
+                            <div class="score negative">-3.0</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2019</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Blue Belliot Guice Cream (Jeremy Hess)</div>
+                            </div>
+                            <div class="score positive">+3.5</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">The Unlucky Golumpkis (Daniel Gallagher)</div>
+                            </div>
+                            <div class="score negative">-2.9</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2020</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">C u M C back KIDZ!!! (Michael Dougherty)</div>
+                            </div>
+                            <div class="score positive">+2.0</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Seattle Slew (Sam Herting)</div>
+                            </div>
+                            <div class="score negative">-2.0</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2021</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Book of Matthew -the chosen 1's (Brett Foy)</div>
+                            </div>
+                            <div class="score positive">+3.4</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">La Jolla Jolla! Lemme Jollatcha (David Frum)</div>
+                            </div>
+                            <div class="score negative">-3.1</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2022</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Not Not Dry Aged Beef (Daniel Gallagher)</div>
+                            </div>
+                            <div class="score positive">+3.5</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Jeremiah Fondlelowski (Sam Herting)</div>
+                            </div>
+                            <div class="score negative">-2.9</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2023</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Micro Dotson with the Boys (Brett Foy)</div>
+                            </div>
+                            <div class="score positive">+2.2</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Pittman's Shrimp and Pitts (Jeremy Hess)</div>
+                            </div>
+                            <div class="score negative">-2.8</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2024</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Maximus (Michael Baker)</div>
+                            </div>
+                            <div class="score positive">+2.7</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">Platsky and Hutch (Trevor Rawls)</div>
+                            </div>
+                            <div class="score negative">-2.5</div>
+                        </div>
+                    </div>
+                
+                    <div class="season-card">
+                        <h4>2025</h4>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Luckiest</div>
+                                <div class="team positive">Han Solo Elk Berger (Brett Andrus)</div>
+                            </div>
+                            <div class="score positive">+2.7</div>
+                        </div>
+                        <div class="luck-pair">
+                            <div>
+                                <div class="label">Unluckiest</div>
+                                <div class="team negative">2 RBs, 1 Kupp (Michael Baker)</div>
+                            </div>
+                            <div class="score negative">-1.9</div>
+                        </div>
+                    </div>
+                
+            </div>
+
+            <h3 style="color: var(--text-primary); margin: 25px 0 15px;">All-Time Luck Rankings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="rank">#</th>
+                        <th>Team</th>
+                        <th>Actual Wins</th>
+                        <th>Expected Wins</th>
+                        <th>Luck Score</th>
+                        <th>All-Play Record</th>
+                        <th>Seasons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr class="highlight-row">
+                            <td class="rank">1</td>
+                            <td class="team-name">Mark Parrish</td>
+                            <td>102</td>
+                            <td>108.5</td>
+                            <td class="negative">
+                                -6.5
+                            </td>
+                            <td>1191-1113 (51.7%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">2</td>
+                            <td class="team-name">Trevor Rawls & Sam Herting</td>
+                            <td>95</td>
+                            <td>100.0</td>
+                            <td class="negative">
+                                -5.0
+                            </td>
+                            <td>1093-1221 (47.2%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">3</td>
+                            <td class="team-name">Michael Baker</td>
+                            <td>68</td>
+                            <td>71.0</td>
+                            <td class="negative">
+                                -3.0
+                            </td>
+                            <td>779-869 (47.3%)</td>
+                            <td>11</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">4</td>
+                            <td class="team-name">Jordan Perkins</td>
+                            <td>107</td>
+                            <td>108.6</td>
+                            <td class="negative">
+                                -1.6
+                            </td>
+                            <td>1194-1101 (52%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">5</td>
+                            <td class="team-name">Daniel Gallagher</td>
+                            <td>91</td>
+                            <td>92.0</td>
+                            <td class="negative">
+                                -1.0
+                            </td>
+                            <td>1010-964 (51.2%)</td>
+                            <td>13</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">6</td>
+                            <td class="team-name">Jeff Hudson</td>
+                            <td>110</td>
+                            <td>111.0</td>
+                            <td class="negative">
+                                -1.0
+                            </td>
+                            <td>1206-1108 (52.1%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">7</td>
+                            <td class="team-name">Brett Andrus</td>
+                            <td>116</td>
+                            <td>114.0</td>
+                            <td class="positive">
+                                +2.0
+                            </td>
+                            <td>1247-1044 (54.4%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">8</td>
+                            <td class="team-name">Mike Dougherty</td>
+                            <td>105</td>
+                            <td>102.8</td>
+                            <td class="positive">
+                                +2.2
+                            </td>
+                            <td>1131-1164 (49.3%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">9</td>
+                            <td class="team-name">David Hearn</td>
+                            <td>117</td>
+                            <td>114.0</td>
+                            <td class="positive">
+                                +3.0
+                            </td>
+                            <td>1246-1063 (54%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">10</td>
+                            <td class="team-name">David Frum</td>
+                            <td>109</td>
+                            <td>105.5</td>
+                            <td class="positive">
+                                +3.5
+                            </td>
+                            <td>1155-1154 (50%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">11</td>
+                            <td class="team-name">Brett Foy</td>
+                            <td>102</td>
+                            <td>97.5</td>
+                            <td class="positive">
+                                +4.5
+                            </td>
+                            <td>1070-1244 (46.2%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr class="highlight-row">
+                            <td class="rank">12</td>
+                            <td class="team-name">Jeremy Hess</td>
+                            <td>97</td>
+                            <td>91.8</td>
+                            <td class="positive">
+                                +5.2
+                            </td>
+                            <td>1006-1294 (43.7%)</td>
+                            <td>15</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="methodology">
+                <h4>📊 Methodology</h4>
+                <p>Each week, your "expected wins" are calculated by comparing your score against all other teams.
+                If you scored higher than 8 of 11 opponents, your expected wins for that week = 8/11 = 0.73.
+                Sum these across all weeks and seasons, then compare to your actual win total.
+                The difference is your "luck score" — positive means you won more games than your scoring deserved.</p>
+            </div>
+        </section>
+
+        <!-- CONSISTENCY SECTION -->
+        <section id="consistency">
+            <h2><span class="icon">📊</span> Consistency Metrics</h2>
+            <p class="description">
+                Who's the most predictable scorer? Lower Coefficient of Variation (CV) means more consistent week-to-week performance.
+                "Boom" games are 20%+ above your average; "Bust" games are 20%+ below.
+            </p>
+
+            <div class="highlight-box">
+                <h3>🎯 Consistency Extremes</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <div class="label">Most Consistent (Lowest CV)</div>
+                        <div class="value positive">24.4%</div>
+                        <div class="team">Michael Baker</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Most Volatile (Highest CV)</div>
+                        <div class="value negative">28.6%</div>
+                        <div class="team">Jordan Perkins</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Highest Single-Game Score</div>
+                        <div class="value neutral">187.9</div>
+                        <div class="team">Jeff Hudson</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Highest Boom Rate</div>
+                        <div class="value positive">21.6%</div>
+                        <div class="team">Jordan Perkins</div>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="rank">#</th>
+                        <th>Team</th>
+                        <th>Avg Score</th>
+                        <th>Std Dev</th>
+                        <th>CV %</th>
+                        <th>Floor</th>
+                        <th>Ceiling</th>
+                        <th>Boom %</th>
+                        <th>Bust %</th>
+                        <th>Games</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td class="rank">1</td>
+                            <td class="team-name">Michael Baker</td>
+                            <td>97.7</td>
+                            <td>23.8</td>
+                            <td class="negative">24.4%</td>
+                            <td>69.4</td>
+                            <td>126.5</td>
+                            <td class="positive">18.8%</td>
+                            <td class="negative">19.4%</td>
+                            <td>170</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">2</td>
+                            <td class="team-name">Mark Parrish</td>
+                            <td>99.3</td>
+                            <td>24.4</td>
+                            <td class="negative">24.6%</td>
+                            <td>70.1</td>
+                            <td>127.0</td>
+                            <td class="positive">15.4%</td>
+                            <td class="negative">23.1%</td>
+                            <td>234</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">3</td>
+                            <td class="team-name">Mike Dougherty</td>
+                            <td>98.5</td>
+                            <td>24.5</td>
+                            <td class="negative">24.9%</td>
+                            <td>70.8</td>
+                            <td>128.6</td>
+                            <td class="positive">20.4%</td>
+                            <td class="negative">18.7%</td>
+                            <td>230</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">4</td>
+                            <td class="team-name">Brett Andrus</td>
+                            <td>99.2</td>
+                            <td>24.8</td>
+                            <td class="negative">25%</td>
+                            <td>69.0</td>
+                            <td>129.6</td>
+                            <td class="positive">19.5%</td>
+                            <td class="negative">22.1%</td>
+                            <td>231</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">5</td>
+                            <td class="team-name">Brett Foy</td>
+                            <td>95.4</td>
+                            <td>23.9</td>
+                            <td class="negative">25%</td>
+                            <td>67.4</td>
+                            <td>127.8</td>
+                            <td class="positive">17.9%</td>
+                            <td class="negative">20.9%</td>
+                            <td>234</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">6</td>
+                            <td class="team-name">David Frum</td>
+                            <td>97.2</td>
+                            <td>24.4</td>
+                            <td class="negative">25.1%</td>
+                            <td>69.0</td>
+                            <td>124.5</td>
+                            <td class="positive">18.6%</td>
+                            <td class="negative">19%</td>
+                            <td>231</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">7</td>
+                            <td class="team-name">Trevor Rawls & Sam Herting</td>
+                            <td>95.2</td>
+                            <td>24.1</td>
+                            <td class="negative">25.3%</td>
+                            <td>67.2</td>
+                            <td>126.6</td>
+                            <td class="positive">20.8%</td>
+                            <td class="negative">21.6%</td>
+                            <td>236</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">8</td>
+                            <td class="team-name">Jeremy Hess</td>
+                            <td>93.6</td>
+                            <td>24.7</td>
+                            <td class="negative">26.4%</td>
+                            <td>65.0</td>
+                            <td>123.0</td>
+                            <td class="positive">20.8%</td>
+                            <td class="negative">23.4%</td>
+                            <td>231</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">9</td>
+                            <td class="team-name">David Hearn</td>
+                            <td>100.5</td>
+                            <td>26.6</td>
+                            <td class="negative">26.5%</td>
+                            <td>71.7</td>
+                            <td>133.1</td>
+                            <td class="positive">20.9%</td>
+                            <td class="negative">20.1%</td>
+                            <td>234</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">10</td>
+                            <td class="team-name">Daniel Gallagher</td>
+                            <td>100.2</td>
+                            <td>26.7</td>
+                            <td class="negative">26.7%</td>
+                            <td>69.7</td>
+                            <td>131.2</td>
+                            <td class="positive">14.9%</td>
+                            <td class="negative">22.4%</td>
+                            <td>201</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">11</td>
+                            <td class="team-name">Jeff Hudson</td>
+                            <td>97.9</td>
+                            <td>26.4</td>
+                            <td class="negative">26.9%</td>
+                            <td>65.3</td>
+                            <td>125.3</td>
+                            <td class="positive">15.9%</td>
+                            <td class="negative">22.4%</td>
+                            <td>232</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="rank">12</td>
+                            <td class="team-name">Jordan Perkins</td>
+                            <td>99.7</td>
+                            <td>28.5</td>
+                            <td class="negative">28.6%</td>
+                            <td>67.3</td>
+                            <td>135.6</td>
+                            <td class="positive">21.6%</td>
+                            <td class="negative">26.8%</td>
+                            <td>231</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="methodology">
+                <h4>📊 Methodology</h4>
+                <p><strong>Coefficient of Variation (CV)</strong> = Standard Deviation ÷ Average × 100.
+                A lower CV means your scores cluster tightly around your average — you're predictable.
+                <strong>Floor</strong> = 10th percentile score, <strong>Ceiling</strong> = 90th percentile.
+                <strong>Boom</strong> = scoring 120%+ of your average; <strong>Bust</strong> = scoring below 80%.</p>
+            </div>
+        </section>
+
+        <!-- CLUTCH PERFORMANCE SECTION -->
+        <section id="clutch">
+            <h2><span class="icon">🎯</span> Close Game Performance</h2>
+            <p class="description">
+                How do teams perform when it matters most? "Close games" are decided by 5 points or fewer.
+                Clutch Factor = Close game win % minus overall win %. Positive = better in close games.
+            </p>
+
+            <div class="highlight-box">
+                <h3>💪 Clutch Leaders</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <div class="label">Most Clutch</div>
+                        <div class="value positive">+13.1%</div>
+                        <div class="team">Michael Baker</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Least Clutch</div>
+                        <div class="value negative">-24.3%</div>
+                        <div class="team">Mike Dougherty</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Most Close Games</div>
+                        <div class="value neutral">37</div>
+                        <div class="team">Brett Andrus</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Best Close Win %</div>
+                        <div class="value positive">63.3%</div>
+                        <div class="team">David Hearn</div>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="rank">#</th>
+                        <th>Team</th>
+                        <th>Close Wins</th>
+                        <th>Close Losses</th>
+                        <th>Close Win %</th>
+                        <th>Overall Win %</th>
+                        <th>Clutch Factor</th>
+                        <th>Blowout W-L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr class="highlight-row">
+                            <td class="rank">1</td>
+                            <td class="team-name">Michael Baker</td>
+                            <td>11</td>
+                            <td>8</td>
+                            <td>57.9%</td>
+                            <td>44.8%</td>
+                            <td class="positive">
+                                +13.1%
+                            </td>
+                            <td>19-29</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">2</td>
+                            <td class="team-name">Brett Foy</td>
+                            <td>22</td>
+                            <td>14</td>
+                            <td>61.1%</td>
+                            <td>48.4%</td>
+                            <td class="positive">
+                                +12.7%
+                            </td>
+                            <td>24-35</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">3</td>
+                            <td class="team-name">Jeff Hudson</td>
+                            <td>13</td>
+                            <td>11</td>
+                            <td>54.2%</td>
+                            <td>47.4%</td>
+                            <td class="positive">
+                                +6.8%
+                            </td>
+                            <td>32-39</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">4</td>
+                            <td class="team-name">Trevor Rawls & Sam Herting</td>
+                            <td>12</td>
+                            <td>15</td>
+                            <td>44.4%</td>
+                            <td>42.1%</td>
+                            <td class="positive">
+                                +2.3%
+                            </td>
+                            <td>28-40</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">5</td>
+                            <td class="team-name">Brett Andrus</td>
+                            <td>21</td>
+                            <td>16</td>
+                            <td>56.8%</td>
+                            <td>55%</td>
+                            <td class="positive">
+                                +1.7%
+                            </td>
+                            <td>39-33</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">6</td>
+                            <td class="team-name">David Hearn</td>
+                            <td>19</td>
+                            <td>11</td>
+                            <td>63.3%</td>
+                            <td>62.1%</td>
+                            <td class="positive">
+                                +1.2%
+                            </td>
+                            <td>45-28</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">7</td>
+                            <td class="team-name">Jeremy Hess</td>
+                            <td>10</td>
+                            <td>17</td>
+                            <td>37%</td>
+                            <td>36.8%</td>
+                            <td class="positive">
+                                +0.3%
+                            </td>
+                            <td>22-38</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">8</td>
+                            <td class="team-name">David Frum</td>
+                            <td>11</td>
+                            <td>10</td>
+                            <td>52.4%</td>
+                            <td>52.6%</td>
+                            <td class="negative">
+                                -0.3%
+                            </td>
+                            <td>39-35</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">9</td>
+                            <td class="team-name">Daniel Gallagher</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>48%</td>
+                            <td>49.4%</td>
+                            <td class="negative">
+                                -1.4%
+                            </td>
+                            <td>29-29</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">10</td>
+                            <td class="team-name">Mark Parrish</td>
+                            <td>10</td>
+                            <td>14</td>
+                            <td>41.7%</td>
+                            <td>47.9%</td>
+                            <td class="negative">
+                                -6.2%
+                            </td>
+                            <td>35-35</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">11</td>
+                            <td class="team-name">Jordan Perkins</td>
+                            <td>10</td>
+                            <td>14</td>
+                            <td>41.7%</td>
+                            <td>57.4%</td>
+                            <td class="negative">
+                                -15.8%
+                            </td>
+                            <td>44-26</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">12</td>
+                            <td class="team-name">Mike Dougherty</td>
+                            <td>6</td>
+                            <td>16</td>
+                            <td>27.3%</td>
+                            <td>51.6%</td>
+                            <td class="negative">
+                                -24.3%
+                            </td>
+                            <td>43-30</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="methodology">
+                <h4>📊 Methodology</h4>
+                <p><strong>Close Game</strong> = margin of 5 points or less.
+                <strong>Clutch Factor</strong> = Your win % in close games minus your overall win %.
+                A positive clutch factor means you perform better under pressure than your overall record suggests.
+                <strong>Blowouts</strong> are games decided by more than 30 points.</p>
+            </div>
+        </section>
+
+        <!-- STRENGTH OF SCHEDULE SECTION -->
+        <section id="sos">
+            <h2><span class="icon">📅</span> Strength of Schedule</h2>
+            <p class="description">
+                Who faced the toughest competition? SOS Index compares average opponent score to league average.
+                100 = average schedule, higher = tougher opponents, lower = easier path.
+            </p>
+
+            <div class="highlight-box">
+                <h3>⚔️ Schedule Difficulty</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <div class="label">Hardest Schedule</div>
+                        <div class="value negative">103.6</div>
+                        <div class="team">Michael Baker</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Easiest Schedule</div>
+                        <div class="value positive">97.4</div>
+                        <div class="team">Mike Dougherty</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">League Avg Score</div>
+                        <div class="value neutral">97.4</div>
+                        <div class="team">Per Game</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="label">Best Adjusted Win %</div>
+                        <div class="value positive">56.4%</div>
+                        <div class="team">Brett Andrus</div>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="rank">#</th>
+                        <th>Team</th>
+                        <th>SOS Index</th>
+                        <th>Avg Opp Score</th>
+                        <th>Avg Opp Win %</th>
+                        <th>Team Win %</th>
+                        <th>Adjusted Win %</th>
+                        <th>Games</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr class="highlight-row">
+                            <td class="rank">1</td>
+                            <td class="team-name">Michael Baker</td>
+                            <td class="negative">103.6</td>
+                            <td>100.9</td>
+                            <td>50.5%</td>
+                            <td>45.3%</td>
+                            <td class="positive">47.1%</td>
+                            <td>150</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">2</td>
+                            <td class="team-name">Daniel Gallagher</td>
+                            <td class="negative">101.9</td>
+                            <td>99.3</td>
+                            <td>50%</td>
+                            <td>50.6%</td>
+                            <td class="positive">51.5%</td>
+                            <td>180</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">3</td>
+                            <td class="team-name">Brett Andrus</td>
+                            <td class="negative">101.7</td>
+                            <td>99.1</td>
+                            <td>49.4%</td>
+                            <td>55.5%</td>
+                            <td class="positive">56.4%</td>
+                            <td>209</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">4</td>
+                            <td class="team-name">Trevor Rawls & Sam Herting</td>
+                            <td class="negative">101.4</td>
+                            <td>98.8</td>
+                            <td>50.6%</td>
+                            <td>44.8%</td>
+                            <td class="positive">45.5%</td>
+                            <td>212</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">5</td>
+                            <td class="team-name">Mark Parrish</td>
+                            <td class="negative">100.7</td>
+                            <td>98.1</td>
+                            <td>50.2%</td>
+                            <td>48.6%</td>
+                            <td class="positive">48.9%</td>
+                            <td>210</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">6</td>
+                            <td class="team-name">Jeff Hudson</td>
+                            <td class="negative">100.4</td>
+                            <td>97.8</td>
+                            <td>49.7%</td>
+                            <td>51.9%</td>
+                            <td class="positive">52.1%</td>
+                            <td>212</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">7</td>
+                            <td class="team-name">Jeremy Hess</td>
+                            <td class="positive">99.9</td>
+                            <td>97.3</td>
+                            <td>50.4%</td>
+                            <td>46.2%</td>
+                            <td class="">46.1%</td>
+                            <td>210</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">8</td>
+                            <td class="team-name">David Hearn</td>
+                            <td class="positive">99.7</td>
+                            <td>97.1</td>
+                            <td>49.3%</td>
+                            <td>55.5%</td>
+                            <td class="">55.3%</td>
+                            <td>211</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">9</td>
+                            <td class="team-name">Brett Foy</td>
+                            <td class="positive">99.4</td>
+                            <td>96.8</td>
+                            <td>50.2%</td>
+                            <td>48.1%</td>
+                            <td class="">47.8%</td>
+                            <td>212</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">10</td>
+                            <td class="team-name">David Frum</td>
+                            <td class="positive">99.2</td>
+                            <td>96.6</td>
+                            <td>49.8%</td>
+                            <td>51.7%</td>
+                            <td class="">51.3%</td>
+                            <td>211</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td class="rank">11</td>
+                            <td class="team-name">Jordan Perkins</td>
+                            <td class="positive">98.3</td>
+                            <td>95.7</td>
+                            <td>49.8%</td>
+                            <td>51.2%</td>
+                            <td class="">50.3%</td>
+                            <td>209</td>
+                        </tr>
+                    
+                        <tr class="highlight-row">
+                            <td class="rank">12</td>
+                            <td class="team-name">Mike Dougherty</td>
+                            <td class="positive">97.4</td>
+                            <td>94.8</td>
+                            <td>50%</td>
+                            <td>50.2%</td>
+                            <td class="">48.9%</td>
+                            <td>209</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="methodology">
+                <h4>📊 Methodology</h4>
+                <p><strong>SOS Index</strong> = (Average Opponent Score ÷ League Average Score) × 100.
+                Values above 100 mean you faced tougher-than-average opponents.
+                <strong>Adjusted Win %</strong> adds a bonus/penalty based on schedule difficulty:
+                Adjusted = Actual Win % + (SOS Index - 100) × 0.5. This rewards teams who succeeded against tough competition.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Generated 1/18/2026 at 9:04:43 PM</p>
+        <p>Data source: ESPN Fantasy Football API | League: Fadunkadunk (ID: 533683)</p>
+        <p style="margin-top: 10px; color: var(--secondary);">⚡ Powered by Advanced Analytics Engine</p>
+    </footer>
+
+    <script>
+        // Sortable tables functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tables = document.querySelectorAll('table');
+
+            tables.forEach(table => {
+                const headers = table.querySelectorAll('th');
+                const tbody = table.querySelector('tbody');
+                if (!tbody) return;
+
+                headers.forEach((header, columnIndex) => {
+                    // Make all columns except rank sortable
+                    if (!header.classList.contains('rank')) {
+                        header.classList.add('sortable');
+                        header.addEventListener('click', () => sortTable(table, columnIndex, header));
+                    }
+                });
+            });
+        });
+
+        function sortTable(table, columnIndex, clickedHeader) {
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const headers = table.querySelectorAll('th');
+
+            // Determine sort direction
+            const isAsc = clickedHeader.classList.contains('asc');
+            const isDesc = clickedHeader.classList.contains('desc');
+
+            // Remove sort classes from all headers
+            headers.forEach(h => {
+                h.classList.remove('asc', 'desc');
+            });
+
+            // Set new sort direction
+            let direction;
+            if (!isAsc && !isDesc) {
+                direction = 'desc'; // Default to descending first
+            } else if (isDesc) {
+                direction = 'asc';
+            } else {
+                direction = 'desc';
+            }
+            clickedHeader.classList.add(direction);
+
+            // Sort rows
+            rows.sort((a, b) => {
+                const aCell = a.cells[columnIndex];
+                const bCell = b.cells[columnIndex];
+
+                let aValue = aCell.textContent.trim();
+                let bValue = bCell.textContent.trim();
+
+                // Parse numeric values (handle percentages, +/- signs, records like "100-50")
+                const aNum = parseValue(aValue);
+                const bNum = parseValue(bValue);
+
+                let comparison;
+                if (aNum !== null && bNum !== null) {
+                    comparison = aNum - bNum;
+                } else {
+                    comparison = aValue.localeCompare(bValue);
+                }
+
+                return direction === 'asc' ? comparison : -comparison;
+            });
+
+            // Re-append sorted rows and update rank numbers
+            rows.forEach((row, index) => {
+                tbody.appendChild(row);
+                // Update rank column if it exists
+                const rankCell = row.querySelector('.rank');
+                if (rankCell) {
+                    rankCell.textContent = index + 1;
+                }
+                // Remove highlight class (re-highlight based on new order if needed)
+                row.classList.remove('highlight-row');
+            });
+        }
+
+        function parseValue(value) {
+            // Remove common non-numeric characters
+            let cleaned = value.replace(/[+%$,]/g, '').trim();
+
+            // Handle records like "100-50 (50.5%)" - take the percentage
+            const pctMatch = value.match(/\(([\d.]+)%\)/);
+            if (pctMatch) {
+                return parseFloat(pctMatch[1]);
+            }
+
+            // Handle W-L records like "10-5" - calculate win percentage
+            const recordMatch = cleaned.match(/^(\d+)-(\d+)$/);
+            if (recordMatch) {
+                const wins = parseInt(recordMatch[1]);
+                const losses = parseInt(recordMatch[2]);
+                return wins / (wins + losses) || 0;
+            }
+
+            // Try parsing as float
+            const num = parseFloat(cleaned);
+            return isNaN(num) ? null : num;
+        }
+    </script>
+</body>
+</html>

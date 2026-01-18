@@ -991,6 +991,220 @@ class FantasyApp {
                     font-weight: 600;
                     font-size: 0.85rem;
                 }
+
+                /* MOBILE RESPONSIVE STYLES */
+                @media (max-width: 768px) {
+                    .analytics-section {
+                        padding: 16px;
+                        margin-bottom: 16px;
+                        border-radius: 8px;
+                    }
+
+                    .analytics-section h3 {
+                        font-size: 1.1rem;
+                    }
+
+                    .analytics-section .description {
+                        font-size: 0.85rem;
+                        line-height: 1.4;
+                    }
+
+                    .analytics-highlight-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 10px;
+                    }
+
+                    .analytics-highlight-card {
+                        padding: 12px 10px;
+                    }
+
+                    .analytics-highlight-card .label {
+                        font-size: 0.7rem;
+                        line-height: 1.2;
+                    }
+
+                    .analytics-highlight-card .value {
+                        font-size: 1.15rem;
+                    }
+
+                    .analytics-highlight-card .team {
+                        font-size: 0.8rem;
+                        word-break: break-word;
+                    }
+
+                    /* Table mobile improvements */
+                    .analytics-table {
+                        font-size: 0.8rem;
+                    }
+
+                    .analytics-table th,
+                    .analytics-table td {
+                        padding: 8px 6px;
+                        white-space: nowrap;
+                    }
+
+                    .analytics-table th {
+                        font-size: 0.65rem;
+                    }
+
+                    .analytics-table .rank {
+                        width: 28px;
+                        padding-left: 4px;
+                        padding-right: 4px;
+                    }
+
+                    .analytics-table .team-name {
+                        max-width: 90px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    /* Season carousel mobile */
+                    .season-luck-carousel {
+                        gap: 8px;
+                        padding: 4px 0 12px;
+                        margin: 0 -16px;
+                        padding-left: 16px;
+                        padding-right: 16px;
+                    }
+
+                    .season-luck-card {
+                        width: 180px;
+                        padding: 10px;
+                    }
+
+                    .season-luck-card h4 {
+                        font-size: 0.95rem;
+                        margin-bottom: 6px;
+                    }
+
+                    .luck-pair {
+                        margin-bottom: 4px;
+                    }
+
+                    .luck-pair .label {
+                        font-size: 0.65rem;
+                    }
+
+                    .luck-pair .team {
+                        font-size: 0.75rem;
+                    }
+
+                    .luck-pair .score {
+                        font-size: 0.75rem;
+                    }
+
+                    .analytics-methodology {
+                        padding: 10px 12px;
+                        font-size: 0.8rem;
+                    }
+
+                    .analytics-methodology h4 {
+                        font-size: 0.85rem;
+                    }
+
+                    .analytics-methodology p {
+                        line-height: 1.4;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .analytics-section {
+                        padding: 12px;
+                        margin-bottom: 12px;
+                    }
+
+                    .analytics-section h3 {
+                        font-size: 1rem;
+                    }
+
+                    .analytics-highlight-grid {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 8px;
+                    }
+
+                    .analytics-highlight-card {
+                        padding: 10px 8px;
+                    }
+
+                    .analytics-highlight-card .label {
+                        font-size: 0.65rem;
+                    }
+
+                    .analytics-highlight-card .value {
+                        font-size: 1rem;
+                    }
+
+                    .analytics-highlight-card .team {
+                        font-size: 0.75rem;
+                    }
+
+                    /* Even smaller table styling */
+                    .analytics-table {
+                        font-size: 0.75rem;
+                    }
+
+                    .analytics-table th,
+                    .analytics-table td {
+                        padding: 6px 4px;
+                    }
+
+                    .analytics-table th {
+                        font-size: 0.6rem;
+                        letter-spacing: 0;
+                    }
+
+                    .analytics-table th.sortable {
+                        padding-right: 14px;
+                    }
+
+                    .analytics-table th.sortable::after {
+                        font-size: 0.6rem;
+                        right: 2px;
+                    }
+
+                    .analytics-table .team-name {
+                        max-width: 70px;
+                    }
+
+                    .season-luck-card {
+                        width: 160px;
+                        padding: 8px;
+                    }
+
+                    .season-luck-card h4 {
+                        font-size: 0.9rem;
+                    }
+
+                    /* Hide less important columns on very small screens */
+                    .analytics-table .hide-mobile {
+                        display: none;
+                    }
+                }
+
+                /* Horizontal scroll indicator for tables */
+                .table-scroll-container {
+                    position: relative;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    margin: 0 -12px;
+                    padding: 0 12px;
+                }
+
+                .table-scroll-hint {
+                    display: none;
+                    text-align: center;
+                    font-size: 0.75rem;
+                    color: var(--text-secondary);
+                    padding: 4px 0;
+                    margin-bottom: 4px;
+                }
+
+                @media (max-width: 768px) {
+                    .table-scroll-hint {
+                        display: block;
+                    }
+                }
             </style>
 
             <!-- LUCK ANALYSIS -->
@@ -1038,17 +1252,18 @@ class FantasyApp {
                 </div>
 
                 <h4 style="margin: 20px 0 12px;">All-Time Luck Rankings</h4>
-                <div style="overflow-x: auto;">
+                <div class="table-scroll-hint">← Swipe to see more →</div>
+                <div class="table-scroll-container">
                     <table class="analytics-table" data-sortable>
                         <thead>
                             <tr>
                                 <th class="rank">#</th>
                                 <th class="sortable">Team</th>
-                                <th class="sortable">Actual Wins</th>
-                                <th class="sortable">Expected Wins</th>
-                                <th class="sortable">Luck Score</th>
-                                <th class="sortable">All-Play Record</th>
-                                <th class="sortable">Seasons</th>
+                                <th class="sortable">Actual</th>
+                                <th class="sortable">Expected</th>
+                                <th class="sortable">Luck</th>
+                                <th class="sortable hide-mobile">All-Play</th>
+                                <th class="sortable hide-mobile">Seasons</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1061,8 +1276,8 @@ class FantasyApp {
                                     <td class="${team.luckScore >= 0 ? 'positive' : 'negative'}">
                                         ${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}
                                     </td>
-                                    <td>${team.allPlayRecord} (${team.allPlayWinPct}%)</td>
-                                    <td>${team.seasonsPlayed}</td>
+                                    <td class="hide-mobile">${team.allPlayRecord} (${team.allPlayWinPct}%)</td>
+                                    <td class="hide-mobile">${team.seasonsPlayed}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -1108,20 +1323,21 @@ class FantasyApp {
                     </div>
                 </div>
 
-                <div style="overflow-x: auto;">
+                <div class="table-scroll-hint">← Swipe to see more →</div>
+                <div class="table-scroll-container">
                     <table class="analytics-table" data-sortable>
                         <thead>
                             <tr>
                                 <th class="rank">#</th>
                                 <th class="sortable">Team</th>
-                                <th class="sortable">Avg Score</th>
-                                <th class="sortable">Std Dev</th>
+                                <th class="sortable">Avg</th>
+                                <th class="sortable hide-mobile">Std Dev</th>
                                 <th class="sortable">CV %</th>
-                                <th class="sortable">Floor</th>
-                                <th class="sortable">Ceiling</th>
-                                <th class="sortable">Boom %</th>
-                                <th class="sortable">Bust %</th>
-                                <th class="sortable">Games</th>
+                                <th class="sortable hide-mobile">Floor</th>
+                                <th class="sortable hide-mobile">Ceiling</th>
+                                <th class="sortable">Boom</th>
+                                <th class="sortable">Bust</th>
+                                <th class="sortable hide-mobile">Games</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1130,13 +1346,13 @@ class FantasyApp {
                                     <td class="rank">${i + 1}</td>
                                     <td class="team-name">${team.displayName}</td>
                                     <td>${team.avgScore.toFixed(1)}</td>
-                                    <td>${team.stdDev.toFixed(1)}</td>
+                                    <td class="hide-mobile">${team.stdDev.toFixed(1)}</td>
                                     <td class="${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</td>
-                                    <td>${team.floor.toFixed(1)}</td>
-                                    <td>${team.ceiling.toFixed(1)}</td>
+                                    <td class="hide-mobile">${team.floor.toFixed(1)}</td>
+                                    <td class="hide-mobile">${team.ceiling.toFixed(1)}</td>
                                     <td class="positive">${team.boomRate}%</td>
                                     <td class="negative">${team.bustRate}%</td>
-                                    <td>${team.gamesPlayed}</td>
+                                    <td class="hide-mobile">${team.gamesPlayed}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -1182,18 +1398,19 @@ class FantasyApp {
                     </div>
                 </div>
 
-                <div style="overflow-x: auto;">
+                <div class="table-scroll-hint">← Swipe to see more →</div>
+                <div class="table-scroll-container">
                     <table class="analytics-table" data-sortable>
                         <thead>
                             <tr>
                                 <th class="rank">#</th>
                                 <th class="sortable">Team</th>
-                                <th class="sortable">Close Wins</th>
-                                <th class="sortable">Close Losses</th>
-                                <th class="sortable">Close Win %</th>
-                                <th class="sortable">Overall Win %</th>
-                                <th class="sortable">Clutch Factor</th>
-                                <th class="sortable">Blowout W-L</th>
+                                <th class="sortable">Close W</th>
+                                <th class="sortable">Close L</th>
+                                <th class="sortable">Close %</th>
+                                <th class="sortable hide-mobile">Overall %</th>
+                                <th class="sortable">Clutch</th>
+                                <th class="sortable hide-mobile">Blowout</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1204,11 +1421,11 @@ class FantasyApp {
                                     <td>${team.closeWins}</td>
                                     <td>${team.closeLosses}</td>
                                     <td>${team.closeGameWinPct}%</td>
-                                    <td>${team.overallWinPct}%</td>
+                                    <td class="hide-mobile">${team.overallWinPct}%</td>
                                     <td class="${team.clutchFactor >= 0 ? 'positive' : 'negative'}">
                                         ${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%
                                     </td>
-                                    <td>${team.blowoutWins}-${team.blowoutLosses}</td>
+                                    <td class="hide-mobile">${team.blowoutWins}-${team.blowoutLosses}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -1254,18 +1471,19 @@ class FantasyApp {
                     </div>
                 </div>
 
-                <div style="overflow-x: auto;">
+                <div class="table-scroll-hint">← Swipe to see more →</div>
+                <div class="table-scroll-container">
                     <table class="analytics-table" data-sortable>
                         <thead>
                             <tr>
                                 <th class="rank">#</th>
                                 <th class="sortable">Team</th>
-                                <th class="sortable">SOS Index</th>
-                                <th class="sortable">Avg Opp Score</th>
-                                <th class="sortable">Avg Opp Win %</th>
-                                <th class="sortable">Team Win %</th>
-                                <th class="sortable">Adjusted Win %</th>
-                                <th class="sortable">Games</th>
+                                <th class="sortable">SOS</th>
+                                <th class="sortable hide-mobile">Opp Avg</th>
+                                <th class="sortable hide-mobile">Opp Win %</th>
+                                <th class="sortable">Win %</th>
+                                <th class="sortable">Adj %</th>
+                                <th class="sortable hide-mobile">Games</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1274,11 +1492,11 @@ class FantasyApp {
                                     <td class="rank">${i + 1}</td>
                                     <td class="team-name">${team.displayName}</td>
                                     <td class="${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</td>
-                                    <td>${team.avgOpponentScore.toFixed(1)}</td>
-                                    <td>${team.avgOpponentWinPct}%</td>
+                                    <td class="hide-mobile">${team.avgOpponentScore.toFixed(1)}</td>
+                                    <td class="hide-mobile">${team.avgOpponentWinPct}%</td>
                                     <td>${team.teamWinPct}%</td>
                                     <td class="${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</td>
-                                    <td>${team.gamesPlayed}</td>
+                                    <td class="hide-mobile">${team.gamesPlayed}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
