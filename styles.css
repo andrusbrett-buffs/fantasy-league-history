@@ -534,6 +534,99 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .winner-name{font-size:0.95rem}
 .trip-rating .stars{font-size:0.8rem}
 }
+/* ========== ADVANCED ANALYTICS - Mobile First ========== */
+
+/* Filter pills - like Trip History */
+.analytics-nav{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;padding:0 0 16px;border-bottom:1px solid var(--graphite)}
+.analytics-nav-btn{display:inline-flex;align-items:center;gap:6px;background:var(--charcoal);border:1px solid var(--graphite);padding:10px 16px;border-radius:8px;color:var(--ghost);font-family:var(--font-mono);font-size:0.8rem;cursor:pointer;transition:all 0.25s ease;text-decoration:none}
+.analytics-nav-btn:hover{border-color:var(--teal);color:var(--pearl)}
+.analytics-nav-btn.active,.analytics-nav-btn:active{background:linear-gradient(135deg,var(--teal),var(--mint));border-color:var(--teal);color:var(--void);font-weight:600}
+.analytics-nav-btn .icon{font-size:1rem}
+
+/* Stats bar - 2x2 grid on mobile, 4 columns on desktop */
+.analytics-stats-bar{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.analytics-stat-box{background:linear-gradient(135deg,var(--charcoal),var(--slate));border:1px solid var(--graphite);border-radius:12px;padding:16px;text-align:center}
+.analytics-stat-value{display:block;font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:4px}
+.analytics-stat-value.positive{color:var(--teal)}
+.analytics-stat-value.negative{color:#f87171}
+.analytics-stat-value.neutral{color:var(--gold)}
+.analytics-stat-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--ghost);text-transform:uppercase;letter-spacing:0.05em;line-height:1.3}
+.analytics-stat-team{font-family:var(--font-body);font-size:0.8rem;color:var(--cream);margin-top:6px;font-weight:500}
+
+/* Section container */
+.analytics-block{background:linear-gradient(135deg,var(--charcoal),var(--slate));border:1px solid var(--graphite);border-radius:12px;padding:20px;margin-bottom:20px}
+.analytics-block-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.analytics-block-header h3{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--cream);margin:0}
+.analytics-block-desc{font-family:var(--font-mono);font-size:0.75rem;color:var(--ghost);line-height:1.5;margin-bottom:16px}
+
+/* Team ranking cards - Trip History style */
+.analytics-rankings{display:flex;flex-direction:column;gap:10px}
+.analytics-team-card{display:grid;grid-template-columns:40px 1fr;gap:12px;background:var(--slate);border:1px solid var(--graphite);border-radius:10px;padding:14px;transition:all 0.2s ease}
+.analytics-team-card:hover{border-color:var(--teal);transform:translateX(4px)}
+
+.analytics-rank{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--teal);text-align:center;line-height:1;display:flex;align-items:center;justify-content:center}
+.analytics-team-card:nth-child(1) .analytics-rank{color:var(--gold)}
+.analytics-team-card:nth-child(2) .analytics-rank{color:var(--silver)}
+.analytics-team-card:nth-child(3) .analytics-rank{color:#cd7f32}
+
+.analytics-team-info{display:flex;flex-direction:column;gap:8px}
+.analytics-team-name{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--cream)}
+
+.analytics-team-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 12px}
+.analytics-team-stat{display:flex;justify-content:space-between;align-items:center}
+.analytics-team-stat-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--ghost);text-transform:uppercase}
+.analytics-team-stat-value{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--pearl)}
+.analytics-team-stat-value.positive{color:var(--teal)}
+.analytics-team-stat-value.negative{color:#f87171}
+
+/* Season carousel */
+.analytics-season-scroll{display:flex;gap:12px;overflow-x:auto;padding:8px 0 16px;margin:0 -20px;padding-left:20px;padding-right:20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.analytics-season-scroll::-webkit-scrollbar{height:4px}
+.analytics-season-scroll::-webkit-scrollbar-thumb{background:var(--graphite);border-radius:2px}
+
+.analytics-season-card{flex-shrink:0;width:140px;background:var(--slate);border:1px solid var(--graphite);border-radius:10px;padding:12px;scroll-snap-align:start}
+.analytics-season-year{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--teal);text-align:center;margin-bottom:10px}
+.analytics-season-item{padding:8px 0;border-bottom:1px solid var(--graphite)}
+.analytics-season-item:last-child{border-bottom:none;padding-bottom:0}
+.analytics-season-item-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--ghost);text-transform:uppercase;margin-bottom:2px}
+.analytics-season-item-team{font-family:var(--font-body);font-size:0.8rem;font-weight:600;color:var(--cream)}
+.analytics-season-item-value{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;margin-top:2px}
+
+/* Methodology box */
+.analytics-method{background:var(--charcoal);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:16px}
+.analytics-method h4{font-family:var(--font-display);font-size:0.85rem;color:var(--teal);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.analytics-method p{font-family:var(--font-mono);font-size:0.7rem;color:var(--ghost);line-height:1.5;margin:0}
+
+/* Footer */
+.analytics-footer{text-align:center;padding:20px 0;color:var(--ghost);font-family:var(--font-mono);font-size:0.75rem}
+
+/* Tablet - 768px */
+@media(min-width:768px){
+.analytics-stats-bar{grid-template-columns:repeat(4,1fr);gap:16px}
+.analytics-stat-box{padding:20px}
+.analytics-stat-value{font-size:1.4rem}
+.analytics-stat-label{font-size:0.7rem}
+.analytics-block{padding:24px}
+.analytics-team-card{grid-template-columns:50px 1fr;gap:16px;padding:16px}
+.analytics-rank{font-size:1.75rem}
+.analytics-team-name{font-size:1.1rem}
+.analytics-team-stats{grid-template-columns:repeat(4,1fr)}
+.analytics-season-card{width:160px;padding:14px}
+}
+
+/* Desktop - 1024px */
+@media(min-width:1024px){
+.analytics-stats-bar{gap:20px}
+.analytics-stat-box{padding:24px}
+.analytics-stat-value{font-size:1.5rem}
+.analytics-block{padding:28px}
+.analytics-team-card{grid-template-columns:60px 1fr;padding:18px 20px}
+.analytics-rank{font-size:2rem}
+.analytics-team-stats{grid-template-columns:repeat(4,1fr);gap:8px 20px}
+.analytics-season-scroll{margin:0 -28px;padding-left:28px;padding-right:28px}
+.analytics-season-card{width:180px}
+}
+
 /* Landing Page Styles */
 .landing-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 96px);text-align:center;padding:48px 24px}
 .landing-header{margin-bottom:48px}

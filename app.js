@@ -837,928 +837,299 @@ class FantasyApp {
     }
 
     /**
-     * Generate HTML for analytics report
+     * Generate HTML for analytics report - Mobile First Design
      */
     generateAnalyticsHTML(report) {
         return `
-            <style>
-                .analytics-section {
-                    background: var(--card-bg);
-                    border-radius: 12px;
-                    padding: 20px;
-                    margin-bottom: 24px;
-                    border: 1px solid var(--border-color);
-                }
-                .analytics-section h3 {
-                    color: var(--primary);
-                    margin-bottom: 8px;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                }
-                .analytics-section .description {
-                    color: var(--text-secondary);
-                    font-size: 0.9rem;
-                    margin-bottom: 16px;
-                }
-                .analytics-highlight-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                    gap: 16px;
-                    margin-bottom: 20px;
-                }
-                .analytics-highlight-card {
-                    background: var(--bg);
-                    border-radius: 8px;
-                    padding: 16px;
-                    text-align: center;
-                    border: 1px solid var(--border-color);
-                }
-                .analytics-highlight-card .label {
-                    font-size: 0.8rem;
-                    color: var(--text-secondary);
-                    margin-bottom: 4px;
-                }
-                .analytics-highlight-card .value {
-                    font-size: 1.4rem;
-                    font-weight: 700;
-                }
-                .analytics-highlight-card .team {
-                    font-size: 0.95rem;
-                    color: var(--primary);
-                    margin-top: 4px;
-                }
-                .analytics-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    font-size: 0.9rem;
-                }
-                .analytics-table th,
-                .analytics-table td {
-                    padding: 10px 12px;
-                    text-align: left;
-                    border-bottom: 1px solid var(--border-color);
-                }
-                .analytics-table th {
-                    background: var(--bg);
-                    font-weight: 600;
-                    color: var(--primary);
-                    font-size: 0.75rem;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                }
-                .analytics-table th.sortable {
-                    cursor: pointer;
-                    user-select: none;
-                    position: relative;
-                    padding-right: 20px;
-                }
-                .analytics-table th.sortable:hover {
-                    background: var(--hover-bg);
-                }
-                .analytics-table th.sortable::after {
-                    content: '⇅';
-                    position: absolute;
-                    right: 4px;
-                    opacity: 0.4;
-                    font-size: 0.7rem;
-                }
-                .analytics-table th.sortable.asc::after {
-                    content: '↑';
-                    opacity: 1;
-                }
-                .analytics-table th.sortable.desc::after {
-                    content: '↓';
-                    opacity: 1;
-                }
-                .analytics-table tr:hover {
-                    background: var(--hover-bg);
-                }
-                .analytics-table .rank {
-                    font-weight: 600;
-                    color: var(--text-secondary);
-                    width: 40px;
-                }
-                .analytics-table .team-name {
-                    font-weight: 600;
-                }
-                .positive { color: var(--success); }
-                .negative { color: var(--danger); }
-                .neutral { color: var(--warning); }
-                .analytics-methodology {
-                    background: var(--bg);
-                    border-radius: 8px;
-                    padding: 12px 16px;
-                    margin-top: 16px;
-                    font-size: 0.85rem;
-                    color: var(--text-secondary);
-                }
-                .analytics-methodology h4 {
-                    color: var(--text-primary);
-                    margin-bottom: 6px;
-                    font-size: 0.9rem;
-                }
-                .season-luck-carousel {
-                    display: flex;
-                    gap: 12px;
-                    overflow-x: auto;
-                    padding: 8px 0;
-                    scrollbar-width: thin;
-                }
-                .season-luck-card {
-                    flex-shrink: 0;
-                    width: 220px;
-                    background: var(--bg);
-                    border-radius: 8px;
-                    padding: 12px;
-                    border: 1px solid var(--border-color);
-                }
-                .season-luck-card h4 {
-                    color: var(--primary);
-                    margin-bottom: 8px;
-                }
-                .luck-pair {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 6px;
-                }
-                .luck-pair .label {
-                    font-size: 0.75rem;
-                    color: var(--text-secondary);
-                }
-                .luck-pair .team {
-                    font-size: 0.85rem;
-                }
-                .luck-pair .score {
-                    font-weight: 600;
-                    font-size: 0.85rem;
-                }
-
-                /* MOBILE CARD VIEW - Compact single-column cards */
-                .mobile-card-list {
-                    display: none;
-                }
-
-                .mobile-card-item {
-                    background: var(--bg);
-                    border: 1px solid var(--border-color);
-                    border-radius: 8px;
-                    padding: 12px;
-                    margin-bottom: 8px;
-                }
-
-                .mobile-card-header {
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 8px;
-                }
-
-                .mobile-card-rank {
-                    background: var(--primary);
-                    color: white;
-                    min-width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: 700;
-                    font-size: 0.75rem;
-                    flex-shrink: 0;
-                }
-
-                .mobile-card-team {
-                    font-weight: 700;
-                    font-size: 0.95rem;
-                    color: var(--text-primary);
-                    margin-left: 10px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .mobile-card-stats {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px 12px;
-                }
-
-                .mobile-stat {
-                    display: flex;
-                    align-items: baseline;
-                    gap: 4px;
-                }
-
-                .mobile-stat-label {
-                    font-size: 0.65rem;
-                    color: var(--text-secondary);
-                    text-transform: uppercase;
-                }
-
-                .mobile-stat-value {
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                }
-
-                .mobile-stat-value.positive { color: var(--success); }
-                .mobile-stat-value.negative { color: var(--danger); }
-
-                /* Table scroll container */
-                .table-scroll-container {
-                    overflow-x: auto;
-                    -webkit-overflow-scrolling: touch;
-                }
-
-                .table-scroll-hint {
-                    display: none;
-                    text-align: center;
-                    font-size: 0.8rem;
-                    color: var(--text-secondary);
-                    padding: 8px 0;
-                    background: linear-gradient(90deg, transparent, var(--primary-alpha, rgba(99, 102, 241, 0.1)), transparent);
-                    border-radius: 4px;
-                    margin-bottom: 8px;
-                }
-
-                /* AGGRESSIVE MOBILE STYLES */
-                @media (max-width: 768px) {
-                    /* Hide desktop tables, show mobile cards */
-                    .table-scroll-container {
-                        display: none !important;
-                    }
-                    .table-scroll-hint {
-                        display: none !important;
-                    }
-                    .mobile-card-list {
-                        display: block !important;
-                    }
-
-                    .analytics-section {
-                        padding: 14px;
-                        margin-bottom: 14px;
-                        border-radius: 10px;
-                    }
-
-                    .analytics-section h3 {
-                        font-size: 1.15rem;
-                        margin-bottom: 6px;
-                    }
-
-                    .analytics-section .description {
-                        font-size: 0.85rem;
-                        line-height: 1.45;
-                        margin-bottom: 14px;
-                    }
-
-                    /* 2x2 highlight grid on mobile */
-                    .analytics-highlight-grid {
-                        grid-template-columns: 1fr 1fr;
-                        gap: 10px;
-                        margin-bottom: 16px;
-                    }
-
-                    .analytics-highlight-card {
-                        padding: 12px 8px;
-                    }
-
-                    .analytics-highlight-card .label {
-                        font-size: 0.68rem;
-                        line-height: 1.25;
-                        min-height: 2.5em;
-                    }
-
-                    .analytics-highlight-card .value {
-                        font-size: 1.2rem;
-                    }
-
-                    .analytics-highlight-card .team {
-                        font-size: 0.8rem;
-                        word-break: break-word;
-                        line-height: 1.2;
-                    }
-
-                    /* Season carousel - more compact */
-                    .season-luck-carousel {
-                        gap: 10px;
-                        padding: 8px 0 14px;
-                        margin: 0 -14px;
-                        padding-left: 14px;
-                        padding-right: 14px;
-                        scroll-snap-type: x mandatory;
-                    }
-
-                    .season-luck-card {
-                        width: 150px;
-                        padding: 10px;
-                        scroll-snap-align: start;
-                    }
-
-                    .season-luck-card h4 {
-                        font-size: 0.95rem;
-                        margin-bottom: 8px;
-                        text-align: center;
-                    }
-
-                    .luck-pair {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-bottom: 8px;
-                        padding-bottom: 6px;
-                        border-bottom: 1px solid var(--border-color);
-                    }
-
-                    .luck-pair:last-child {
-                        border-bottom: none;
-                        margin-bottom: 0;
-                        padding-bottom: 0;
-                    }
-
-                    .luck-pair .label {
-                        font-size: 0.65rem;
-                        margin-bottom: 2px;
-                    }
-
-                    .luck-pair .team {
-                        font-size: 0.85rem;
-                        font-weight: 600;
-                    }
-
-                    .luck-pair .score {
-                        font-size: 0.85rem;
-                        margin-top: 2px;
-                    }
-
-                    /* Methodology box */
-                    .analytics-methodology {
-                        padding: 12px;
-                        font-size: 0.8rem;
-                        margin-top: 14px;
-                    }
-
-                    .analytics-methodology h4 {
-                        font-size: 0.85rem;
-                        margin-bottom: 6px;
-                    }
-
-                    .analytics-methodology p {
-                        line-height: 1.5;
-                    }
-
-                    /* Section headers */
-                    h4[style*="margin"] {
-                        font-size: 0.95rem !important;
-                        margin: 14px 0 10px !important;
-                    }
-                }
-
-                /* Extra small phones */
-                @media (max-width: 380px) {
-                    .analytics-section {
-                        padding: 12px;
-                    }
-
-                    .analytics-highlight-card .label {
-                        font-size: 0.62rem;
-                    }
-
-                    .analytics-highlight-card .value {
-                        font-size: 1.05rem;
-                    }
-
-                    .analytics-highlight-card .team {
-                        font-size: 0.75rem;
-                    }
-
-                    .mobile-card-item {
-                        padding: 12px;
-                    }
-
-                    .mobile-card-team {
-                        font-size: 0.95rem;
-                    }
-
-                    .mobile-stat-value {
-                        font-size: 0.9rem;
-                    }
-
-                    .season-luck-card {
-                        width: 135px;
-                        padding: 8px;
-                    }
-                }
-
-                /* Analytics Sub-Navigation */
-                .analytics-subnav {
-                    display: flex;
-                    gap: 8px;
-                    padding: 12px 0;
-                    margin-bottom: 16px;
-                    border-bottom: 1px solid var(--border-color);
-                    position: sticky;
-                    top: 0;
-                    background: var(--card-bg);
-                    z-index: 10;
-                    flex-wrap: wrap;
-                }
-
-                .analytics-subnav-btn {
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    padding: 8px 14px;
-                    background: var(--bg);
-                    border: 1px solid var(--border-color);
-                    border-radius: 20px;
-                    color: var(--text-secondary);
-                    font-size: 0.85rem;
-                    font-weight: 500;
-                    cursor: pointer;
-                    transition: all 0.2s ease;
-                    text-decoration: none;
-                    white-space: nowrap;
-                }
-
-                .analytics-subnav-btn:hover {
-                    background: var(--primary);
-                    color: white;
-                    border-color: var(--primary);
-                }
-
-                .analytics-subnav-btn .icon {
-                    font-size: 1rem;
-                }
-
-                @media (max-width: 768px) {
-                    .analytics-subnav {
-                        gap: 6px;
-                        padding: 10px 0;
-                        margin-bottom: 12px;
-                        margin-left: -14px;
-                        margin-right: -14px;
-                        padding-left: 14px;
-                        padding-right: 14px;
-                        overflow-x: auto;
-                        flex-wrap: nowrap;
-                        -webkit-overflow-scrolling: touch;
-                        scrollbar-width: none;
-                    }
-
-                    .analytics-subnav::-webkit-scrollbar {
-                        display: none;
-                    }
-
-                    .analytics-subnav-btn {
-                        padding: 8px 12px;
-                        font-size: 0.8rem;
-                        flex-shrink: 0;
-                    }
-
-                    .analytics-subnav-btn .icon {
-                        font-size: 0.9rem;
-                    }
-                }
-            </style>
-
-            <!-- Analytics Sub-Navigation -->
-            <nav class="analytics-subnav">
-                <a href="#analytics-luck" class="analytics-subnav-btn"><span class="icon">🎲</span> Luck</a>
-                <a href="#analytics-consistency" class="analytics-subnav-btn"><span class="icon">📊</span> Consistency</a>
-                <a href="#analytics-clutch" class="analytics-subnav-btn"><span class="icon">🎯</span> Clutch</a>
-                <a href="#analytics-sos" class="analytics-subnav-btn"><span class="icon">📅</span> Schedule</a>
+            <!-- Navigation Pills -->
+            <nav class="analytics-nav">
+                <a href="#analytics-luck" class="analytics-nav-btn"><span class="icon">🎲</span> Luck</a>
+                <a href="#analytics-consistency" class="analytics-nav-btn"><span class="icon">📊</span> Consistency</a>
+                <a href="#analytics-clutch" class="analytics-nav-btn"><span class="icon">🎯</span> Clutch</a>
+                <a href="#analytics-sos" class="analytics-nav-btn"><span class="icon">📅</span> Schedule</a>
             </nav>
 
             <!-- LUCK ANALYSIS -->
-            <div id="analytics-luck" class="analytics-section">
-                <h3>🎲 Luck Analysis</h3>
-                <p class="description">
-                    Luck is measured using the "All-Play" method: how many wins would you have each week if you played ALL teams?
-                    Expected wins are calculated from this, and compared against actual wins. Positive = lucky, Negative = unlucky.
+            <section id="analytics-luck" class="analytics-block">
+                <div class="analytics-block-header">
+                    <h3>🎲 Luck Analysis</h3>
+                </div>
+                <p class="analytics-block-desc">
+                    Luck is measured using "All-Play": how many wins would you have each week if you played ALL teams? Positive = lucky, Negative = unlucky.
                 </p>
 
-                <div class="analytics-highlight-grid">
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Unlucky (All-Time)</div>
-                        <div class="value negative">${report.luck.allTime[0].luckScore.toFixed(1)} wins</div>
-                        <div class="team">${report.luck.allTime[0].displayName}</div>
+                <!-- Stats Bar -->
+                <div class="analytics-stats-bar">
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value negative">${report.luck.allTime[0].luckScore.toFixed(1)}</span>
+                        <span class="analytics-stat-label">Most Unlucky</span>
+                        <span class="analytics-stat-team">${report.luck.allTime[0].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Lucky (All-Time)</div>
-                        <div class="value positive">+${report.luck.allTime[report.luck.allTime.length - 1].luckScore.toFixed(1)} wins</div>
-                        <div class="team">${report.luck.allTime[report.luck.allTime.length - 1].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">+${report.luck.allTime[report.luck.allTime.length - 1].luckScore.toFixed(1)}</span>
+                        <span class="analytics-stat-label">Most Lucky</span>
+                        <span class="analytics-stat-team">${report.luck.allTime[report.luck.allTime.length - 1].displayName}</span>
                     </div>
                 </div>
 
-                <h4 style="margin: 16px 0 8px;">Season-by-Season Luck</h4>
-                <div class="season-luck-carousel">
+                <!-- Season Carousel -->
+                <div class="analytics-season-scroll">
                     ${report.luck.bySeasonSummary.map(season => `
-                        <div class="season-luck-card">
-                            <h4>${season.year}</h4>
-                            <div class="luck-pair">
-                                <div>
-                                    <div class="label">Luckiest</div>
-                                    <div class="team positive">${season.luckiest.displayName}</div>
-                                </div>
-                                <div class="score positive">+${season.luckiest.luckScore.toFixed(1)}</div>
+                        <div class="analytics-season-card">
+                            <div class="analytics-season-year">${season.year}</div>
+                            <div class="analytics-season-item">
+                                <div class="analytics-season-item-label">Luckiest</div>
+                                <div class="analytics-season-item-team">${season.luckiest.displayName}</div>
+                                <div class="analytics-season-item-value positive">+${season.luckiest.luckScore.toFixed(1)}</div>
                             </div>
-                            <div class="luck-pair">
-                                <div>
-                                    <div class="label">Unluckiest</div>
-                                    <div class="team negative">${season.unluckiest.displayName}</div>
-                                </div>
-                                <div class="score negative">${season.unluckiest.luckScore.toFixed(1)}</div>
+                            <div class="analytics-season-item">
+                                <div class="analytics-season-item-label">Unluckiest</div>
+                                <div class="analytics-season-item-team">${season.unluckiest.displayName}</div>
+                                <div class="analytics-season-item-value negative">${season.unluckiest.luckScore.toFixed(1)}</div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
 
-                <h4 style="margin: 20px 0 12px;">All-Time Luck Rankings</h4>
-
-                <!-- Mobile Card View -->
-                <div class="mobile-card-list">
+                <!-- Team Rankings -->
+                <div class="analytics-rankings">
                     ${report.luck.allTime.map((team, i) => `
-                        <div class="mobile-card-item">
-                            <div class="mobile-card-header">
-                                <div class="mobile-card-rank">${i + 1}</div>
-                                <div class="mobile-card-team">${team.displayName}</div>
-                            </div>
-                            <div class="mobile-card-stats">
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Luck:</span>
-                                    <span class="mobile-stat-value ${team.luckScore >= 0 ? 'positive' : 'negative'}">${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Actual:</span>
-                                    <span class="mobile-stat-value">${team.actualWins}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Exp:</span>
-                                    <span class="mobile-stat-value">${team.expectedWins.toFixed(1)}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">All-Play:</span>
-                                    <span class="mobile-stat-value">${team.allPlayWinPct}%</span>
+                        <div class="analytics-team-card">
+                            <div class="analytics-rank">${i + 1}</div>
+                            <div class="analytics-team-info">
+                                <div class="analytics-team-name">${team.displayName}</div>
+                                <div class="analytics-team-stats">
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Luck</span>
+                                        <span class="analytics-team-stat-value ${team.luckScore >= 0 ? 'positive' : 'negative'}">${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Actual</span>
+                                        <span class="analytics-team-stat-value">${team.actualWins}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Expected</span>
+                                        <span class="analytics-team-stat-value">${team.expectedWins.toFixed(1)}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">All-Play</span>
+                                        <span class="analytics-team-stat-value">${team.allPlayWinPct}%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
 
-                <!-- Desktop Table View -->
-                <div class="table-scroll-hint">← Swipe to see more →</div>
-                <div class="table-scroll-container">
-                    <table class="analytics-table" data-sortable>
-                        <thead>
-                            <tr>
-                                <th class="rank">#</th>
-                                <th class="sortable">Team</th>
-                                <th class="sortable">Actual</th>
-                                <th class="sortable">Expected</th>
-                                <th class="sortable">Luck</th>
-                                <th class="sortable">All-Play</th>
-                                <th class="sortable">Seasons</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${report.luck.allTime.map((team, i) => `
-                                <tr>
-                                    <td class="rank">${i + 1}</td>
-                                    <td class="team-name">${team.displayName}</td>
-                                    <td>${team.actualWins}</td>
-                                    <td>${team.expectedWins.toFixed(1)}</td>
-                                    <td class="${team.luckScore >= 0 ? 'positive' : 'negative'}">
-                                        ${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}
-                                    </td>
-                                    <td>${team.allPlayRecord} (${team.allPlayWinPct}%)</td>
-                                    <td>${team.seasonsPlayed}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="analytics-method">
+                    <h4>📊 How It Works</h4>
+                    <p>Each week, compare your score against ALL other teams. Expected wins = percentage of teams you outscored. Sum across all weeks, then compare to actual wins.</p>
                 </div>
-
-                <div class="analytics-methodology">
-                    <h4>📊 Methodology</h4>
-                    <p>Each week, your "expected wins" are calculated by comparing your score against all other teams.
-                    If you scored higher than 8 of 11 opponents, your expected wins for that week = 8/11 = 0.73.
-                    Sum these across all weeks and seasons, then compare to your actual win total.</p>
-                </div>
-            </div>
+            </section>
 
             <!-- CONSISTENCY METRICS -->
-            <div id="analytics-consistency" class="analytics-section">
-                <h3>📊 Consistency Metrics</h3>
-                <p class="description">
-                    Who's the most predictable scorer? Lower Coefficient of Variation (CV) means more consistent week-to-week performance.
-                    "Boom" games are 20%+ above your average; "Bust" games are 20%+ below.
+            <section id="analytics-consistency" class="analytics-block">
+                <div class="analytics-block-header">
+                    <h3>📊 Consistency</h3>
+                </div>
+                <p class="analytics-block-desc">
+                    Lower CV = more consistent. "Boom" = 20%+ above average; "Bust" = 20%+ below.
                 </p>
 
-                <div class="analytics-highlight-grid">
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Consistent (Lowest CV)</div>
-                        <div class="value positive">${report.consistency[0].coefficientOfVariation}%</div>
-                        <div class="team">${report.consistency[0].displayName}</div>
+                <div class="analytics-stats-bar">
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">${report.consistency[0].coefficientOfVariation}%</span>
+                        <span class="analytics-stat-label">Most Consistent</span>
+                        <span class="analytics-stat-team">${report.consistency[0].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Volatile (Highest CV)</div>
-                        <div class="value negative">${report.consistency[report.consistency.length - 1].coefficientOfVariation}%</div>
-                        <div class="team">${report.consistency[report.consistency.length - 1].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value negative">${report.consistency[report.consistency.length - 1].coefficientOfVariation}%</span>
+                        <span class="analytics-stat-label">Most Volatile</span>
+                        <span class="analytics-stat-team">${report.consistency[report.consistency.length - 1].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Highest Single-Game Score</div>
-                        <div class="value neutral">${report.highestSingleGame.score.toFixed(1)}</div>
-                        <div class="team">${report.highestSingleGame.displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value neutral">${report.highestSingleGame.score.toFixed(1)}</span>
+                        <span class="analytics-stat-label">Top Single Game</span>
+                        <span class="analytics-stat-team">${report.highestSingleGame.displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Highest Boom Rate</div>
-                        <div class="value positive">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].boomRate}%</div>
-                        <div class="team">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].boomRate}%</span>
+                        <span class="analytics-stat-label">Top Boom Rate</span>
+                        <span class="analytics-stat-team">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].displayName}</span>
                     </div>
                 </div>
 
-                <!-- Mobile Card View -->
-                <div class="mobile-card-list">
+                <div class="analytics-rankings">
                     ${report.consistency.map((team, i) => `
-                        <div class="mobile-card-item">
-                            <div class="mobile-card-header">
-                                <div class="mobile-card-rank">${i + 1}</div>
-                                <div class="mobile-card-team">${team.displayName}</div>
-                            </div>
-                            <div class="mobile-card-stats">
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">CV:</span>
-                                    <span class="mobile-stat-value ${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Avg:</span>
-                                    <span class="mobile-stat-value">${team.avgScore.toFixed(1)}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Boom:</span>
-                                    <span class="mobile-stat-value positive">${team.boomRate}%</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Bust:</span>
-                                    <span class="mobile-stat-value negative">${team.bustRate}%</span>
+                        <div class="analytics-team-card">
+                            <div class="analytics-rank">${i + 1}</div>
+                            <div class="analytics-team-info">
+                                <div class="analytics-team-name">${team.displayName}</div>
+                                <div class="analytics-team-stats">
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">CV</span>
+                                        <span class="analytics-team-stat-value ${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Avg</span>
+                                        <span class="analytics-team-stat-value">${team.avgScore.toFixed(1)}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Boom</span>
+                                        <span class="analytics-team-stat-value positive">${team.boomRate}%</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Bust</span>
+                                        <span class="analytics-team-stat-value negative">${team.bustRate}%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
 
-                <!-- Desktop Table View -->
-                <div class="table-scroll-hint">← Swipe to see more →</div>
-                <div class="table-scroll-container">
-                    <table class="analytics-table" data-sortable>
-                        <thead>
-                            <tr>
-                                <th class="rank">#</th>
-                                <th class="sortable">Team</th>
-                                <th class="sortable">Avg</th>
-                                <th class="sortable">Std Dev</th>
-                                <th class="sortable">CV %</th>
-                                <th class="sortable">Floor</th>
-                                <th class="sortable">Ceiling</th>
-                                <th class="sortable">Boom</th>
-                                <th class="sortable">Bust</th>
-                                <th class="sortable">Games</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${report.consistency.map((team, i) => `
-                                <tr>
-                                    <td class="rank">${i + 1}</td>
-                                    <td class="team-name">${team.displayName}</td>
-                                    <td>${team.avgScore.toFixed(1)}</td>
-                                    <td>${team.stdDev.toFixed(1)}</td>
-                                    <td class="${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</td>
-                                    <td>${team.floor.toFixed(1)}</td>
-                                    <td>${team.ceiling.toFixed(1)}</td>
-                                    <td class="positive">${team.boomRate}%</td>
-                                    <td class="negative">${team.bustRate}%</td>
-                                    <td>${team.gamesPlayed}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="analytics-method">
+                    <h4>📊 How It Works</h4>
+                    <p>CV = Std Dev ÷ Avg × 100. Floor = 10th percentile. Ceiling = 90th percentile.</p>
                 </div>
+            </section>
 
-                <div class="analytics-methodology">
-                    <h4>📊 Methodology</h4>
-                    <p><strong>Coefficient of Variation (CV)</strong> = Standard Deviation ÷ Average × 100.
-                    <strong>Floor</strong> = 10th percentile, <strong>Ceiling</strong> = 90th percentile.
-                    <strong>Boom</strong> = 120%+ of average; <strong>Bust</strong> = below 80%.</p>
+            <!-- CLUTCH PERFORMANCE -->
+            <section id="analytics-clutch" class="analytics-block">
+                <div class="analytics-block-header">
+                    <h3>🎯 Clutch Performance</h3>
                 </div>
-            </div>
-
-            <!-- CLOSE GAME PERFORMANCE -->
-            <div id="analytics-clutch" class="analytics-section">
-                <h3>🎯 Close Game Performance</h3>
-                <p class="description">
-                    How do teams perform when it matters most? "Close games" are decided by ${report.meta.closeThreshold} points or fewer.
-                    Clutch Factor = Close game win % minus overall win %. Positive = better in close games.
+                <p class="analytics-block-desc">
+                    "Close games" = within ${report.meta.closeThreshold} pts. Clutch Factor = close game win % minus overall win %.
                 </p>
 
-                <div class="analytics-highlight-grid">
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Clutch</div>
-                        <div class="value positive">+${report.clutch[0].clutchFactor}%</div>
-                        <div class="team">${report.clutch[0].displayName}</div>
+                <div class="analytics-stats-bar">
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">+${report.clutch[0].clutchFactor}%</span>
+                        <span class="analytics-stat-label">Most Clutch</span>
+                        <span class="analytics-stat-team">${report.clutch[0].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Least Clutch</div>
-                        <div class="value negative">${report.clutch[report.clutch.length - 1].clutchFactor}%</div>
-                        <div class="team">${report.clutch[report.clutch.length - 1].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value negative">${report.clutch[report.clutch.length - 1].clutchFactor}%</span>
+                        <span class="analytics-stat-label">Least Clutch</span>
+                        <span class="analytics-stat-team">${report.clutch[report.clutch.length - 1].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Most Close Games</div>
-                        <div class="value neutral">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].totalCloseGames}</div>
-                        <div class="team">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value neutral">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].totalCloseGames}</span>
+                        <span class="analytics-stat-label">Most Close Games</span>
+                        <span class="analytics-stat-team">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Best Close Win %</div>
-                        <div class="value positive">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].closeGameWinPct}%</div>
-                        <div class="team">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].closeGameWinPct}%</span>
+                        <span class="analytics-stat-label">Best Close Win %</span>
+                        <span class="analytics-stat-team">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].displayName}</span>
                     </div>
                 </div>
 
-                <!-- Mobile Card View -->
-                <div class="mobile-card-list">
+                <div class="analytics-rankings">
                     ${report.clutch.map((team, i) => `
-                        <div class="mobile-card-item">
-                            <div class="mobile-card-header">
-                                <div class="mobile-card-rank">${i + 1}</div>
-                                <div class="mobile-card-team">${team.displayName}</div>
-                            </div>
-                            <div class="mobile-card-stats">
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Clutch:</span>
-                                    <span class="mobile-stat-value ${team.clutchFactor >= 0 ? 'positive' : 'negative'}">${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Close:</span>
-                                    <span class="mobile-stat-value">${team.closeWins}-${team.closeLosses}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Close%:</span>
-                                    <span class="mobile-stat-value">${team.closeGameWinPct}%</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Blowout:</span>
-                                    <span class="mobile-stat-value">${team.blowoutWins}-${team.blowoutLosses}</span>
+                        <div class="analytics-team-card">
+                            <div class="analytics-rank">${i + 1}</div>
+                            <div class="analytics-team-info">
+                                <div class="analytics-team-name">${team.displayName}</div>
+                                <div class="analytics-team-stats">
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Clutch</span>
+                                        <span class="analytics-team-stat-value ${team.clutchFactor >= 0 ? 'positive' : 'negative'}">${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Close</span>
+                                        <span class="analytics-team-stat-value">${team.closeWins}-${team.closeLosses}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Close %</span>
+                                        <span class="analytics-team-stat-value">${team.closeGameWinPct}%</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Blowout</span>
+                                        <span class="analytics-team-stat-value">${team.blowoutWins}-${team.blowoutLosses}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
 
-                <!-- Desktop Table View -->
-                <div class="table-scroll-hint">← Swipe to see more →</div>
-                <div class="table-scroll-container">
-                    <table class="analytics-table" data-sortable>
-                        <thead>
-                            <tr>
-                                <th class="rank">#</th>
-                                <th class="sortable">Team</th>
-                                <th class="sortable">Close W</th>
-                                <th class="sortable">Close L</th>
-                                <th class="sortable">Close %</th>
-                                <th class="sortable">Overall %</th>
-                                <th class="sortable">Clutch</th>
-                                <th class="sortable">Blowout</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${report.clutch.map((team, i) => `
-                                <tr>
-                                    <td class="rank">${i + 1}</td>
-                                    <td class="team-name">${team.displayName}</td>
-                                    <td>${team.closeWins}</td>
-                                    <td>${team.closeLosses}</td>
-                                    <td>${team.closeGameWinPct}%</td>
-                                    <td>${team.overallWinPct}%</td>
-                                    <td class="${team.clutchFactor >= 0 ? 'positive' : 'negative'}">
-                                        ${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%
-                                    </td>
-                                    <td>${team.blowoutWins}-${team.blowoutLosses}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="analytics-method">
+                    <h4>📊 How It Works</h4>
+                    <p>Blowouts = games by ${report.meta.blowoutThreshold}+ pts. Clutch Factor = Close % minus Overall %.</p>
                 </div>
-
-                <div class="analytics-methodology">
-                    <h4>📊 Methodology</h4>
-                    <p><strong>Close Game</strong> = margin of ${report.meta.closeThreshold} points or less.
-                    <strong>Clutch Factor</strong> = Close game win % minus overall win %.
-                    <strong>Blowouts</strong> are games decided by more than ${report.meta.blowoutThreshold} points.</p>
-                </div>
-            </div>
+            </section>
 
             <!-- STRENGTH OF SCHEDULE -->
-            <div id="analytics-sos" class="analytics-section">
-                <h3>📅 Strength of Schedule</h3>
-                <p class="description">
-                    Who faced the toughest competition? SOS Index compares average opponent score to league average.
-                    100 = average schedule, higher = tougher opponents, lower = easier path.
+            <section id="analytics-sos" class="analytics-block">
+                <div class="analytics-block-header">
+                    <h3>📅 Strength of Schedule</h3>
+                </div>
+                <p class="analytics-block-desc">
+                    SOS Index: 100 = average schedule. Higher = tougher opponents.
                 </p>
 
-                <div class="analytics-highlight-grid">
-                    <div class="analytics-highlight-card">
-                        <div class="label">Hardest Schedule</div>
-                        <div class="value negative">${report.strengthOfSchedule[0].sosIndex}</div>
-                        <div class="team">${report.strengthOfSchedule[0].displayName}</div>
+                <div class="analytics-stats-bar">
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value negative">${report.strengthOfSchedule[0].sosIndex}</span>
+                        <span class="analytics-stat-label">Hardest Schedule</span>
+                        <span class="analytics-stat-team">${report.strengthOfSchedule[0].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Easiest Schedule</div>
-                        <div class="value positive">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].sosIndex}</div>
-                        <div class="team">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].sosIndex}</span>
+                        <span class="analytics-stat-label">Easiest Schedule</span>
+                        <span class="analytics-stat-team">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].displayName}</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">League Avg Score</div>
-                        <div class="value neutral">${report.strengthOfSchedule[0].leagueAvgScore.toFixed(1)}</div>
-                        <div class="team">Per Game</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value neutral">${report.strengthOfSchedule[0].leagueAvgScore.toFixed(1)}</span>
+                        <span class="analytics-stat-label">League Avg/Game</span>
+                        <span class="analytics-stat-team">All Teams</span>
                     </div>
-                    <div class="analytics-highlight-card">
-                        <div class="label">Best Adjusted Win %</div>
-                        <div class="value positive">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].adjustedWinPct}%</div>
-                        <div class="team">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].displayName}</div>
+                    <div class="analytics-stat-box">
+                        <span class="analytics-stat-value positive">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].adjustedWinPct}%</span>
+                        <span class="analytics-stat-label">Best Adjusted %</span>
+                        <span class="analytics-stat-team">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].displayName}</span>
                     </div>
                 </div>
 
-                <!-- Mobile Card View -->
-                <div class="mobile-card-list">
+                <div class="analytics-rankings">
                     ${report.strengthOfSchedule.map((team, i) => `
-                        <div class="mobile-card-item">
-                            <div class="mobile-card-header">
-                                <div class="mobile-card-rank">${i + 1}</div>
-                                <div class="mobile-card-team">${team.displayName}</div>
-                            </div>
-                            <div class="mobile-card-stats">
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">SOS:</span>
-                                    <span class="mobile-stat-value ${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Opp Avg:</span>
-                                    <span class="mobile-stat-value">${team.avgOpponentScore.toFixed(1)}</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Win%:</span>
-                                    <span class="mobile-stat-value">${team.teamWinPct}%</span>
-                                </div>
-                                <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Adj%:</span>
-                                    <span class="mobile-stat-value ${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</span>
+                        <div class="analytics-team-card">
+                            <div class="analytics-rank">${i + 1}</div>
+                            <div class="analytics-team-info">
+                                <div class="analytics-team-name">${team.displayName}</div>
+                                <div class="analytics-team-stats">
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">SOS</span>
+                                        <span class="analytics-team-stat-value ${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Opp Avg</span>
+                                        <span class="analytics-team-stat-value">${team.avgOpponentScore.toFixed(1)}</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Win %</span>
+                                        <span class="analytics-team-stat-value">${team.teamWinPct}%</span>
+                                    </div>
+                                    <div class="analytics-team-stat">
+                                        <span class="analytics-team-stat-label">Adj %</span>
+                                        <span class="analytics-team-stat-value ${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
 
-                <!-- Desktop Table View -->
-                <div class="table-scroll-hint">← Swipe to see more →</div>
-                <div class="table-scroll-container">
-                    <table class="analytics-table" data-sortable>
-                        <thead>
-                            <tr>
-                                <th class="rank">#</th>
-                                <th class="sortable">Team</th>
-                                <th class="sortable">SOS</th>
-                                <th class="sortable">Opp Avg</th>
-                                <th class="sortable">Opp Win %</th>
-                                <th class="sortable">Win %</th>
-                                <th class="sortable">Adj %</th>
-                                <th class="sortable">Games</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${report.strengthOfSchedule.map((team, i) => `
-                                <tr>
-                                    <td class="rank">${i + 1}</td>
-                                    <td class="team-name">${team.displayName}</td>
-                                    <td class="${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</td>
-                                    <td>${team.avgOpponentScore.toFixed(1)}</td>
-                                    <td>${team.avgOpponentWinPct}%</td>
-                                    <td>${team.teamWinPct}%</td>
-                                    <td class="${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</td>
-                                    <td>${team.gamesPlayed}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="analytics-method">
+                    <h4>📊 How It Works</h4>
+                    <p>SOS = (Opp Avg ÷ League Avg) × 100. Adjusted % = Win % + (SOS - 100) × 0.5.</p>
                 </div>
+            </section>
 
-                <div class="analytics-methodology">
-                    <h4>📊 Methodology</h4>
-                    <p><strong>SOS Index</strong> = (Avg Opponent Score ÷ League Avg) × 100.
-                    Values above 100 = tougher schedule.
-                    <strong>Adjusted Win %</strong> = Actual Win % + (SOS Index - 100) × 0.5.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; padding: 16px; color: var(--text-secondary); font-size: 0.85rem;">
-                <p>Generated ${new Date().toLocaleDateString()} | Data: ${report.meta.seasonsAnalyzed} seasons, ${report.meta.totalMatchups} matchups</p>
+            <div class="analytics-footer">
+                Generated ${new Date().toLocaleDateString()} • ${report.meta.seasonsAnalyzed} seasons • ${report.meta.totalMatchups} matchups
             </div>
         `;
     }
