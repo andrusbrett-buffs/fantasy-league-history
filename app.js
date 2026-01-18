@@ -26,15 +26,9 @@ class FantasyApp {
     }
 
     /**
-     * Automatically load data - checks for pre-built data first, then cache
+     * Automatically load data - checks cache first, then fetches from ESPN API
      */
     async autoLoadData() {
-        // First, try to load pre-built static data (fastest option)
-        const prebuiltLoaded = await this.loadPrebuiltData();
-        if (prebuiltLoaded) {
-            return;
-        }
-
         // Try to load from browser cache (localStorage)
         if (statsEngine.loadFromStorage()) {
             // Check if cache is fresh enough (less than 24 hours old)
@@ -55,55 +49,6 @@ class FantasyApp {
 
         // Fetch fresh data if cache is invalid, outdated, or missing
         await this.loadLeagueData();
-    }
-
-    /**
-     * Load pre-built static data from server
-     * This is generated during deployment by prebuild.js
-     */
-    async loadPrebuiltData() {
-        try {
-            console.log('Attempting to load pre-built data...');
-            const response = await fetch('/data/league-data.json');
-
-            if (!response.ok) {
-                console.log('No pre-built data available, will fetch from ESPN API');
-                return false;
-            }
-
-            const prebuiltData = await response.json();
-            console.log('Pre-built data found:', prebuiltData.meta);
-
-            // Check if pre-built data is recent enough (less than 24 hours old)
-            const generatedAt = new Date(prebuiltData.meta.generatedAt).getTime();
-            const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
-
-            if (generatedAt < oneDayAgo) {
-                console.log('Pre-built data is stale, will refresh from ESPN API');
-                return false;
-            }
-
-            // Process the pre-built data
-            await statsEngine.loadAllSeasons(prebuiltData.seasons);
-            statsEngine.saveToStorage();
-
-            // Save fetch timestamp
-            localStorage.setItem('espn_last_fetch', Date.now().toString());
-
-            this.dataLoaded = true;
-            this.renderAllSections();
-            this.renderLandingPage();
-            this.showSection('home');
-            document.querySelector('[data-section="home"]').classList.add('active');
-
-            const generatedDate = new Date(prebuiltData.meta.generatedAt).toLocaleString();
-            this.updateDataStatus(`Data loaded instantly (pre-built ${generatedDate})`);
-
-            return true;
-        } catch (error) {
-            console.log('Error loading pre-built data:', error.message);
-            return false;
-        }
     }
 
     /**
