@@ -731,6 +731,13 @@ class StatsEngine {
             .sort((a, b) => b - a);
     }
 
+    /**
+     * Get raw season data for analytics module
+     */
+    getSeasonRawData(year) {
+        return this.allSeasonData[year] || null;
+    }
+
     // Cache version - increment this when data structure changes to invalidate old cache
     static CACHE_VERSION = 4;
 

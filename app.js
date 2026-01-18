@@ -291,6 +291,7 @@ class FantasyApp {
         this.populateTeamSelects();
         this.renderH2HMatrix();
         this.populateSeasonSelect();
+        this.renderAdvancedAnalytics();
     }
 
     /**
@@ -781,6 +782,614 @@ class FantasyApp {
             <p>Playoff data for ${year}</p>
             <p class="note">Champion: ${details.championName} 🏆</p>
         `;
+    }
+
+    /**
+     * Render Advanced Analytics section
+     */
+    renderAdvancedAnalytics() {
+        const container = document.getElementById('analytics-content');
+        if (!container) return;
+
+        // Check if AdvancedAnalytics class is available
+        if (typeof AdvancedAnalytics === 'undefined') {
+            container.innerHTML = '<p class="no-data">Analytics module not loaded</p>';
+            return;
+        }
+
+        try {
+            // Build raw data structure for analytics module
+            const rawData = {
+                seasons: {},
+                meta: {
+                    leagueId: '533683',
+                    startYear: 2011,
+                    endYear: 2026
+                }
+            };
+
+            // Get raw season data from statsEngine
+            const seasons = statsEngine.getAllSeasons();
+            seasons.forEach(year => {
+                const seasonData = statsEngine.getSeasonRawData(year);
+                if (seasonData) {
+                    rawData.seasons[year] = seasonData;
+                }
+            });
+
+            // Run analytics
+            const analytics = new AdvancedAnalytics(rawData);
+            const report = analytics.generateFullReport(5, 30); // close game ≤5 pts, blowout >30 pts
+
+            // Render the report
+            container.innerHTML = this.generateAnalyticsHTML(report);
+
+            // Setup sortable tables
+            this.setupAnalyticsSortableTables();
+
+        } catch (error) {
+            console.error('Error rendering analytics:', error);
+            container.innerHTML = `<p class="no-data">Error loading analytics: ${error.message}</p>`;
+        }
+    }
+
+    /**
+     * Generate HTML for analytics report
+     */
+    generateAnalyticsHTML(report) {
+        return `
+            <style>
+                .analytics-section {
+                    background: var(--card-bg);
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-bottom: 24px;
+                    border: 1px solid var(--border-color);
+                }
+                .analytics-section h3 {
+                    color: var(--primary);
+                    margin-bottom: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                .analytics-section .description {
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                    margin-bottom: 16px;
+                }
+                .analytics-highlight-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 16px;
+                    margin-bottom: 20px;
+                }
+                .analytics-highlight-card {
+                    background: var(--bg);
+                    border-radius: 8px;
+                    padding: 16px;
+                    text-align: center;
+                    border: 1px solid var(--border-color);
+                }
+                .analytics-highlight-card .label {
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 4px;
+                }
+                .analytics-highlight-card .value {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                }
+                .analytics-highlight-card .team {
+                    font-size: 0.95rem;
+                    color: var(--primary);
+                    margin-top: 4px;
+                }
+                .analytics-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 0.9rem;
+                }
+                .analytics-table th,
+                .analytics-table td {
+                    padding: 10px 12px;
+                    text-align: left;
+                    border-bottom: 1px solid var(--border-color);
+                }
+                .analytics-table th {
+                    background: var(--bg);
+                    font-weight: 600;
+                    color: var(--primary);
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                .analytics-table th.sortable {
+                    cursor: pointer;
+                    user-select: none;
+                    position: relative;
+                    padding-right: 20px;
+                }
+                .analytics-table th.sortable:hover {
+                    background: var(--hover-bg);
+                }
+                .analytics-table th.sortable::after {
+                    content: '⇅';
+                    position: absolute;
+                    right: 4px;
+                    opacity: 0.4;
+                    font-size: 0.7rem;
+                }
+                .analytics-table th.sortable.asc::after {
+                    content: '↑';
+                    opacity: 1;
+                }
+                .analytics-table th.sortable.desc::after {
+                    content: '↓';
+                    opacity: 1;
+                }
+                .analytics-table tr:hover {
+                    background: var(--hover-bg);
+                }
+                .analytics-table .rank {
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                    width: 40px;
+                }
+                .analytics-table .team-name {
+                    font-weight: 600;
+                }
+                .positive { color: var(--success); }
+                .negative { color: var(--danger); }
+                .neutral { color: var(--warning); }
+                .analytics-methodology {
+                    background: var(--bg);
+                    border-radius: 8px;
+                    padding: 12px 16px;
+                    margin-top: 16px;
+                    font-size: 0.85rem;
+                    color: var(--text-secondary);
+                }
+                .analytics-methodology h4 {
+                    color: var(--text-primary);
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                }
+                .season-luck-carousel {
+                    display: flex;
+                    gap: 12px;
+                    overflow-x: auto;
+                    padding: 8px 0;
+                    scrollbar-width: thin;
+                }
+                .season-luck-card {
+                    flex-shrink: 0;
+                    width: 220px;
+                    background: var(--bg);
+                    border-radius: 8px;
+                    padding: 12px;
+                    border: 1px solid var(--border-color);
+                }
+                .season-luck-card h4 {
+                    color: var(--primary);
+                    margin-bottom: 8px;
+                }
+                .luck-pair {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 6px;
+                }
+                .luck-pair .label {
+                    font-size: 0.75rem;
+                    color: var(--text-secondary);
+                }
+                .luck-pair .team {
+                    font-size: 0.85rem;
+                }
+                .luck-pair .score {
+                    font-weight: 600;
+                    font-size: 0.85rem;
+                }
+            </style>
+
+            <!-- LUCK ANALYSIS -->
+            <div class="analytics-section">
+                <h3>🎲 Luck Analysis</h3>
+                <p class="description">
+                    Luck is measured using the "All-Play" method: how many wins would you have each week if you played ALL teams?
+                    Expected wins are calculated from this, and compared against actual wins. Positive = lucky, Negative = unlucky.
+                </p>
+
+                <div class="analytics-highlight-grid">
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Unlucky (All-Time)</div>
+                        <div class="value negative">${report.luck.allTime[0].luckScore.toFixed(1)} wins</div>
+                        <div class="team">${report.luck.allTime[0].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Lucky (All-Time)</div>
+                        <div class="value positive">+${report.luck.allTime[report.luck.allTime.length - 1].luckScore.toFixed(1)} wins</div>
+                        <div class="team">${report.luck.allTime[report.luck.allTime.length - 1].displayName}</div>
+                    </div>
+                </div>
+
+                <h4 style="margin: 16px 0 8px;">Season-by-Season Luck</h4>
+                <div class="season-luck-carousel">
+                    ${report.luck.bySeasonSummary.map(season => `
+                        <div class="season-luck-card">
+                            <h4>${season.year}</h4>
+                            <div class="luck-pair">
+                                <div>
+                                    <div class="label">Luckiest</div>
+                                    <div class="team positive">${season.luckiest.displayName}</div>
+                                </div>
+                                <div class="score positive">+${season.luckiest.luckScore.toFixed(1)}</div>
+                            </div>
+                            <div class="luck-pair">
+                                <div>
+                                    <div class="label">Unluckiest</div>
+                                    <div class="team negative">${season.unluckiest.displayName}</div>
+                                </div>
+                                <div class="score negative">${season.unluckiest.luckScore.toFixed(1)}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <h4 style="margin: 20px 0 12px;">All-Time Luck Rankings</h4>
+                <div style="overflow-x: auto;">
+                    <table class="analytics-table" data-sortable>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th class="sortable">Team</th>
+                                <th class="sortable">Actual Wins</th>
+                                <th class="sortable">Expected Wins</th>
+                                <th class="sortable">Luck Score</th>
+                                <th class="sortable">All-Play Record</th>
+                                <th class="sortable">Seasons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${report.luck.allTime.map((team, i) => `
+                                <tr>
+                                    <td class="rank">${i + 1}</td>
+                                    <td class="team-name">${team.displayName}</td>
+                                    <td>${team.actualWins}</td>
+                                    <td>${team.expectedWins.toFixed(1)}</td>
+                                    <td class="${team.luckScore >= 0 ? 'positive' : 'negative'}">
+                                        ${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}
+                                    </td>
+                                    <td>${team.allPlayRecord} (${team.allPlayWinPct}%)</td>
+                                    <td>${team.seasonsPlayed}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="analytics-methodology">
+                    <h4>📊 Methodology</h4>
+                    <p>Each week, your "expected wins" are calculated by comparing your score against all other teams.
+                    If you scored higher than 8 of 11 opponents, your expected wins for that week = 8/11 = 0.73.
+                    Sum these across all weeks and seasons, then compare to your actual win total.</p>
+                </div>
+            </div>
+
+            <!-- CONSISTENCY METRICS -->
+            <div class="analytics-section">
+                <h3>📊 Consistency Metrics</h3>
+                <p class="description">
+                    Who's the most predictable scorer? Lower Coefficient of Variation (CV) means more consistent week-to-week performance.
+                    "Boom" games are 20%+ above your average; "Bust" games are 20%+ below.
+                </p>
+
+                <div class="analytics-highlight-grid">
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Consistent (Lowest CV)</div>
+                        <div class="value positive">${report.consistency[0].coefficientOfVariation}%</div>
+                        <div class="team">${report.consistency[0].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Volatile (Highest CV)</div>
+                        <div class="value negative">${report.consistency[report.consistency.length - 1].coefficientOfVariation}%</div>
+                        <div class="team">${report.consistency[report.consistency.length - 1].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Highest Single-Game Score</div>
+                        <div class="value neutral">${report.highestSingleGame.score.toFixed(1)}</div>
+                        <div class="team">${report.highestSingleGame.displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Highest Boom Rate</div>
+                        <div class="value positive">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].boomRate}%</div>
+                        <div class="team">${[...report.consistency].sort((a, b) => b.boomRate - a.boomRate)[0].displayName}</div>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="analytics-table" data-sortable>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th class="sortable">Team</th>
+                                <th class="sortable">Avg Score</th>
+                                <th class="sortable">Std Dev</th>
+                                <th class="sortable">CV %</th>
+                                <th class="sortable">Floor</th>
+                                <th class="sortable">Ceiling</th>
+                                <th class="sortable">Boom %</th>
+                                <th class="sortable">Bust %</th>
+                                <th class="sortable">Games</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${report.consistency.map((team, i) => `
+                                <tr>
+                                    <td class="rank">${i + 1}</td>
+                                    <td class="team-name">${team.displayName}</td>
+                                    <td>${team.avgScore.toFixed(1)}</td>
+                                    <td>${team.stdDev.toFixed(1)}</td>
+                                    <td class="${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</td>
+                                    <td>${team.floor.toFixed(1)}</td>
+                                    <td>${team.ceiling.toFixed(1)}</td>
+                                    <td class="positive">${team.boomRate}%</td>
+                                    <td class="negative">${team.bustRate}%</td>
+                                    <td>${team.gamesPlayed}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="analytics-methodology">
+                    <h4>📊 Methodology</h4>
+                    <p><strong>Coefficient of Variation (CV)</strong> = Standard Deviation ÷ Average × 100.
+                    <strong>Floor</strong> = 10th percentile, <strong>Ceiling</strong> = 90th percentile.
+                    <strong>Boom</strong> = 120%+ of average; <strong>Bust</strong> = below 80%.</p>
+                </div>
+            </div>
+
+            <!-- CLOSE GAME PERFORMANCE -->
+            <div class="analytics-section">
+                <h3>🎯 Close Game Performance</h3>
+                <p class="description">
+                    How do teams perform when it matters most? "Close games" are decided by ${report.meta.closeThreshold} points or fewer.
+                    Clutch Factor = Close game win % minus overall win %. Positive = better in close games.
+                </p>
+
+                <div class="analytics-highlight-grid">
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Clutch</div>
+                        <div class="value positive">+${report.clutch[0].clutchFactor}%</div>
+                        <div class="team">${report.clutch[0].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Least Clutch</div>
+                        <div class="value negative">${report.clutch[report.clutch.length - 1].clutchFactor}%</div>
+                        <div class="team">${report.clutch[report.clutch.length - 1].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Most Close Games</div>
+                        <div class="value neutral">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].totalCloseGames}</div>
+                        <div class="team">${[...report.clutch].sort((a, b) => b.totalCloseGames - a.totalCloseGames)[0].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Best Close Win %</div>
+                        <div class="value positive">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].closeGameWinPct}%</div>
+                        <div class="team">${[...report.clutch].sort((a, b) => b.closeGameWinPct - a.closeGameWinPct)[0].displayName}</div>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="analytics-table" data-sortable>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th class="sortable">Team</th>
+                                <th class="sortable">Close Wins</th>
+                                <th class="sortable">Close Losses</th>
+                                <th class="sortable">Close Win %</th>
+                                <th class="sortable">Overall Win %</th>
+                                <th class="sortable">Clutch Factor</th>
+                                <th class="sortable">Blowout W-L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${report.clutch.map((team, i) => `
+                                <tr>
+                                    <td class="rank">${i + 1}</td>
+                                    <td class="team-name">${team.displayName}</td>
+                                    <td>${team.closeWins}</td>
+                                    <td>${team.closeLosses}</td>
+                                    <td>${team.closeGameWinPct}%</td>
+                                    <td>${team.overallWinPct}%</td>
+                                    <td class="${team.clutchFactor >= 0 ? 'positive' : 'negative'}">
+                                        ${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%
+                                    </td>
+                                    <td>${team.blowoutWins}-${team.blowoutLosses}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="analytics-methodology">
+                    <h4>📊 Methodology</h4>
+                    <p><strong>Close Game</strong> = margin of ${report.meta.closeThreshold} points or less.
+                    <strong>Clutch Factor</strong> = Close game win % minus overall win %.
+                    <strong>Blowouts</strong> are games decided by more than ${report.meta.blowoutThreshold} points.</p>
+                </div>
+            </div>
+
+            <!-- STRENGTH OF SCHEDULE -->
+            <div class="analytics-section">
+                <h3>📅 Strength of Schedule</h3>
+                <p class="description">
+                    Who faced the toughest competition? SOS Index compares average opponent score to league average.
+                    100 = average schedule, higher = tougher opponents, lower = easier path.
+                </p>
+
+                <div class="analytics-highlight-grid">
+                    <div class="analytics-highlight-card">
+                        <div class="label">Hardest Schedule</div>
+                        <div class="value negative">${report.strengthOfSchedule[0].sosIndex}</div>
+                        <div class="team">${report.strengthOfSchedule[0].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Easiest Schedule</div>
+                        <div class="value positive">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].sosIndex}</div>
+                        <div class="team">${report.strengthOfSchedule[report.strengthOfSchedule.length - 1].displayName}</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">League Avg Score</div>
+                        <div class="value neutral">${report.strengthOfSchedule[0].leagueAvgScore.toFixed(1)}</div>
+                        <div class="team">Per Game</div>
+                    </div>
+                    <div class="analytics-highlight-card">
+                        <div class="label">Best Adjusted Win %</div>
+                        <div class="value positive">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].adjustedWinPct}%</div>
+                        <div class="team">${[...report.strengthOfSchedule].sort((a, b) => b.adjustedWinPct - a.adjustedWinPct)[0].displayName}</div>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="analytics-table" data-sortable>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th class="sortable">Team</th>
+                                <th class="sortable">SOS Index</th>
+                                <th class="sortable">Avg Opp Score</th>
+                                <th class="sortable">Avg Opp Win %</th>
+                                <th class="sortable">Team Win %</th>
+                                <th class="sortable">Adjusted Win %</th>
+                                <th class="sortable">Games</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${report.strengthOfSchedule.map((team, i) => `
+                                <tr>
+                                    <td class="rank">${i + 1}</td>
+                                    <td class="team-name">${team.displayName}</td>
+                                    <td class="${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</td>
+                                    <td>${team.avgOpponentScore.toFixed(1)}</td>
+                                    <td>${team.avgOpponentWinPct}%</td>
+                                    <td>${team.teamWinPct}%</td>
+                                    <td class="${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</td>
+                                    <td>${team.gamesPlayed}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="analytics-methodology">
+                    <h4>📊 Methodology</h4>
+                    <p><strong>SOS Index</strong> = (Avg Opponent Score ÷ League Avg) × 100.
+                    Values above 100 = tougher schedule.
+                    <strong>Adjusted Win %</strong> = Actual Win % + (SOS Index - 100) × 0.5.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding: 16px; color: var(--text-secondary); font-size: 0.85rem;">
+                <p>Generated ${new Date().toLocaleDateString()} | Data: ${report.meta.seasonsAnalyzed} seasons, ${report.meta.totalMatchups} matchups</p>
+            </div>
+        `;
+    }
+
+    /**
+     * Setup sortable tables for analytics section
+     */
+    setupAnalyticsSortableTables() {
+        const tables = document.querySelectorAll('.analytics-table[data-sortable]');
+
+        tables.forEach(table => {
+            const headers = table.querySelectorAll('th.sortable');
+            const tbody = table.querySelector('tbody');
+            if (!tbody) return;
+
+            headers.forEach((header, index) => {
+                // Account for rank column at index 0
+                const columnIndex = index + 1;
+
+                header.addEventListener('click', () => {
+                    // Determine sort direction
+                    const isAsc = header.classList.contains('asc');
+                    const isDesc = header.classList.contains('desc');
+
+                    // Remove sort classes from all headers
+                    headers.forEach(h => h.classList.remove('asc', 'desc'));
+
+                    // Set new sort direction
+                    let direction;
+                    if (!isAsc && !isDesc) {
+                        direction = 'desc';
+                    } else if (isDesc) {
+                        direction = 'asc';
+                    } else {
+                        direction = 'desc';
+                    }
+                    header.classList.add(direction);
+
+                    // Sort rows
+                    const rows = Array.from(tbody.querySelectorAll('tr'));
+                    rows.sort((a, b) => {
+                        const aCell = a.cells[columnIndex];
+                        const bCell = b.cells[columnIndex];
+
+                        let aValue = aCell.textContent.trim();
+                        let bValue = bCell.textContent.trim();
+
+                        const aNum = this.parseAnalyticsValue(aValue);
+                        const bNum = this.parseAnalyticsValue(bValue);
+
+                        let comparison;
+                        if (aNum !== null && bNum !== null) {
+                            comparison = aNum - bNum;
+                        } else {
+                            comparison = aValue.localeCompare(bValue);
+                        }
+
+                        return direction === 'asc' ? comparison : -comparison;
+                    });
+
+                    // Re-append sorted rows and update ranks
+                    rows.forEach((row, i) => {
+                        tbody.appendChild(row);
+                        const rankCell = row.querySelector('.rank');
+                        if (rankCell) {
+                            rankCell.textContent = i + 1;
+                        }
+                    });
+                });
+            });
+        });
+    }
+
+    /**
+     * Parse analytics value for sorting
+     */
+    parseAnalyticsValue(value) {
+        let cleaned = value.replace(/[+%$,]/g, '').trim();
+
+        // Handle records like "100-50 (50.5%)"
+        const pctMatch = value.match(/\(([0-9.]+)%\)/);
+        if (pctMatch) {
+            return parseFloat(pctMatch[1]);
+        }
+
+        // Handle W-L records like "10-5"
+        const recordMatch = cleaned.match(/^(\d+)-(\d+)$/);
+        if (recordMatch) {
+            const wins = parseInt(recordMatch[1]);
+            const losses = parseInt(recordMatch[2]);
+            return wins / (wins + losses) || 0;
+        }
+
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
     }
 }
 
