@@ -3,7 +3,7 @@
  * Handles CORS and cookie authentication for private leagues
  *
  * Usage: node server.js
- * Then open http://localhost:3000 in your browser
+ * Server binds to PORT environment variable (required for Railway)
  */
 
 const http = require('http');
