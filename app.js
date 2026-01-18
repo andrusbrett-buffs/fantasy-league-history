@@ -992,7 +992,7 @@ class FantasyApp {
                     font-size: 0.85rem;
                 }
 
-                /* MOBILE CARD VIEW - Replace tables with stacked cards */
+                /* MOBILE CARD VIEW - Compact single-column cards */
                 .mobile-card-list {
                     display: none;
                 }
@@ -1000,63 +1000,62 @@ class FantasyApp {
                 .mobile-card-item {
                     background: var(--bg);
                     border: 1px solid var(--border-color);
-                    border-radius: 10px;
-                    padding: 14px;
-                    margin-bottom: 10px;
+                    border-radius: 8px;
+                    padding: 12px;
+                    margin-bottom: 8px;
                 }
 
                 .mobile-card-header {
                     display: flex;
-                    justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 10px;
-                    padding-bottom: 8px;
-                    border-bottom: 1px solid var(--border-color);
+                    margin-bottom: 8px;
                 }
 
                 .mobile-card-rank {
                     background: var(--primary);
                     color: white;
-                    width: 28px;
-                    height: 28px;
+                    min-width: 24px;
+                    height: 24px;
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     font-weight: 700;
-                    font-size: 0.85rem;
+                    font-size: 0.75rem;
+                    flex-shrink: 0;
                 }
 
                 .mobile-card-team {
                     font-weight: 700;
-                    font-size: 1.05rem;
+                    font-size: 0.95rem;
                     color: var(--text-primary);
-                    flex: 1;
-                    margin-left: 12px;
+                    margin-left: 10px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .mobile-card-stats {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 8px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 4px 12px;
                 }
 
                 .mobile-stat {
                     display: flex;
-                    flex-direction: column;
+                    align-items: baseline;
+                    gap: 4px;
                 }
 
                 .mobile-stat-label {
-                    font-size: 0.7rem;
+                    font-size: 0.65rem;
                     color: var(--text-secondary);
                     text-transform: uppercase;
-                    letter-spacing: 0.3px;
                 }
 
                 .mobile-stat-value {
-                    font-size: 1rem;
+                    font-size: 0.9rem;
                     font-weight: 600;
-                    margin-top: 2px;
                 }
 
                 .mobile-stat-value.positive { color: var(--success); }
@@ -1303,19 +1302,19 @@ class FantasyApp {
                             </div>
                             <div class="mobile-card-stats">
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Luck Score</span>
+                                    <span class="mobile-stat-label">Luck:</span>
                                     <span class="mobile-stat-value ${team.luckScore >= 0 ? 'positive' : 'negative'}">${team.luckScore >= 0 ? '+' : ''}${team.luckScore.toFixed(1)}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Actual Wins</span>
+                                    <span class="mobile-stat-label">Actual:</span>
                                     <span class="mobile-stat-value">${team.actualWins}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Expected Wins</span>
+                                    <span class="mobile-stat-label">Exp:</span>
                                     <span class="mobile-stat-value">${team.expectedWins.toFixed(1)}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">All-Play</span>
+                                    <span class="mobile-stat-label">All-Play:</span>
                                     <span class="mobile-stat-value">${team.allPlayWinPct}%</span>
                                 </div>
                             </div>
@@ -1405,19 +1404,19 @@ class FantasyApp {
                             </div>
                             <div class="mobile-card-stats">
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">CV (Consistency)</span>
+                                    <span class="mobile-stat-label">CV:</span>
                                     <span class="mobile-stat-value ${team.coefficientOfVariation < 15 ? 'positive' : team.coefficientOfVariation > 20 ? 'negative' : ''}">${team.coefficientOfVariation}%</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Avg Score</span>
+                                    <span class="mobile-stat-label">Avg:</span>
                                     <span class="mobile-stat-value">${team.avgScore.toFixed(1)}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Boom Rate</span>
+                                    <span class="mobile-stat-label">Boom:</span>
                                     <span class="mobile-stat-value positive">${team.boomRate}%</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Bust Rate</span>
+                                    <span class="mobile-stat-label">Bust:</span>
                                     <span class="mobile-stat-value negative">${team.bustRate}%</span>
                                 </div>
                             </div>
@@ -1511,19 +1510,19 @@ class FantasyApp {
                             </div>
                             <div class="mobile-card-stats">
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Clutch Factor</span>
+                                    <span class="mobile-stat-label">Clutch:</span>
                                     <span class="mobile-stat-value ${team.clutchFactor >= 0 ? 'positive' : 'negative'}">${team.clutchFactor >= 0 ? '+' : ''}${team.clutchFactor}%</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Close Game W-L</span>
+                                    <span class="mobile-stat-label">Close:</span>
                                     <span class="mobile-stat-value">${team.closeWins}-${team.closeLosses}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Close Win %</span>
+                                    <span class="mobile-stat-label">Close%:</span>
                                     <span class="mobile-stat-value">${team.closeGameWinPct}%</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Blowout W-L</span>
+                                    <span class="mobile-stat-label">Blowout:</span>
                                     <span class="mobile-stat-value">${team.blowoutWins}-${team.blowoutLosses}</span>
                                 </div>
                             </div>
@@ -1615,19 +1614,19 @@ class FantasyApp {
                             </div>
                             <div class="mobile-card-stats">
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">SOS Index</span>
+                                    <span class="mobile-stat-label">SOS:</span>
                                     <span class="mobile-stat-value ${team.sosIndex > 100 ? 'negative' : 'positive'}">${team.sosIndex}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Avg Opp Score</span>
+                                    <span class="mobile-stat-label">Opp Avg:</span>
                                     <span class="mobile-stat-value">${team.avgOpponentScore.toFixed(1)}</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Win %</span>
+                                    <span class="mobile-stat-label">Win%:</span>
                                     <span class="mobile-stat-value">${team.teamWinPct}%</span>
                                 </div>
                                 <div class="mobile-stat">
-                                    <span class="mobile-stat-label">Adjusted Win %</span>
+                                    <span class="mobile-stat-label">Adj%:</span>
                                     <span class="mobile-stat-value ${team.adjustedWinPct > team.teamWinPct ? 'positive' : ''}">${team.adjustedWinPct}%</span>
                                 </div>
                             </div>
