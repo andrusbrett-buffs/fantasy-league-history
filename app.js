@@ -876,7 +876,7 @@ class FantasyApp {
                 <!-- Season Selector -->
                 <div class="analytics-season-picker">
                     <label class="analytics-season-label">By Season:</label>
-                    <select class="analytics-season-select" id="luck-season-select" data-seasons='${JSON.stringify(report.luck.bySeasonSummary)}'>
+                    <select class="analytics-season-select" id="luck-season-select" data-seasons="${JSON.stringify(report.luck.bySeasonSummary).replace(/"/g, '&quot;')}">
                         ${report.luck.bySeasonSummary.map((season, i) => `
                             <option value="${i}" ${i === report.luck.bySeasonSummary.length - 1 ? 'selected' : ''}>${season.year}</option>
                         `).join('')}
