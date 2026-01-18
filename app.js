@@ -827,6 +827,9 @@ class FantasyApp {
             // Setup sortable tables
             this.setupAnalyticsSortableTables();
 
+            // Setup smooth scrolling for sub-nav
+            this.setupAnalyticsSubnav();
+
         } catch (error) {
             console.error('Error rendering analytics:', error);
             container.innerHTML = `<p class="no-data">Error loading analytics: ${error.message}</p>`;
@@ -1244,10 +1247,89 @@ class FantasyApp {
                         padding: 8px;
                     }
                 }
+
+                /* Analytics Sub-Navigation */
+                .analytics-subnav {
+                    display: flex;
+                    gap: 8px;
+                    padding: 12px 0;
+                    margin-bottom: 16px;
+                    border-bottom: 1px solid var(--border-color);
+                    position: sticky;
+                    top: 0;
+                    background: var(--card-bg);
+                    z-index: 10;
+                    flex-wrap: wrap;
+                }
+
+                .analytics-subnav-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 8px 14px;
+                    background: var(--bg);
+                    border: 1px solid var(--border-color);
+                    border-radius: 20px;
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    text-decoration: none;
+                    white-space: nowrap;
+                }
+
+                .analytics-subnav-btn:hover {
+                    background: var(--primary);
+                    color: white;
+                    border-color: var(--primary);
+                }
+
+                .analytics-subnav-btn .icon {
+                    font-size: 1rem;
+                }
+
+                @media (max-width: 768px) {
+                    .analytics-subnav {
+                        gap: 6px;
+                        padding: 10px 0;
+                        margin-bottom: 12px;
+                        margin-left: -14px;
+                        margin-right: -14px;
+                        padding-left: 14px;
+                        padding-right: 14px;
+                        overflow-x: auto;
+                        flex-wrap: nowrap;
+                        -webkit-overflow-scrolling: touch;
+                        scrollbar-width: none;
+                    }
+
+                    .analytics-subnav::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .analytics-subnav-btn {
+                        padding: 8px 12px;
+                        font-size: 0.8rem;
+                        flex-shrink: 0;
+                    }
+
+                    .analytics-subnav-btn .icon {
+                        font-size: 0.9rem;
+                    }
+                }
             </style>
 
+            <!-- Analytics Sub-Navigation -->
+            <nav class="analytics-subnav">
+                <a href="#analytics-luck" class="analytics-subnav-btn"><span class="icon">🎲</span> Luck</a>
+                <a href="#analytics-consistency" class="analytics-subnav-btn"><span class="icon">📊</span> Consistency</a>
+                <a href="#analytics-clutch" class="analytics-subnav-btn"><span class="icon">🎯</span> Clutch</a>
+                <a href="#analytics-sos" class="analytics-subnav-btn"><span class="icon">📅</span> Schedule</a>
+            </nav>
+
             <!-- LUCK ANALYSIS -->
-            <div class="analytics-section">
+            <div id="analytics-luck" class="analytics-section">
                 <h3>🎲 Luck Analysis</h3>
                 <p class="description">
                     Luck is measured using the "All-Play" method: how many wins would you have each week if you played ALL teams?
@@ -1364,7 +1446,7 @@ class FantasyApp {
             </div>
 
             <!-- CONSISTENCY METRICS -->
-            <div class="analytics-section">
+            <div id="analytics-consistency" class="analytics-section">
                 <h3>📊 Consistency Metrics</h3>
                 <p class="description">
                     Who's the most predictable scorer? Lower Coefficient of Variation (CV) means more consistent week-to-week performance.
@@ -1470,7 +1552,7 @@ class FantasyApp {
             </div>
 
             <!-- CLOSE GAME PERFORMANCE -->
-            <div class="analytics-section">
+            <div id="analytics-clutch" class="analytics-section">
                 <h3>🎯 Close Game Performance</h3>
                 <p class="description">
                     How do teams perform when it matters most? "Close games" are decided by ${report.meta.closeThreshold} points or fewer.
@@ -1574,7 +1656,7 @@ class FantasyApp {
             </div>
 
             <!-- STRENGTH OF SCHEDULE -->
-            <div class="analytics-section">
+            <div id="analytics-sos" class="analytics-section">
                 <h3>📅 Strength of Schedule</h3>
                 <p class="description">
                     Who faced the toughest competition? SOS Index compares average opponent score to league average.
@@ -1772,6 +1854,35 @@ class FantasyApp {
 
         const num = parseFloat(cleaned);
         return isNaN(num) ? null : num;
+    }
+
+    /**
+     * Setup smooth scrolling for analytics sub-navigation
+     */
+    setupAnalyticsSubnav() {
+        const subnavLinks = document.querySelectorAll('.analytics-subnav-btn');
+
+        subnavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Get the sticky nav height for offset
+                    const subnav = document.querySelector('.analytics-subnav');
+                    const offset = subnav ? subnav.offsetHeight + 20 : 60;
+
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     }
 }
 
