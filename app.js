@@ -843,16 +843,17 @@ class FantasyApp {
         return `
             <!-- Navigation Pills -->
             <nav class="analytics-nav">
-                <a href="#analytics-luck" class="analytics-nav-btn"><span class="icon">🎲</span> Luck</a>
-                <a href="#analytics-consistency" class="analytics-nav-btn"><span class="icon">📊</span> Consistency</a>
-                <a href="#analytics-clutch" class="analytics-nav-btn"><span class="icon">🎯</span> Clutch</a>
-                <a href="#analytics-sos" class="analytics-nav-btn"><span class="icon">📅</span> Schedule</a>
+                <a href="#analytics-luck" class="analytics-nav-btn"><span class="analytics-icon analytics-icon-luck"></span> Luck</a>
+                <a href="#analytics-consistency" class="analytics-nav-btn"><span class="analytics-icon analytics-icon-consistency"></span> Consistency</a>
+                <a href="#analytics-clutch" class="analytics-nav-btn"><span class="analytics-icon analytics-icon-clutch"></span> Clutch</a>
+                <a href="#analytics-sos" class="analytics-nav-btn"><span class="analytics-icon analytics-icon-schedule"></span> Schedule</a>
             </nav>
 
             <!-- LUCK ANALYSIS -->
             <section id="analytics-luck" class="analytics-block">
                 <div class="analytics-block-header">
-                    <h3>🎲 Luck Analysis</h3>
+                    <span class="analytics-icon analytics-icon-luck"></span>
+                    <h3>Luck Analysis</h3>
                 </div>
                 <p class="analytics-block-desc">
                     Luck is measured using "All-Play": how many wins would you have each week if you played ALL teams? Positive = lucky, Negative = unlucky.
@@ -922,7 +923,7 @@ class FantasyApp {
                 </div>
 
                 <div class="analytics-method">
-                    <h4>📊 How It Works</h4>
+                    <h4><span class="analytics-icon analytics-icon-method"></span> How It Works</h4>
                     <p>Each week, compare your score against ALL other teams. Expected wins = percentage of teams you outscored. Sum across all weeks, then compare to actual wins.</p>
                 </div>
             </section>
@@ -930,7 +931,8 @@ class FantasyApp {
             <!-- CONSISTENCY METRICS -->
             <section id="analytics-consistency" class="analytics-block">
                 <div class="analytics-block-header">
-                    <h3>📊 Consistency</h3>
+                    <span class="analytics-icon analytics-icon-consistency"></span>
+                    <h3>Consistency</h3>
                 </div>
                 <p class="analytics-block-desc">
                     Lower CV = more consistent. "Boom" = 20%+ above average; "Bust" = 20%+ below.
@@ -989,7 +991,7 @@ class FantasyApp {
                 </div>
 
                 <div class="analytics-method">
-                    <h4>📊 How It Works</h4>
+                    <h4><span class="analytics-icon analytics-icon-method"></span> How It Works</h4>
                     <p>CV = Std Dev ÷ Avg × 100. Floor = 10th percentile. Ceiling = 90th percentile.</p>
                 </div>
             </section>
@@ -997,7 +999,8 @@ class FantasyApp {
             <!-- CLUTCH PERFORMANCE -->
             <section id="analytics-clutch" class="analytics-block">
                 <div class="analytics-block-header">
-                    <h3>🎯 Clutch Performance</h3>
+                    <span class="analytics-icon analytics-icon-clutch"></span>
+                    <h3>Clutch Performance</h3>
                 </div>
                 <p class="analytics-block-desc">
                     "Close games" = within ${report.meta.closeThreshold} pts. Clutch Factor = close game win % minus overall win %.
@@ -1056,7 +1059,7 @@ class FantasyApp {
                 </div>
 
                 <div class="analytics-method">
-                    <h4>📊 How It Works</h4>
+                    <h4><span class="analytics-icon analytics-icon-method"></span> How It Works</h4>
                     <p>Blowouts = games by ${report.meta.blowoutThreshold}+ pts. Clutch Factor = Close % minus Overall %.</p>
                 </div>
             </section>
@@ -1064,7 +1067,8 @@ class FantasyApp {
             <!-- STRENGTH OF SCHEDULE -->
             <section id="analytics-sos" class="analytics-block">
                 <div class="analytics-block-header">
-                    <h3>📅 Strength of Schedule</h3>
+                    <span class="analytics-icon analytics-icon-schedule"></span>
+                    <h3>Strength of Schedule</h3>
                 </div>
                 <p class="analytics-block-desc">
                     SOS Index: 100 = average schedule. Higher = tougher opponents.
@@ -1123,7 +1127,7 @@ class FantasyApp {
                 </div>
 
                 <div class="analytics-method">
-                    <h4>📊 How It Works</h4>
+                    <h4><span class="analytics-icon analytics-icon-method"></span> How It Works</h4>
                     <p>SOS = (Opp Avg ÷ League Avg) × 100. Adjusted % = Win % + (SOS - 100) × 0.5.</p>
                 </div>
             </section>
