@@ -873,24 +873,52 @@ class FantasyApp {
                     </div>
                 </div>
 
-                <!-- Season Carousel -->
-                <div class="analytics-season-scroll">
-                    ${report.luck.bySeasonSummary.map(season => `
-                        <div class="analytics-season-card">
-                            <div class="analytics-season-year">${season.year}</div>
-                            <div class="analytics-season-item">
-                                <div class="analytics-season-item-label">Luckiest</div>
-                                <div class="analytics-season-item-team">${season.luckiest.displayName}</div>
-                                <div class="analytics-season-item-value positive">+${season.luckiest.luckScore.toFixed(1)}</div>
-                            </div>
-                            <div class="analytics-season-item">
-                                <div class="analytics-season-item-label">Unluckiest</div>
-                                <div class="analytics-season-item-team">${season.unluckiest.displayName}</div>
-                                <div class="analytics-season-item-value negative">${season.unluckiest.luckScore.toFixed(1)}</div>
-                            </div>
-                        </div>
-                    `).join('')}
+                <!-- Season Selector -->
+                <div class="analytics-season-picker">
+                    <label class="analytics-season-label">By Season:</label>
+                    <select class="analytics-season-select" id="luck-season-select">
+                        ${report.luck.bySeasonSummary.map((season, i) => `
+                            <option value="${i}" ${i === report.luck.bySeasonSummary.length - 1 ? 'selected' : ''}>${season.year}</option>
+                        `).join('')}
+                    </select>
                 </div>
+                <div class="analytics-season-display" id="luck-season-display">
+                    ${(() => {
+                        const season = report.luck.bySeasonSummary[report.luck.bySeasonSummary.length - 1];
+                        return `
+                            <div class="analytics-season-row">
+                                <span class="analytics-season-row-label">Luckiest</span>
+                                <span class="analytics-season-row-team">${season.luckiest.displayName}</span>
+                                <span class="analytics-season-row-value positive">+${season.luckiest.luckScore.toFixed(1)}</span>
+                            </div>
+                            <div class="analytics-season-row">
+                                <span class="analytics-season-row-label">Unluckiest</span>
+                                <span class="analytics-season-row-team">${season.unluckiest.displayName}</span>
+                                <span class="analytics-season-row-value negative">${season.unluckiest.luckScore.toFixed(1)}</span>
+                            </div>
+                        `;
+                    })()}
+                </div>
+                <script>
+                    (function() {
+                        const luckData = ${JSON.stringify(report.luck.bySeasonSummary)};
+                        document.getElementById('luck-season-select').addEventListener('change', function() {
+                            const season = luckData[this.value];
+                            document.getElementById('luck-season-display').innerHTML = \`
+                                <div class="analytics-season-row">
+                                    <span class="analytics-season-row-label">Luckiest</span>
+                                    <span class="analytics-season-row-team">\${season.luckiest.displayName}</span>
+                                    <span class="analytics-season-row-value positive">+\${season.luckiest.luckScore.toFixed(1)}</span>
+                                </div>
+                                <div class="analytics-season-row">
+                                    <span class="analytics-season-row-label">Unluckiest</span>
+                                    <span class="analytics-season-row-team">\${season.unluckiest.displayName}</span>
+                                    <span class="analytics-season-row-value negative">\${season.unluckiest.luckScore.toFixed(1)}</span>
+                                </div>
+                            \`;
+                        });
+                    })();
+                </script>
 
                 <!-- Team Rankings -->
                 <div class="analytics-rankings">
