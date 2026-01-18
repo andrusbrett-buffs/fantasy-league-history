@@ -39,6 +39,7 @@
         <symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
         <symbol id="icon-percent" viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M20 4L4 20"/></symbol>
         <symbol id="icon-tent" viewBox="0 0 24 24"><path d="M3 21h18L12 3 3 21zM12 3v18"/><path d="M7.5 21l4.5-9 4.5 9"/></symbol>
+        <symbol id="icon-map" viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/></symbol>
         <symbol id="icon-bicep" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V8s-1 1-4 1-5-2-8-2-4 1-4 1v7z"/><path d="M9 17v4M15 17v4M4 8c0-1.5 2-3 4.5-3 1.5 0 3 .5 4.5 1.5 1.5-1 3-1.5 4.5-1.5 2.5 0 4.5 1.5 4.5 3"/></symbol>
     </svg>
     <div class="app-container">
@@ -65,6 +66,7 @@
                 <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon"><svg class="icon"><use href="#icon-swords"/></svg></span><span>Head-to-Head</span></a></li>
                 <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
                 <li><a href="#" class="nav-link" data-section="destination"><span class="nav-icon"><svg class="icon"><use href="#icon-target"/></svg></span><span>2026 Destination</span></a></li>
+                <li><a href="#" class="nav-link" data-section="triphistory"><span class="nav-icon"><svg class="icon"><use href="#icon-map"/></svg></span><span>Trip History</span></a></li>
             </ul>
         </aside>
         <main class="main-content">
@@ -260,6 +262,383 @@
                             <p class="dest-modal-subtitle" id="dest-modal-subtitle">State/Country</p>
                         </div>
                         <div class="dest-modal-content" id="dest-modal-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trip History -->
+            <section id="triphistory" class="section">
+                <div class="section-header">
+                    <h2>Trip History</h2>
+                    <p>A journey through the ages of Fadunkadunk destination drafts</p>
+                </div>
+
+                <!-- Stats Summary -->
+                <div class="trip-stats-bar">
+                    <div class="trip-stat-item">
+                        <span class="trip-stat-value">14</span>
+                        <span class="trip-stat-label">Total Trips</span>
+                    </div>
+                    <div class="trip-stat-item">
+                        <span class="trip-stat-value">Perkins</span>
+                        <span class="trip-stat-label">Most Wins (3)</span>
+                    </div>
+                    <div class="trip-stat-item">
+                        <span class="trip-stat-value">Bend '19</span>
+                        <span class="trip-stat-label">Highest Rated</span>
+                    </div>
+                    <div class="trip-stat-item">
+                        <span class="trip-stat-value">13</span>
+                        <span class="trip-stat-label">Unique Winners</span>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="trip-filters">
+                    <button class="trip-filter-btn active" data-filter="all">All Trips</button>
+                    <button class="trip-filter-btn" data-filter="5">5 Stars</button>
+                    <button class="trip-filter-btn" data-filter="4">4+ Stars</button>
+                    <button class="trip-filter-btn" data-filter="recent">Last 5 Years</button>
+                </div>
+
+                <!-- Timeline View -->
+                <div class="trip-timeline">
+                    <div class="trip-card" data-year="2026" data-rating="5">
+                        <div class="trip-year">2026</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">TBD</span>
+                                <span class="trip-badge upcoming">Upcoming</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Andrus</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="rating-text">5 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Where Legends are Made"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2025" data-rating="4">
+                        <div class="trip-year">2025</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Whitefish, MT</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Danny</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Boot Juice"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2024" data-rating="4">
+                        <div class="trip-year">2024</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Louisville, KY</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Foy</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Pink Palace Bourbon"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2023" data-rating="3">
+                        <div class="trip-year">2023</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Park City, UT</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Foy</span>
+                                <span class="repeat-badge">2x</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="rating-text">3 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Shiva Shiva"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2022" data-rating="0">
+                        <div class="trip-year">2022</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Napa, CA</span>
+                                <span class="trip-badge special">*</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Hearn</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars na">N/A</span>
+                                    <span class="rating-text">Unrated</span>
+                                </span>
+                                <span class="trip-theme">"Italian Princess"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2021" data-rating="4">
+                        <div class="trip-year">2021</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">San Diego, CA</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Hudson</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Covid"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2020" data-rating="2">
+                        <div class="trip-year">2020</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Breckenridge, CO</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Baker</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★☆☆☆</span>
+                                    <span class="rating-text">2 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Reuben Reversals"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2019" data-rating="5">
+                        <div class="trip-year">2019</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Bend, OR</span>
+                                <span class="trip-badge legendary">👑 GOAT</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Perkins</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars gold">★★★★★</span>
+                                    <span class="rating-text">5 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Outdoor Paradise"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2018" data-rating="2">
+                        <div class="trip-year">2018</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Asheville, NC</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Perkins</span>
+                                <span class="repeat-badge">2x</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★☆☆☆</span>
+                                    <span class="rating-text">2 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Winter Haven?"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2017" data-rating="1">
+                        <div class="trip-year">2017</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Vancouver, BC</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Frum</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★☆☆☆☆</span>
+                                    <span class="rating-text">1 Star</span>
+                                </span>
+                                <span class="trip-theme">"Hobbit House Hoodies"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2016" data-rating="3">
+                        <div class="trip-year">2016</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Nashville, TN</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Danny</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="rating-text">3 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Baywatch Bait & Switch"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2015" data-rating="3">
+                        <div class="trip-year">2015</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Charleston, SC</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Perkins</span>
+                                <span class="repeat-badge">3x 👑</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="rating-text">3 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Full Moon Beach Spikeball"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2014" data-rating="3">
+                        <div class="trip-year">2014</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Miami, FL</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Hess</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="rating-text">3 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Milk & Honey"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2013" data-rating="3">
+                        <div class="trip-year">2013</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Las Vegas, NV</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Dougherty</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="rating-text">3 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Dirty Martin Solveig"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card" data-year="2012" data-rating="2">
+                        <div class="trip-year">2012</div>
+                        <div class="trip-content">
+                            <div class="trip-location">
+                                <span class="trip-city">Austin, TX</span>
+                                <span class="trip-badge origin">The Beginning</span>
+                            </div>
+                            <div class="trip-winner">
+                                <span class="winner-label">Champion:</span>
+                                <span class="winner-name">Brett</span>
+                            </div>
+                            <div class="trip-meta">
+                                <span class="trip-rating">
+                                    <span class="stars">★★☆☆☆</span>
+                                    <span class="rating-text">2 Stars</span>
+                                </span>
+                                <span class="trip-theme">"Red Bull Farts"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Winner Leaderboard -->
+                <div class="trip-leaderboard">
+                    <h3>🏆 All-Time Trip Draft Champions</h3>
+                    <div class="leaderboard-grid">
+                        <div class="leader-row gold">
+                            <span class="leader-rank">1</span>
+                            <span class="leader-name">Perkins</span>
+                            <span class="leader-wins">3 wins</span>
+                            <span class="leader-trips">Bend, Asheville, Charleston</span>
+                        </div>
+                        <div class="leader-row silver">
+                            <span class="leader-rank">2</span>
+                            <span class="leader-name">Foy</span>
+                            <span class="leader-wins">2 wins</span>
+                            <span class="leader-trips">Louisville, Park City</span>
+                        </div>
+                        <div class="leader-row silver">
+                            <span class="leader-rank">2</span>
+                            <span class="leader-name">Danny</span>
+                            <span class="leader-wins">2 wins</span>
+                            <span class="leader-trips">Whitefish, Nashville</span>
+                        </div>
+                        <div class="leader-row">
+                            <span class="leader-rank">4</span>
+                            <span class="leader-name">Andrus, Hearn, Hudson, Baker, Frum, Hess, Dougherty, Brett</span>
+                            <span class="leader-wins">1 win each</span>
+                            <span class="leader-trips"></span>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1160,4 +1160,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Trip History Filter Controls
+    const tripFilterBtns = document.querySelectorAll('.trip-filter-btn');
+    const tripCards = document.querySelectorAll('.trip-card');
+
+    tripFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            tripFilterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            const currentYear = new Date().getFullYear();
+
+            tripCards.forEach(card => {
+                const rating = parseInt(card.dataset.rating) || 0;
+                const year = parseInt(card.dataset.year) || 0;
+                let show = true;
+
+                switch(filter) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case '5':
+                        show = rating === 5;
+                        break;
+                    case '4':
+                        show = rating >= 4;
+                        break;
+                    case 'recent':
+                        show = year >= currentYear - 4;
+                        break;
+                }
+
+                if (show) {
+                    card.classList.remove('filtered-out');
+                    card.style.animation = 'fadeSlideIn 0.3s ease forwards';
+                } else {
+                    card.classList.add('filtered-out');
+                }
+            });
+        });
+    });
+
+    // Trip card hover animation enhancement
+    tripCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'all 0.3s ease';
+        });
+    });
 });

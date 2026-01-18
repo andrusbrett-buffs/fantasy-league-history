@@ -178,6 +178,60 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .dest-modal::-webkit-scrollbar-track{background:var(--charcoal)}
 .dest-modal::-webkit-scrollbar-thumb{background:var(--teal);border-radius:4px}
 
+/* Trip History Styles */
+.trip-stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.trip-stat-item{background:linear-gradient(135deg,var(--charcoal),var(--slate));border:1px solid var(--graphite);border-radius:12px;padding:20px;text-align:center}
+.trip-stat-value{display:block;font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--teal);margin-bottom:4px}
+.trip-stat-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--ghost);text-transform:uppercase;letter-spacing:0.08em}
+
+.trip-filters{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.trip-filter-btn{background:var(--charcoal);border:1px solid var(--graphite);padding:10px 20px;border-radius:8px;color:var(--ghost);font-family:var(--font-mono);font-size:0.8rem;cursor:pointer;transition:all 0.25s ease}
+.trip-filter-btn:hover{border-color:var(--teal);color:var(--pearl)}
+.trip-filter-btn.active{background:linear-gradient(135deg,var(--teal),var(--mint));border-color:var(--teal);color:var(--void);font-weight:600}
+
+.trip-timeline{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+.trip-card{display:grid;grid-template-columns:80px 1fr;gap:24px;background:linear-gradient(135deg,var(--charcoal),var(--slate));border:1px solid var(--graphite);border-radius:12px;padding:24px;transition:all 0.3s ease;cursor:pointer}
+.trip-card:hover{border-color:var(--teal);transform:translateX(8px);box-shadow:0 4px 20px rgba(20,184,166,0.15)}
+.trip-card.filtered-out{display:none}
+
+.trip-year{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--teal);text-align:center;line-height:1;padding-top:8px}
+.trip-content{display:flex;flex-direction:column;gap:12px}
+.trip-location{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.trip-city{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--cream)}
+.trip-badge{font-family:var(--font-mono);font-size:0.65rem;padding:4px 10px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
+.trip-badge.upcoming{background:linear-gradient(135deg,rgba(20,184,166,0.2),rgba(20,184,166,0.1));color:var(--teal);border:1px solid var(--teal)}
+.trip-badge.legendary{background:linear-gradient(135deg,rgba(201,162,39,0.3),rgba(201,162,39,0.15));color:var(--gold);border:1px solid var(--gold)}
+.trip-badge.origin{background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(99,102,241,0.1));color:#818cf8;border:1px solid #818cf8}
+.trip-badge.special{background:var(--charcoal);color:var(--ghost);border:1px solid var(--graphite)}
+
+.trip-winner{display:flex;align-items:center;gap:8px}
+.winner-label{font-family:var(--font-mono);font-size:0.75rem;color:var(--ghost);text-transform:uppercase;letter-spacing:0.05em}
+.winner-name{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--gold)}
+.repeat-badge{font-family:var(--font-mono);font-size:0.65rem;background:linear-gradient(135deg,rgba(201,162,39,0.25),rgba(201,162,39,0.1));color:var(--gold);padding:2px 8px;border-radius:12px}
+
+.trip-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.trip-rating{display:flex;align-items:center;gap:8px}
+.trip-rating .stars{color:var(--gold);font-size:0.9rem;letter-spacing:1px}
+.trip-rating .stars.gold{text-shadow:0 0 10px rgba(201,162,39,0.5)}
+.trip-rating .stars.na{color:var(--ghost);font-style:italic;font-size:0.8rem}
+.trip-rating .rating-text{font-family:var(--font-mono);font-size:0.7rem;color:var(--ghost)}
+.trip-theme{font-family:var(--font-mono);font-size:0.85rem;color:var(--silver);font-style:italic}
+
+.trip-leaderboard{background:linear-gradient(135deg,var(--charcoal),var(--slate));border:1px solid var(--graphite);border-radius:16px;padding:32px;margin-top:32px}
+.trip-leaderboard h3{font-family:var(--font-display);font-size:1.25rem;color:var(--cream);margin-bottom:24px;text-align:center}
+.leaderboard-grid{display:flex;flex-direction:column;gap:12px}
+.leader-row{display:grid;grid-template-columns:50px 1fr 100px 1fr;gap:16px;align-items:center;padding:16px 20px;background:var(--slate);border-radius:10px;transition:all 0.2s ease}
+.leader-row:hover{background:var(--charcoal);transform:translateX(4px)}
+.leader-row.gold{background:linear-gradient(135deg,rgba(201,162,39,0.15),rgba(201,162,39,0.05));border:1px solid rgba(201,162,39,0.3)}
+.leader-row.silver{background:linear-gradient(135deg,rgba(148,163,184,0.1),rgba(148,163,184,0.05));border:1px solid rgba(148,163,184,0.2)}
+.leader-rank{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--teal);text-align:center}
+.leader-row.gold .leader-rank{color:var(--gold)}
+.leader-row.silver .leader-rank{color:var(--silver)}
+.leader-name{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--cream)}
+.leader-wins{font-family:var(--font-mono);font-size:0.8rem;color:var(--teal);text-align:center}
+.leader-trips{font-family:var(--font-mono);font-size:0.75rem;color:var(--ghost)}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+
 .season-controls{margin-bottom:32px}
 .season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .week-selector{padding:16px 32px;border-bottom:1px solid var(--graphite)}
@@ -233,6 +287,103 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .sidebar-overlay.active{display:block}
 @media(max-width:1024px){.mobile-menu-toggle{display:flex}.main-content{padding-top:70px}}
 @media(max-width:768px){.main-content{padding:16px;padding-top:70px}.section-header h2{font-size:2rem}.stat-value{font-size:2.25rem}.card-header{padding:16px}.card-body{padding:16px}.h2h-wins{font-size:3rem}}
+
+/* Mobile Destination Bracket */
+@media(max-width:1024px){
+.destination-bracket{position:relative;padding:20px 0;-webkit-overflow-scrolling:touch}
+.destination-bracket::before{content:'← Swipe to explore bracket →';display:block;text-align:center;font-family:var(--font-mono);font-size:0.75rem;color:var(--teal);padding:10px 16px;margin-bottom:16px;background:linear-gradient(135deg,rgba(20,184,166,0.15),rgba(20,184,166,0.08));border:1px solid rgba(20,184,166,0.3);border-radius:8px;animation:pulse-hint 2s ease-in-out infinite}
+@keyframes pulse-hint{0%,100%{opacity:0.7}50%{opacity:1}}
+.bracket-legend{flex-wrap:wrap;gap:16px;font-size:0.7rem}
+.round-header{min-width:120px;padding:8px 12px}
+.round-header h3{font-size:0.8rem}
+.matchup{width:120px}
+.dest-team{padding:10px 12px;height:38px;font-size:0.7rem}
+}
+
+@media(max-width:768px){
+.destination-bracket::before{font-size:0.7rem;padding:8px 12px}
+.bracket{gap:12px;padding:10px 5px}
+.round-header{min-width:110px;padding:6px 10px}
+.round-header h3{font-size:0.75rem}
+.round-header .date{font-size:0.6rem}
+.matchup{width:110px}
+.dest-team{padding:12px 10px;height:42px;font-size:0.68rem}
+.dest-team.bye::after{right:6px;font-size:0.55rem}
+.matchups-r1,.matchups-r2{gap:12px}
+.matchups-q{gap:calc(52px + 12px * 3);padding-top:calc((52px + 12px) / 2)}
+.matchups-s{gap:calc((52px + 12px) * 4 - 52px);padding-top:calc((52px + 12px) * 1.5)}
+.matchups-f{padding-top:calc((52px + 12px) * 3.5)}
+.trophy-section{padding-top:calc((52px + 12px) * 3.5)}
+.dest-trophy{font-size:2.5rem}
+.champion-slot{padding:12px 16px}
+.champion-slot-label{font-size:0.7rem}
+.champion-slot-name{font-size:0.85rem}
+/* Modal mobile improvements */
+.dest-modal{max-width:95vw;max-height:90vh;margin:10px;border-radius:12px}
+.dest-modal-header{padding:18px 20px}
+.dest-modal-title{font-size:1.5rem}
+.dest-modal-subtitle{font-size:0.85rem}
+.dest-modal-close{top:14px;right:14px;width:32px;height:32px;font-size:1.2rem}
+.dest-modal-content{padding:20px}
+.dest-quick-stats{grid-template-columns:repeat(3,1fr);gap:8px}
+.dest-stat-box{padding:10px 8px}
+.dest-stat-icon{font-size:1.3rem}
+.dest-stat-label{font-size:0.6rem}
+.dest-stat-value{font-size:0.75rem}
+.dest-info-section h3{font-size:0.8rem}
+.dest-info-list{gap:6px}
+.dest-info-list li{padding:6px 10px;font-size:0.72rem}
+.dest-highlight-box{padding:12px}
+.dest-highlight-box p{font-size:0.8rem}
+/* Trip History Mobile 768px */
+.trip-stats-bar{grid-template-columns:repeat(2,1fr);gap:12px}
+.trip-stat-item{padding:16px}
+.trip-stat-value{font-size:1.25rem}
+.trip-filters{gap:8px}
+.trip-filter-btn{padding:8px 14px;font-size:0.75rem}
+.trip-card{grid-template-columns:60px 1fr;gap:16px;padding:16px}
+.trip-year{font-size:1.5rem}
+.trip-city{font-size:1.1rem}
+.trip-meta{gap:12px}
+.trip-theme{font-size:0.75rem}
+.trip-leaderboard{padding:20px}
+.leader-row{grid-template-columns:40px 1fr;gap:8px;padding:12px}
+.leader-wins,.leader-trips{display:none}
+}
+
+@media(max-width:480px){
+.bracket-legend{flex-direction:column;gap:10px;align-items:center}
+.bracket{gap:8px}
+.round{gap:0}
+.round-header{min-width:95px;padding:5px 8px}
+.round-header h3{font-size:0.7rem;letter-spacing:0.05em}
+.round-header .date{font-size:0.55rem}
+.matchup{width:95px}
+.dest-team{padding:10px 8px;height:40px;font-size:0.65rem}
+.dest-team.bye::after{display:none}
+.matchups-q{gap:calc(48px + 10px * 3);padding-top:calc((48px + 10px) / 2)}
+.matchups-s{gap:calc((48px + 10px) * 4 - 48px);padding-top:calc((48px + 10px) * 1.5)}
+.matchups-f{padding-top:calc((48px + 10px) * 3.5)}
+.trophy-section{padding-top:calc((48px + 10px) * 3.5)}
+.dest-trophy{font-size:2rem}
+.champion-slot{padding:10px 12px}
+.dest-quick-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}
+.dest-stat-box{padding:8px 6px}
+.dest-stat-icon{font-size:1.1rem;margin-bottom:4px}
+.dest-stat-label{font-size:0.55rem}
+.dest-stat-value{font-size:0.7rem}
+/* Trip History Mobile 480px */
+.trip-stats-bar{grid-template-columns:1fr 1fr}
+.trip-stat-item{padding:12px}
+.trip-stat-value{font-size:1.1rem}
+.trip-stat-label{font-size:0.6rem}
+.trip-card{grid-template-columns:50px 1fr;gap:12px;padding:14px}
+.trip-year{font-size:1.25rem}
+.trip-city{font-size:1rem}
+.trip-badge{font-size:0.6rem;padding:3px 8px}
+.winner-name{font-size:0.95rem}
+.trip-rating .stars{font-size:0.8rem}
+}
 /* Landing Page Styles */
 .landing-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 96px);text-align:center;padding:48px 24px}
 .landing-header{margin-bottom:48px}
