@@ -9,6 +9,11 @@ class FantasyApp {
         this.isLoading = false;
         this.dataLoaded = false;
 
+        // Team Name Voting
+        this.currentMatchup = [];
+        this.voteDb = null;
+        this.allTeamNames = [];
+
         this.init();
     }
 
@@ -20,6 +25,7 @@ class FantasyApp {
         this.setupSettingsForm();
         this.setupH2HControls();
         this.setupSeasonSelector();
+        this.initVoting();
 
         // Auto-load data on page load
         this.autoLoadData();
@@ -1297,6 +1303,258 @@ class FantasyApp {
                 }
             });
         }
+    }
+
+    // ===== TEAM NAME VOTING SYSTEM =====
+
+    /**
+     * Initialize the voting system with Firebase
+     */
+    async initVoting() {
+        // Extract team names from league data after it loads
+        this.extractTeamNames();
+
+        // Check if Firebase is configured
+        if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+            this.voteDb = firebase.database();
+            this.loadVotingData();
+        } else {
+            console.log('Firebase not configured - voting will use local storage only');
+            this.loadLocalVotingData();
+        }
+    }
+
+    /**
+     * Extract all unique team names from loaded league data
+     */
+    extractTeamNames() {
+        // Wait for data to load, then extract names
+        const checkData = () => {
+            if (statsEngine && statsEngine.seasons && Object.keys(statsEngine.seasons).length > 0) {
+                const names = new Set();
+                Object.values(statsEngine.seasons).forEach(season => {
+                    if (season.teams) {
+                        season.teams.forEach(team => {
+                            const name = team.name || team.teamName ||
+                                (team.location && team.nickname ? team.location + ' ' + team.nickname : null);
+                            if (name && name.trim()) {
+                                names.add(name.trim());
+                            }
+                        });
+                    }
+                });
+                this.allTeamNames = [...names];
+                console.log(`Loaded ${this.allTeamNames.length} team names for voting`);
+
+                // Load a matchup once we have names
+                if (this.allTeamNames.length >= 2) {
+                    this.loadNewMatchup();
+                }
+            } else {
+                // Retry after a short delay
+                setTimeout(checkData, 500);
+            }
+        };
+        checkData();
+    }
+
+    /**
+     * Load voting data from Firebase
+     */
+    loadVotingData() {
+        if (!this.voteDb) return;
+
+        // Listen for realtime updates
+        this.voteDb.ref('teamVotes').on('value', (snapshot) => {
+            const data = snapshot.val() || {};
+            this.voteData = data;
+            this.updateLeaderboards();
+            this.updateTotalVotes();
+        });
+    }
+
+    /**
+     * Load voting data from local storage (fallback)
+     */
+    loadLocalVotingData() {
+        const stored = localStorage.getItem('teamVotes');
+        this.voteData = stored ? JSON.parse(stored) : {};
+        this.updateLeaderboards();
+        this.updateTotalVotes();
+    }
+
+    /**
+     * Save voting data to local storage (fallback)
+     */
+    saveLocalVotingData() {
+        localStorage.setItem('teamVotes', JSON.stringify(this.voteData));
+    }
+
+    /**
+     * Load a new random matchup
+     */
+    loadNewMatchup() {
+        if (this.allTeamNames.length < 2) return;
+
+        // Pick two different random team names
+        const shuffled = [...this.allTeamNames].sort(() => Math.random() - 0.5);
+        this.currentMatchup = [shuffled[0], shuffled[1]];
+
+        // Update UI
+        const option1 = document.querySelector('#vote-option-1 .vote-name');
+        const option2 = document.querySelector('#vote-option-2 .vote-name');
+
+        if (option1) option1.textContent = this.currentMatchup[0];
+        if (option2) option2.textContent = this.currentMatchup[1];
+    }
+
+    /**
+     * Cast a vote for one of the options
+     * @param {number} winnerIndex - 0 or 1 indicating which option won
+     */
+    async castVote(winnerIndex) {
+        if (this.currentMatchup.length !== 2) return;
+
+        const winner = this.currentMatchup[winnerIndex];
+        const loser = this.currentMatchup[1 - winnerIndex];
+
+        // Add visual feedback
+        const card = document.getElementById(`vote-option-${winnerIndex + 1}`);
+        if (card) {
+            card.classList.add('voted');
+            setTimeout(() => card.classList.remove('voted'), 500);
+        }
+
+        // Calculate ELO changes
+        const K = 32; // ELO K-factor
+
+        // Initialize if needed
+        if (!this.voteData) this.voteData = {};
+        if (!this.voteData[winner]) this.voteData[winner] = { elo: 1500, wins: 0, losses: 0 };
+        if (!this.voteData[loser]) this.voteData[loser] = { elo: 1500, wins: 0, losses: 0 };
+
+        const winnerData = this.voteData[winner];
+        const loserData = this.voteData[loser];
+
+        // Calculate expected scores
+        const expectedWinner = 1 / (1 + Math.pow(10, (loserData.elo - winnerData.elo) / 400));
+        const expectedLoser = 1 - expectedWinner;
+
+        // Update ELO ratings
+        winnerData.elo = Math.round(winnerData.elo + K * (1 - expectedWinner));
+        loserData.elo = Math.round(loserData.elo + K * (0 - expectedLoser));
+
+        // Update win/loss counts
+        winnerData.wins++;
+        loserData.losses++;
+
+        // Save to Firebase or local storage
+        if (this.voteDb) {
+            try {
+                await this.voteDb.ref('teamVotes/' + this.sanitizeKey(winner)).set(winnerData);
+                await this.voteDb.ref('teamVotes/' + this.sanitizeKey(loser)).set(loserData);
+            } catch (e) {
+                console.error('Firebase save error:', e);
+                this.saveLocalVotingData();
+            }
+        } else {
+            this.saveLocalVotingData();
+            this.updateLeaderboards();
+            this.updateTotalVotes();
+        }
+
+        // Load next matchup
+        setTimeout(() => this.loadNewMatchup(), 300);
+    }
+
+    /**
+     * Sanitize team name for use as Firebase key
+     */
+    sanitizeKey(name) {
+        return name.replace(/[.#$\/\[\]]/g, '_');
+    }
+
+    /**
+     * Update the leaderboards display
+     */
+    updateLeaderboards() {
+        if (!this.voteData) return;
+
+        // Convert to array and calculate stats
+        const teams = Object.entries(this.voteData).map(([name, data]) => ({
+            name: name.replace(/_/g, '.'), // Restore dots
+            elo: data.elo || 1500,
+            wins: data.wins || 0,
+            losses: data.losses || 0,
+            total: (data.wins || 0) + (data.losses || 0)
+        }));
+
+        // Filter to teams with minimum votes
+        const minVotes = 5;
+        const qualified = teams.filter(t => t.total >= minVotes);
+
+        // Sort for best (highest ELO)
+        const best = [...qualified].sort((a, b) => b.elo - a.elo).slice(0, 3);
+
+        // Sort for worst (lowest ELO)
+        const worst = [...qualified].sort((a, b) => a.elo - b.elo).slice(0, 3);
+
+        // Render best names
+        const bestList = document.getElementById('best-names-list');
+        if (bestList) {
+            if (best.length === 0) {
+                bestList.innerHTML = '<li class="loading">Not enough votes yet</li>';
+            } else {
+                bestList.innerHTML = best.map(t => `
+                    <li>
+                        <span class="name">${this.escapeHtml(t.name)}</span>
+                        <span class="elo">${t.elo}</span>
+                        <span class="votes">(${t.wins}W-${t.losses}L)</span>
+                    </li>
+                `).join('');
+            }
+        }
+
+        // Render worst names
+        const worstList = document.getElementById('worst-names-list');
+        if (worstList) {
+            if (worst.length === 0) {
+                worstList.innerHTML = '<li class="loading">Not enough votes yet</li>';
+            } else {
+                worstList.innerHTML = worst.map(t => `
+                    <li>
+                        <span class="name">${this.escapeHtml(t.name)}</span>
+                        <span class="elo">${t.elo}</span>
+                        <span class="votes">(${t.wins}W-${t.losses}L)</span>
+                    </li>
+                `).join('');
+            }
+        }
+    }
+
+    /**
+     * Update total votes counter
+     */
+    updateTotalVotes() {
+        if (!this.voteData) return;
+
+        const total = Object.values(this.voteData).reduce((sum, data) => {
+            return sum + (data.wins || 0);
+        }, 0);
+
+        const counter = document.getElementById('total-votes');
+        if (counter) {
+            counter.textContent = total.toLocaleString();
+        }
+    }
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 }
 

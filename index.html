@@ -9,6 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="icons.css">
+
+    <!-- Firebase SDK - Configure with your project credentials -->
+    <!-- Uncomment and add your config to enable shared voting across all users -->
+    <!--
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    -->
 </head>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -68,6 +87,7 @@
                 <li><a href="#" class="nav-link" data-section="destination"><span class="nav-icon"><svg class="icon"><use href="#icon-target"/></svg></span><span>2026 Destination</span></a></li>
                 <li><a href="#" class="nav-link" data-section="triphistory"><span class="nav-icon"><svg class="icon"><use href="#icon-map"/></svg></span><span>Trip History</span></a></li>
                 <li><a href="#" class="nav-link" data-section="analytics"><span class="nav-icon"><svg class="icon"><use href="#icon-chart"/></svg></span><span>Advanced Analytics</span></a></li>
+                <li><a href="#" class="nav-link" data-section="teamvote"><span class="nav-icon"><svg class="icon"><use href="#icon-star"/></svg></span><span>Team Name Vote</span></a></li>
                 <li><a href="#" class="nav-link" data-section="settings"><span class="nav-icon"><svg class="icon"><use href="#icon-settings"/></svg></span><span>Settings</span></a></li>
             </ul>
         </aside>
@@ -655,6 +675,51 @@
                 </div>
                 <div id="analytics-content">
                     <p class="no-data">Loading analytics...</p>
+                </div>
+            </section>
+
+            <!-- Team Name Vote Section -->
+            <section id="teamvote" class="section">
+                <div class="section-header">
+                    <h2>⭐ Team Name Vote</h2>
+                    <p>Vote for the best team names in Fadunkadunk history</p>
+                </div>
+
+                <div class="vote-container">
+                    <!-- Voting Area -->
+                    <div class="vote-battle">
+                        <h3 class="vote-prompt">Which team name is better?</h3>
+                        <div class="vote-options">
+                            <button class="vote-card" id="vote-option-1" onclick="app.castVote(0)">
+                                <span class="vote-name">Loading...</span>
+                            </button>
+                            <div class="vote-vs">VS</div>
+                            <button class="vote-card" id="vote-option-2" onclick="app.castVote(1)">
+                                <span class="vote-name">Loading...</span>
+                            </button>
+                        </div>
+                        <p class="vote-count">Total votes cast: <span id="total-votes">0</span></p>
+                    </div>
+
+                    <!-- Leaderboards -->
+                    <div class="vote-leaderboards">
+                        <div class="vote-leaderboard best">
+                            <h3>🏆 Best Team Names</h3>
+                            <ol id="best-names-list" class="vote-ranking">
+                                <li class="loading">Loading...</li>
+                            </ol>
+                        </div>
+                        <div class="vote-leaderboard worst">
+                            <h3>💩 Worst Team Names</h3>
+                            <ol id="worst-names-list" class="vote-ranking">
+                                <li class="loading">Loading...</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vote-info">
+                    <p>📊 Ranking uses ELO rating system • Minimum 5 votes to appear on leaderboard</p>
                 </div>
             </section>
 

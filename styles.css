@@ -716,3 +716,244 @@ body{font-family:var(--font-body);background:var(--void);color:var(--pearl);line
 .landing-stat-value{font-size:1.75rem}
 .explore-btn{padding:12px 24px;font-size:0.85rem;width:100%}
 }
+
+/* ===== Team Name Vote Section ===== */
+.vote-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.vote-battle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.vote-prompt {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 24px;
+}
+
+.vote-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.vote-card {
+    flex: 1;
+    max-width: 300px;
+    background: linear-gradient(135deg, var(--surface-alt) 0%, var(--surface) 100%);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.vote-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.vote-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(201, 162, 39, 0.2);
+}
+
+.vote-card:hover::before {
+    opacity: 0.1;
+}
+
+.vote-card:active {
+    transform: scale(0.98);
+}
+
+.vote-name {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cream);
+    display: block;
+    word-break: break-word;
+}
+
+.vote-vs {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+}
+
+.vote-count {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ghost);
+}
+
+.vote-count span {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.vote-leaderboards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.vote-leaderboard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.vote-leaderboard h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.vote-leaderboard.best {
+    border-top: 3px solid var(--gold);
+}
+
+.vote-leaderboard.worst {
+    border-top: 3px solid var(--danger);
+}
+
+.vote-ranking {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: ranking;
+}
+
+.vote-ranking li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--surface-alt);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    counter-increment: ranking;
+}
+
+.vote-ranking li:last-child {
+    margin-bottom: 0;
+}
+
+.vote-ranking li::before {
+    content: counter(ranking);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gold);
+    min-width: 24px;
+    text-align: center;
+}
+
+.vote-ranking .name {
+    flex: 1;
+    font-size: 0.95rem;
+    color: var(--cream);
+}
+
+.vote-ranking .elo {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ghost);
+}
+
+.vote-ranking .votes {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ghost);
+    opacity: 0.7;
+}
+
+.vote-ranking li.loading {
+    justify-content: center;
+    color: var(--ghost);
+}
+
+.vote-ranking li.loading::before {
+    display: none;
+}
+
+.vote-info {
+    text-align: center;
+}
+
+.vote-info p {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ghost);
+    opacity: 0.7;
+}
+
+/* Vote animation */
+@keyframes voteFlash {
+    0% { background: rgba(201, 162, 39, 0.3); }
+    100% { background: transparent; }
+}
+
+.vote-card.voted {
+    animation: voteFlash 0.5s ease;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .vote-battle {
+        padding: 24px 16px;
+    }
+
+    .vote-prompt {
+        font-size: 1.25rem;
+    }
+
+    .vote-options {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .vote-card {
+        max-width: 100%;
+        width: 100%;
+        padding: 24px 20px;
+    }
+
+    .vote-vs {
+        font-size: 1.25rem;
+    }
+
+    .vote-leaderboards {
+        grid-template-columns: 1fr;
+    }
+
+    .vote-leaderboard {
+        padding: 20px 16px;
+    }
+}
