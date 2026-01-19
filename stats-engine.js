@@ -318,7 +318,7 @@ class StatsEngine {
         for (const team of seasonStats.teams) {
             const teamId = team.id;
             // Use owner ID for career tracking (handles owners switching team slots)
-            const ownerId = team.primaryOwner || (team.owners && team.owners[0]) || teamId;
+            const ownerId = team.ownerId || team.primaryOwner || teamId;
 
             // Career records - keyed by owner ID
             if (!aggregate.careerRecords.has(ownerId)) {
