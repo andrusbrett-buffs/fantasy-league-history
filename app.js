@@ -1330,13 +1330,12 @@ class FantasyApp {
     extractTeamNames() {
         // Wait for data to load, then extract names
         const checkData = () => {
-            if (statsEngine && statsEngine.seasons && Object.keys(statsEngine.seasons).length > 0) {
+            if (statsEngine && statsEngine.allSeasonData && Object.keys(statsEngine.allSeasonData).length > 0) {
                 const names = new Set();
-                Object.values(statsEngine.seasons).forEach(season => {
+                Object.values(statsEngine.allSeasonData).forEach(season => {
                     if (season.teams) {
                         season.teams.forEach(team => {
-                            const name = team.name || team.teamName ||
-                                (team.location && team.nickname ? team.location + ' ' + team.nickname : null);
+                            const name = team.name;
                             if (name && name.trim()) {
                                 names.add(name.trim());
                             }
