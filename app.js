@@ -1489,7 +1489,7 @@ class FantasyApp {
         }));
 
         // Filter to teams with minimum votes
-        const minVotes = 3;
+        const minVotes = 2;
         const qualified = teams.filter(t => t.total >= minVotes);
 
         // Sort for best (highest ELO) - only show teams with ELO above starting (1500)
