@@ -444,6 +444,13 @@ class FantasyApp {
             subtitle: `${t.seasonsPlayed} seasons`
         }));
 
+        // Last place finishes
+        this.renderLeaderboard('last-place-finishes', careerLeaders.mostLastPlace, (t) => ({
+            name: t.teamName,
+            value: `💩 ${t.lastPlaceFinishes}`,
+            subtitle: `${t.seasonsPlayed} seasons`
+        }));
+
         // Highest score
         this.renderLeaderboard('highest-score', recordBook.highestScore.slice(0, 5), (s) => ({
             name: s.teamName,

@@ -314,6 +314,7 @@ class StatsEngine {
                     championships: 0,
                     championshipAppearances: 0,
                     playoffAppearances: 0,
+                    lastPlaceFinishes: 0,
                     seasonsPlayed: 0
                 });
             }
@@ -337,6 +338,12 @@ class StatsEngine {
 
             if (team.playoffSeed && team.playoffSeed <= (seasonStats.settings.playoffTeamCount || 6)) {
                 career.playoffAppearances++;
+            }
+
+            // Track last place finishes
+            const totalTeams = seasonStats.teams.length;
+            if (team.rankCalculatedFinal === totalTeams) {
+                career.lastPlaceFinishes++;
             }
         }
 
@@ -435,6 +442,11 @@ class StatsEngine {
             // Playoff appearances - show all 12 teams
             mostPlayoffs: [...records]
                 .sort((a, b) => b.playoffAppearances - a.playoffAppearances)
+                .slice(0, 12),
+            // Last place finishes - show teams with at least 1
+            mostLastPlace: [...records]
+                .filter(r => r.lastPlaceFinishes > 0)
+                .sort((a, b) => b.lastPlaceFinishes - a.lastPlaceFinishes)
                 .slice(0, 12),
             mostPointsFor: [...records].sort((a, b) => b.pointsFor - a.pointsFor).slice(0, 10),
             avgPointsPerGame: [...records]
