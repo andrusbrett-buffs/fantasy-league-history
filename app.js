@@ -1495,8 +1495,12 @@ class FantasyApp {
         // Sort for best (highest ELO)
         const best = [...qualified].sort((a, b) => b.elo - a.elo).slice(0, 3);
 
-        // Sort for worst (lowest ELO)
-        const worst = [...qualified].sort((a, b) => a.elo - b.elo).slice(0, 3);
+        // Sort for worst (lowest ELO) - exclude teams already in "best" to avoid duplicates
+        const bestNames = new Set(best.map(t => t.name));
+        const worst = [...qualified]
+            .filter(t => !bestNames.has(t.name))
+            .sort((a, b) => a.elo - b.elo)
+            .slice(0, 3);
 
         // Render best names
         const bestList = document.getElementById('best-names-list');
