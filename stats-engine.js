@@ -14,6 +14,17 @@ class StatsEngine {
     }
 
     /**
+     * Properly capitalize a name (handles ALL CAPS, lowercase, etc.)
+     * "BRETT FOY" -> "Brett Foy", "david hearn" -> "David Hearn"
+     */
+    capitalizeName(name) {
+        if (!name) return name;
+        return name.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+    /**
      * Load and process data for all seasons
      */
     async loadAllSeasons(rawData) {
@@ -47,20 +58,20 @@ class StatsEngine {
                 if (ownerId && members.length > 0) {
                     const member = members.find(m => m.id === ownerId);
                     if (member) {
-                        ownerName = `${member.firstName || ''} ${member.lastName || ''}`.trim();
+                        ownerName = this.capitalizeName(`${member.firstName || ''} ${member.lastName || ''}`.trim());
                     }
                 }
 
                 // Try team.owners array
                 if (!ownerName && team.owners && team.owners.length > 0) {
                     const owner = team.owners[0];
-                    ownerName = `${owner.firstName || ''} ${owner.lastName || ''}`.trim();
+                    ownerName = this.capitalizeName(`${owner.firstName || ''} ${owner.lastName || ''}`.trim());
                 }
 
                 // Try team.members array
                 if (!ownerName && team.members && team.members.length > 0) {
                     const member = team.members[0];
-                    ownerName = `${member.firstName || ''} ${member.lastName || ''}`.trim();
+                    ownerName = this.capitalizeName(`${member.firstName || ''} ${member.lastName || ''}`.trim());
                 }
 
                 // Fallback to team name
@@ -104,7 +115,13 @@ class StatsEngine {
      */
     getTeamName(teamId) {
         const info = this.teamNameMap.get(teamId);
-        if (!info) return `Team ${teamId}`;
+        if (!info) {
+            // teamId might be an ownerId - check ownerNameMap
+            if (this.ownerNameMap.has(teamId)) {
+                return this.ownerNameMap.get(teamId);
+            }
+            return `Team ${teamId}`;
+        }
 
         // Return owner name if we're using owner names
         if (this.useOwnerNames && info.ownerId) {
@@ -300,12 +317,14 @@ class StatsEngine {
         // Process each team's season
         for (const team of seasonStats.teams) {
             const teamId = team.id;
+            // Use owner ID for career tracking (handles owners switching team slots)
+            const ownerId = team.primaryOwner || (team.owners && team.owners[0]) || teamId;
 
-            // Career records
-            if (!aggregate.careerRecords.has(teamId)) {
-                aggregate.careerRecords.set(teamId, {
-                    teamId,
-                    teamName: this.getTeamName(teamId),
+            // Career records - keyed by owner ID
+            if (!aggregate.careerRecords.has(ownerId)) {
+                aggregate.careerRecords.set(ownerId, {
+                    teamId: ownerId, // Keep as ownerId for consistency
+                    teamName: this.getTeamName(teamId), // Display name
                     wins: 0,
                     losses: 0,
                     ties: 0,
@@ -319,7 +338,9 @@ class StatsEngine {
                 });
             }
 
-            const career = aggregate.careerRecords.get(teamId);
+            const career = aggregate.careerRecords.get(ownerId);
+            // Update display name to most recent
+            career.teamName = this.getTeamName(teamId);
             career.wins += team.record.wins;
             career.losses += team.record.losses;
             career.ties += team.record.ties || 0;
