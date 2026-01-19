@@ -1492,13 +1492,15 @@ class FantasyApp {
         const minVotes = 5;
         const qualified = teams.filter(t => t.total >= minVotes);
 
-        // Sort for best (highest ELO)
-        const best = [...qualified].sort((a, b) => b.elo - a.elo).slice(0, 3);
+        // Sort for best (highest ELO) - only show teams with ELO above starting (1500)
+        const best = [...qualified]
+            .filter(t => t.elo >= 1500)
+            .sort((a, b) => b.elo - a.elo)
+            .slice(0, 3);
 
-        // Sort for worst (lowest ELO) - exclude teams already in "best" to avoid duplicates
-        const bestNames = new Set(best.map(t => t.name));
+        // Sort for worst (lowest ELO) - only show teams with ELO below starting (1500)
         const worst = [...qualified]
-            .filter(t => !bestNames.has(t.name))
+            .filter(t => t.elo < 1500)
             .sort((a, b) => a.elo - b.elo)
             .slice(0, 3);
 
