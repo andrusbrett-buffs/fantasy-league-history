@@ -1496,13 +1496,13 @@ class FantasyApp {
         const best = [...qualified]
             .filter(t => t.elo >= 1500)
             .sort((a, b) => b.elo - a.elo)
-            .slice(0, 3);
+            .slice(0, 5);
 
         // Sort for worst (lowest ELO) - only show teams with ELO below starting (1500)
         const worst = [...qualified]
             .filter(t => t.elo < 1500)
             .sort((a, b) => a.elo - b.elo)
-            .slice(0, 3);
+            .slice(0, 5);
 
         // Render best names
         const bestList = document.getElementById('best-names-list');
