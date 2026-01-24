@@ -25,6 +25,19 @@ class StatsEngine {
     }
 
     /**
+     * Format owner name as "FirstName L." (first name + last initial)
+     */
+    formatOwnerName(firstName, lastName) {
+        const capitalize = (str) => {
+            if (!str) return '';
+            return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        };
+        const first = capitalize(firstName);
+        const lastInitial = lastName ? lastName.charAt(0).toUpperCase() + '.' : '';
+        return `${first} ${lastInitial}`.trim();
+    }
+
+    /**
      * Load and process data for all seasons
      */
     async loadAllSeasons(rawData) {
@@ -57,21 +70,25 @@ class StatsEngine {
                 // Try members array first
                 if (ownerId && members.length > 0) {
                     const member = members.find(m => m.id === ownerId);
-                    if (member) {
-                        ownerName = this.capitalizeName(`${member.firstName || ''} ${member.lastName || ''}`.trim());
+                    if (member && (member.firstName || member.lastName)) {
+                        ownerName = this.formatOwnerName(member.firstName, member.lastName);
                     }
                 }
 
                 // Try team.owners array
                 if (!ownerName && team.owners && team.owners.length > 0) {
                     const owner = team.owners[0];
-                    ownerName = this.capitalizeName(`${owner.firstName || ''} ${owner.lastName || ''}`.trim());
+                    if (owner.firstName || owner.lastName) {
+                        ownerName = this.formatOwnerName(owner.firstName, owner.lastName);
+                    }
                 }
 
                 // Try team.members array
                 if (!ownerName && team.members && team.members.length > 0) {
                     const member = team.members[0];
-                    ownerName = this.capitalizeName(`${member.firstName || ''} ${member.lastName || ''}`.trim());
+                    if (member.firstName || member.lastName) {
+                        ownerName = this.formatOwnerName(member.firstName, member.lastName);
+                    }
                 }
 
                 // Fallback to team name
