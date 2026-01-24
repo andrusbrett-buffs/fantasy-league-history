@@ -196,14 +196,16 @@ class AdvancedAnalytics {
     }
 
     /**
-     * Format owner name properly (capitalize first letters)
+     * Format owner name as "FirstName L." (first name + last initial)
      */
     formatOwnerName(firstName, lastName) {
         const capitalize = (str) => {
             if (!str) return '';
             return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
         };
-        return `${capitalize(firstName)} ${capitalize(lastName)}`.trim();
+        const first = capitalize(firstName);
+        const lastInitial = lastName ? lastName.charAt(0).toUpperCase() + '.' : '';
+        return `${first} ${lastInitial}`.trim();
     }
 
     /**

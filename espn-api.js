@@ -376,29 +376,38 @@ class ESPNFantasyAPI {
 
     /**
      * Get owner name from team data (prioritizes owner name over team name)
+     * Returns format: "FirstName L." (first name + last initial)
      */
     getOwnerName(team, members = []) {
+        // Helper to format name as "FirstName L."
+        const formatName = (firstName, lastName) => {
+            const first = firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase() : '';
+            const lastInitial = lastName ? lastName.charAt(0).toUpperCase() + '.' : '';
+            return `${first} ${lastInitial}`.trim();
+        };
+
         // First try to get from members list (most reliable)
         if (team.primaryOwner && members.length > 0) {
             const member = members.find(m => m.id === team.primaryOwner);
-            if (member) {
-                const name = `${member.firstName || ''} ${member.lastName || ''}`.trim();
-                if (name) return name;
+            if (member && (member.firstName || member.lastName)) {
+                return formatName(member.firstName, member.lastName);
             }
         }
 
         // Then try from team.owners array
         if (team.owners && team.owners.length > 0) {
             const owner = team.owners[0];
-            const name = `${owner.firstName || ''} ${owner.lastName || ''}`.trim();
-            if (name) return name;
+            if (owner.firstName || owner.lastName) {
+                return formatName(owner.firstName, owner.lastName);
+            }
         }
 
         // Then try team.members
         if (team.members && team.members.length > 0) {
             const member = team.members[0];
-            const name = `${member.firstName || ''} ${member.lastName || ''}`.trim();
-            if (name) return name;
+            if (member.firstName || member.lastName) {
+                return formatName(member.firstName, member.lastName);
+            }
         }
 
         // Finally fallback to team name
