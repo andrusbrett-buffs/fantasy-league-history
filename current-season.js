@@ -12,6 +12,8 @@ class CurrentSeason {
         this.data = null;
         this.loading = false;
         this.fetchedAt = null;
+        this.pending = null;
+        this.year = null;
         this.freshFor = 5 * 60 * 1000; // re-fetch after 5 minutes
 
         if (!this.content) return;
@@ -40,27 +42,46 @@ class CurrentSeason {
         };
     }
 
-    async load(force = false) {
-        if (this.loading) return;
+    /**
+     * Shared loader used by this tab and Power Rankings.
+     * Fetches once, caches for 5 minutes, and de-dupes concurrent calls.
+     */
+    async getSeasonData(force = false) {
         const fresh = this.data && this.fetchedAt && (Date.now() - this.fetchedAt) < this.freshFor;
-        if (fresh && !force) return;
+        if (fresh && !force) return this.data;
+        if (this.pending) return this.pending;
 
         const cfg = this.getConfig();
+        this.year = cfg.year;
+        if (!espnAPI.isConfigured()) {
+            espnAPI.configure(cfg.leagueId, cfg.espnS2, cfg.swid);
+        }
+        if (force) espnAPI.clearCache();
+
+        this.pending = espnAPI
+            .fetchData(cfg.year, ['mTeam', 'mStandings', 'mSettings', 'mStatus', 'mMatchupScore'])
+            .then(raw => {
+                if (!raw || !raw.teams) throw new Error('ESPN returned no team data for this season');
+                this.data = raw;
+                this.fetchedAt = Date.now();
+                return raw;
+            })
+            .finally(() => { this.pending = null; });
+        return this.pending;
+    }
+
+    async load(force = false) {
+        if (this.loading) return;
         this.loading = true;
+        const cfg = this.getConfig();
         this.title.textContent = `${cfg.year} Season`;
-        this.content.innerHTML = '<p class="no-data">Loading standings from ESPN...</p>';
+        const fresh = this.data && this.fetchedAt && (Date.now() - this.fetchedAt) < this.freshFor;
+        if (!fresh || force) {
+            this.content.innerHTML = '<p class="no-data">Loading standings from ESPN...</p>';
+        }
 
         try {
-            if (!espnAPI.isConfigured()) {
-                espnAPI.configure(cfg.leagueId, cfg.espnS2, cfg.swid);
-            }
-            if (force) espnAPI.clearCache();
-
-            const raw = await espnAPI.fetchData(cfg.year, ['mTeam', 'mStandings', 'mSettings', 'mStatus']);
-            if (!raw || !raw.teams) throw new Error('ESPN returned no team data for this season');
-
-            this.data = raw;
-            this.fetchedAt = Date.now();
+            const raw = await this.getSeasonData(force);
             this.render(raw, cfg.year);
         } catch (err) {
             console.error('Current season load failed:', err);
