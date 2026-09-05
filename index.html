@@ -78,6 +78,7 @@
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link active" data-section="home"><span class="nav-icon"><svg class="icon"><use href="#icon-trophy"/></svg></span><span>Home</span></a></li>
                 <li><a href="#" class="nav-link" data-section="dashboard"><span class="nav-icon"><svg class="icon"><use href="#icon-dashboard"/></svg></span><span>Dashboard</span></a></li>
+                <li><a href="#" class="nav-link" data-section="currentseason"><span class="nav-icon"><svg class="icon"><use href="#icon-trending"/></svg></span><span>Current Season</span></a></li>
                 <li><a href="#" class="nav-link" data-section="records"><span class="nav-icon"><svg class="icon"><use href="#icon-medal"/></svg></span><span>All-Time Records</span></a></li>
                 <li><a href="#" class="nav-link" data-section="h2h"><span class="nav-icon"><svg class="icon"><use href="#icon-swords"/></svg></span><span>Head-to-Head</span></a></li>
                 <li><a href="#" class="nav-link" data-section="seasons"><span class="nav-icon"><svg class="icon"><use href="#icon-calendar"/></svg></span><span>Season History</span></a></li>
@@ -154,6 +155,10 @@
                     <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-teal"><use href="#icon-trending"/></svg></span> Current Season Standings</h3></div><div id="current-standings"><p class="no-data">Loading standings...</p></div></div>
                     <div class="card"><div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-target"/></svg></span> This Week's Matchups</h3></div><div id="current-matchups"><p class="no-data">Loading matchups...</p></div></div>
                 </div>
+            </section>
+            <section id="currentseason" class="section">
+                <div class="section-header"><h2 id="cs-title">Current Season</h2><p id="cs-subtitle">Live standings pulled straight from ESPN</p></div>
+                <div id="cs-content"><p class="no-data">Loading standings from ESPN...</p></div>
             </section>
             <section id="records" class="section">
                 <div class="section-header"><h2>All-Time Records</h2><p>The best (and worst) performances in league history</p></div>
@@ -962,5 +967,6 @@
     <script src="stats-engine.js"></script>
     <script src="advanced-analytics.js"></script>
     <script src="app.js"></script>
+    <script src="current-season.js"></script>
 </body>
 </html>
