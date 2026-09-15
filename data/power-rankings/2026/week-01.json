@@ -1,0 +1,4547 @@
+{
+ "season": 2026,
+ "week": 1,
+ "totalWeeks": 14,
+ "playoffSpots": 7,
+ "generatedAt": "2026-09-15T03:52:41.265Z",
+ "finalized": false,
+ "method": {
+  "resultsWeight": 50.8,
+  "projectionWeight": 49.2,
+  "movementBasis": "preseason",
+  "leaguePtsPerDollar": 2.12
+ },
+ "teams": [
+  {
+   "id": 13,
+   "rank": 1,
+   "previousRank": 12,
+   "movement": 11,
+   "power": 86.2,
+   "components": {
+    "results": 100,
+    "projection": 71.9,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Christopher Dootron",
+   "abbrev": "DAH",
+   "owner": "Sam H.",
+   "ownerId": "{961895BA-00CF-4DC9-8A38-61A2924B6643}",
+   "logo": "http://cdn2.sbnation.com/entry_photo_images/4459356/126540825_extra_large_medium.jpg",
+   "division": "Gold",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 145.7,
+   "pa": 49.5,
+   "avg": 145.7,
+   "last3": 145.7,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 11,
+    "l": 0
+   },
+   "allPlayPct": 100,
+   "expectedWins": 1,
+   "luck": 0,
+   "espnProjectedRank": 6,
+   "draftDayProjectedRank": 12,
+   "rosStrength": 1553.3,
+   "projTotal": 1699,
+   "benchLeftTotal": 8,
+   "lineupEfficiency": 94.8,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 5,
+    "trades": 0,
+    "lineupMoves": 2,
+    "faabSpent": 1
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 67.1,
+    "opponents": [
+     "Bake",
+     "HUDS",
+     "HHP",
+     "PAPA",
+     "DG3",
+     "DH$ ",
+     "MD23",
+     "PAPA",
+     "FRUM",
+     "Hess",
+     "TSMP",
+     "TACO",
+     "HUDS"
+    ],
+    "rank": 12
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 57.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 145.7,
+     "proj": 100.4,
+     "opp": 10,
+     "oppPts": 49.5,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 11,
+     "allPlayL": 0,
+     "weekRank": 1
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 145.7,
+    "optimalLineup": 153.7,
+    "benchLeft": 8,
+    "starters": [
+     {
+      "name": "Jaxson Dart",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 26.6,
+      "proj": 18.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Parker Washington",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 16.8,
+      "proj": 9.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Bijan Robinson",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 27.3,
+      "proj": 16.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Omarion Hampton",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.3,
+      "proj": 16.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Luther Burden III",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 7,
+      "proj": 9.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Isaiah Likely",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 23.8,
+      "proj": 7.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jordan Mason",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 11.9,
+      "proj": 9.1,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Vikings D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 5,
+      "proj": 4.4,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Evan McPherson",
+      "pos": "K",
+      "slot": "K",
+      "pts": 19,
+      "proj": 8.6,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Jordan Addison",
+      "pos": "WR",
+      "pts": 0,
+      "proj": 8.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tyler Allgeier",
+      "pos": "RB",
+      "pts": 8,
+      "proj": 6.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Buccaneers D/ST",
+      "pos": "D/ST",
+      "pts": 8,
+      "proj": 4.5,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Chiefs D/ST",
+      "pos": "D/ST",
+      "pts": 13,
+      "proj": 5.3,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Terrance Ferguson",
+      "pos": "TE",
+      "pts": 0,
+      "proj": 6.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Cyrus Allen",
+      "pos": "WR",
+      "pts": 0,
+      "proj": 2.4,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 13,
+     "playerId": 4689114,
+     "player": "Jaxson Dart",
+     "pos": "QB",
+     "cost": 10,
+     "seasonPts": 26.6,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 2.66
+    },
+    {
+     "teamId": 13,
+     "playerId": 4432620,
+     "player": "Parker Washington",
+     "pos": "WR",
+     "cost": 10,
+     "seasonPts": 16.8,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.68
+    }
+   ],
+   "draftGrade": {
+    "rank": 11,
+    "grade": "C",
+    "owner": "Sam",
+    "team": "Christopher Dootron",
+    "spent": "$200",
+    "value": "$172",
+    "surplus": "(+3)",
+    "starters": "1,712 pts",
+    "best": "Luther Burden III $15",
+    "worst": "Omarion Hampton $59",
+    "ownerKey": "Sam H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "QueensFoul PonderBaby"
+    },
+    {
+     "year": 2012,
+     "name": "QueensLookin Saucy?"
+    },
+    {
+     "year": 2013,
+     "name": "Demetrius Servlekowskis"
+    },
+    {
+     "year": 2014,
+     "name": "The Sonny Mclainies"
+    },
+    {
+     "year": 2015,
+     "name": "Ploohookers: Resurgence"
+    },
+    {
+     "year": 2016,
+     "name": "Extreme Duke [DOOO]"
+    },
+    {
+     "year": 2017,
+     "name": "FreshPloo Incorporated"
+    },
+    {
+     "year": 2018,
+     "name": "PlooOnA RainyDoo"
+    },
+    {
+     "year": 2019,
+     "name": "stories of a magnificentdong"
+    },
+    {
+     "year": 2020,
+     "name": "Seattle Slew"
+    },
+    {
+     "year": 2021,
+     "name": "Dennis Platter"
+    },
+    {
+     "year": 2022,
+     "name": "Jeremiah Fondlelowski"
+    },
+    {
+     "year": 2023,
+     "name": "Stackin Steaks N Sats "
+    },
+    {
+     "year": 2024,
+     "name": "Platsky and Hutch"
+    },
+    {
+     "year": 2025,
+     "name": "Richard Platter III"
+    }
+   ],
+   "commentary": "Fifteen years of Ploos, Platters, and one \"magnificentdong\" later, Sam finally dropped the bit and named his team after a guy named Christopher Dootron, and Christopher Dootron went 11-0 in the all-play with the week's top score. The draft model gave this roster a C and ESPN had it dead last, which is exactly what you'd expect from a team that starts the 12th-ranked Vikings defense while the Chiefs D/ST sits on the bench scoring 13. Doesn't matter when Bijan drops 27, Isaiah Likely triples his projection, and both $10 keepers pay off. Enjoy the top spot, Sam. Your remaining schedule is the softest in the league, so you might actually keep it."
+  },
+  {
+   "id": 6,
+   "rank": 2,
+   "previousRank": 3,
+   "movement": 1,
+   "power": 85.9,
+   "components": {
+    "results": 73.3,
+    "projection": 98.9,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Papas McButt Nuggets",
+   "abbrev": "PAPA",
+   "owner": "Jordan P.",
+   "ownerId": "{4CBC676A-4DDF-4494-AF37-6AD651546796}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/21baa9f0-a7d5-11f1-bc05-dd37ff031f6c",
+   "division": "Gold",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 108.9,
+   "pa": 92,
+   "avg": 108.9,
+   "last3": 108.9,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 5,
+    "l": 6
+   },
+   "allPlayPct": 45.5,
+   "expectedWins": 0.5,
+   "luck": 0.5,
+   "espnProjectedRank": 1,
+   "draftDayProjectedRank": 3,
+   "rosStrength": 1826.3,
+   "projTotal": 1935.2,
+   "benchLeftTotal": 2.6,
+   "lineupEfficiency": 97.7,
+   "transactions": {
+    "acquisitions": 1,
+    "drops": 4,
+    "trades": 0,
+    "lineupMoves": 3,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70,
+    "opponents": [
+     "DH$ ",
+     "Hess",
+     "TSMP",
+     "DAH",
+     "HHP",
+     "TACO",
+     "Bake",
+     "DAH",
+     "DG3",
+     "HUDS",
+     "FRUM",
+     "MD23",
+     "Hess"
+    ],
+    "rank": 9
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 65.2
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 108.9,
+     "proj": 110.1,
+     "opp": 4,
+     "oppPts": 92,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 5,
+     "allPlayL": 6,
+     "weekRank": 7
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 108.9,
+    "optimalLineup": 111.5,
+    "benchLeft": 2.6,
+    "starters": [
+     {
+      "name": "Jaxon Smith-Njigba",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 22.2,
+      "proj": 15.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jonathan Taylor",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 23.6,
+      "proj": 16.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jeremiyah Love",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 12,
+      "proj": 12,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Garrett Wilson",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 10.9,
+      "proj": 11.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tyler Warren",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 8.8,
+      "proj": 9.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Bo Nix",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 5.4,
+      "proj": 16.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Rhamondre Stevenson",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 12,
+      "proj": 12.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chargers D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 0,
+      "proj": 7.4,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Tyler Loop",
+      "pos": "K",
+      "slot": "K",
+      "pts": 14,
+      "proj": 8.6,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Carnell Tate",
+      "pos": "WR",
+      "pts": 5.8,
+      "proj": 9.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Stefon Diggs",
+      "pos": "WR",
+      "pts": 13.5,
+      "proj": 7.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "KC Concepcion",
+      "pos": "WR",
+      "pts": 5.8,
+      "proj": 7.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Mike Washington Jr.",
+      "pos": "RB",
+      "pts": 4.1,
+      "proj": 6.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chris Brooks",
+      "pos": "RB",
+      "pts": 2.9,
+      "proj": 6.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chris Bell",
+      "pos": "WR",
+      "pts": 3,
+      "proj": 5.9,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 6,
+     "playerId": 4430878,
+     "player": "Jaxon Smith-Njigba",
+     "pos": "WR",
+     "cost": 18,
+     "seasonPts": 22.2,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.23
+    },
+    {
+     "teamId": 6,
+     "playerId": 4242335,
+     "player": "Jonathan Taylor",
+     "pos": "RB",
+     "cost": 48,
+     "seasonPts": 23.6,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.49
+    }
+   ],
+   "draftGrade": {
+    "rank": 4,
+    "grade": "B+",
+    "owner": "Jordan",
+    "team": "Boot Juice'n Boogie",
+    "spent": "$197",
+    "value": "$241",
+    "surplus": "+$44",
+    "starters": "1,847 pts",
+    "best": "Jordyn Tyson $1",
+    "worst": "Jeremiyah Love $43",
+    "ownerKey": "Jordan P."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "Nard Dog"
+    },
+    {
+     "year": 2012,
+     "name": "The Nard Dog Rises"
+    },
+    {
+     "year": 2013,
+     "name": "Bad News (Milk and) Honeys"
+    },
+    {
+     "year": 2014,
+     "name": "Raise the Roofies!"
+    },
+    {
+     "year": 2015,
+     "name": "Papa Perks Platter del Plo"
+    },
+    {
+     "year": 2016,
+     "name": "MattDÄz Nutz"
+    },
+    {
+     "year": 2017,
+     "name": "Why dont you just call them?"
+    },
+    {
+     "year": 2018,
+     "name": "Ace and Garys Wild Ride"
+    },
+    {
+     "year": 2019,
+     "name": "Chillin with Mahomeez"
+    },
+    {
+     "year": 2020,
+     "name": "King Henrys Troubled Teens"
+    },
+    {
+     "year": 2021,
+     "name": "Papas Portland 8s"
+    },
+    {
+     "year": 2022,
+     "name": "Pleasure Party Table"
+    },
+    {
+     "year": 2023,
+     "name": "Kissy Time Ice Queens"
+    },
+    {
+     "year": 2024,
+     "name": "thank you for the blessings"
+    },
+    {
+     "year": 2025,
+     "name": "boot juice'n boogie"
+    }
+   ],
+   "commentary": "The Nuggets scored the seventh-best total of the week and got a win out of it anyway, which is the Jordan P. experience in one sentence. ESPN still has this roster projected first and the rest-of-season strength backs that up, so the algorithm is willing to overlook a Chargers defense that put up a clean zero and a Bo Nix line that read like a typo. Jonathan Taylor earned every one of his $48 keeper dollars. The three-time trip champ has gone from \"Pleasure Party Table\" to \"thank you for the blessings\" to McButt Nuggets, and honestly the blessings continue."
+  },
+  {
+   "id": 14,
+   "rank": 3,
+   "previousRank": 7,
+   "movement": 4,
+   "power": 83.4,
+   "components": {
+    "results": 86.6,
+    "projection": 80.1,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "DINO NUGGETS",
+   "abbrev": "Bake",
+   "owner": "Michael B.",
+   "ownerId": "{6E9F923B-F321-4235-9F92-3BF321423533}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/9f93bc50-ac70-11f1-a12f-2b44c2a1875d",
+   "division": "Silver",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 126.9,
+   "pa": 104.4,
+   "avg": 126.9,
+   "last3": 126.9,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 8,
+    "l": 3
+   },
+   "allPlayPct": 72.7,
+   "expectedWins": 0.7,
+   "luck": 0.3,
+   "espnProjectedRank": 5,
+   "draftDayProjectedRank": 7,
+   "rosStrength": 1694.1,
+   "projTotal": 1821,
+   "benchLeftTotal": 45.1,
+   "lineupEfficiency": 73.8,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 0,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70.8,
+    "opponents": [
+     "DAH",
+     "DG3",
+     "MD23",
+     "TSMP",
+     "HUDS",
+     "HHP",
+     "PAPA",
+     "TSMP",
+     "Hess",
+     "TACO",
+     "DH$ ",
+     "FRUM",
+     "DG3"
+    ],
+    "rank": 4
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 75.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 126.9,
+     "proj": 107.4,
+     "opp": 1,
+     "oppPts": 104.4,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 8,
+     "allPlayL": 3,
+     "weekRank": 4
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 126.9,
+    "optimalLineup": 172,
+    "benchLeft": 45.1,
+    "starters": [
+     {
+      "name": "Jahmyr Gibbs",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 31.1,
+      "proj": 20.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Harold Fannin Jr.",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 3.1,
+      "proj": 8.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Justin Jefferson",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 27.2,
+      "proj": 13.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jameson Williams",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 6.5,
+      "proj": 10.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Marvin Harrison Jr.",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 3.8,
+      "proj": 9.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Rico Dowdle",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 3.1,
+      "proj": 11.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Seahawks D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 14,
+      "proj": 7.2,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Trevor Lawrence",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 26.1,
+      "proj": 16.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Cam Little",
+      "pos": "K",
+      "slot": "K",
+      "pts": 12,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Chuba Hubbard",
+      "pos": "RB",
+      "pts": 22.2,
+      "proj": 11,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Hunter Henry",
+      "pos": "TE",
+      "pts": 4.1,
+      "proj": 6.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jakobi Meyers",
+      "pos": "WR",
+      "pts": 11.2,
+      "proj": 8.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kyler Murray",
+      "pos": "QB",
+      "pts": -0.5,
+      "proj": 16.2,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Dallas Goedert",
+      "pos": "TE",
+      "pts": 21.7,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Xavier Worthy",
+      "pos": "WR",
+      "pts": 3.3,
+      "proj": 8,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 14,
+     "playerId": 4429795,
+     "player": "Jahmyr Gibbs",
+     "pos": "RB",
+     "cost": 71,
+     "seasonPts": 31.1,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.44
+    },
+    {
+     "teamId": 14,
+     "playerId": 5083076,
+     "player": "Harold Fannin Jr.",
+     "pos": "TE",
+     "cost": 18,
+     "seasonPts": 3.1,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.17
+    }
+   ],
+   "draftGrade": {
+    "rank": 6,
+    "grade": "B",
+    "owner": "Baker",
+    "team": "2 RBs, 1 Kupp",
+    "spent": "$195",
+    "value": "$200",
+    "surplus": "+$5",
+    "starters": "1,768 pts",
+    "best": "Jameson Williams $4",
+    "worst": "Justin Jefferson $51",
+    "ownerKey": "Michael B."
+   },
+   "nameHistory": [
+    {
+     "year": 2015,
+     "name": "The Man the Myth the Legend"
+    },
+    {
+     "year": 2016,
+     "name": "Whats your major?"
+    },
+    {
+     "year": 2017,
+     "name": "the Juice is Loose"
+    },
+    {
+     "year": 2018,
+     "name": "the drunken crustaceans"
+    },
+    {
+     "year": 2019,
+     "name": "psychological warfare"
+    },
+    {
+     "year": 2020,
+     "name": "crustacean elevation"
+    },
+    {
+     "year": 2021,
+     "name": "McCool's Class Prez"
+    },
+    {
+     "year": 2022,
+     "name": "Let's Riiiide"
+    },
+    {
+     "year": 2023,
+     "name": "Feed the Beast"
+    },
+    {
+     "year": 2024,
+     "name": "Maximus"
+    },
+    {
+     "year": 2025,
+     "name": "2 RBs, 1 Kupp"
+    }
+   ],
+   "commentary": "Baker won by 22 and still gets a lecture. He left 45 points on the bench, the most in the league by a mile: Chuba Hubbard's 22 sat behind Rico Dowdle's 3, and Dallas Goedert's 22 sat behind Harold Fannin Jr.'s 3. Fannin, for the record, is an $18 keeper. Zero acquisitions, zero drops, zero lineup moves this week, which tracks for a manager whose team names went from \"the drunken crustaceans\" to \"crustacean elevation.\" The crustacean has not elevated its lineup management. Gibbs at $71 delivered 31, Justin Jefferson at $51 delivered 27, and the Dino Nuggets are 1-0 with the hardest division slate in the league still ahead."
+  },
+  {
+   "id": 5,
+   "rank": 4,
+   "previousRank": 8,
+   "movement": 4,
+   "power": 80.5,
+   "components": {
+    "results": 90.4,
+    "projection": 70.2,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Table Shepherds McPie ",
+   "abbrev": "TSMP",
+   "owner": "Brett F.",
+   "ownerId": "{115BD1BE-463B-11D4-820C-00A0C9E58E2D}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/ac9a6770-abb0-11f1-8ef0-19c1af2548f8",
+   "division": "Silver",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 130.2,
+   "pa": 119.7,
+   "avg": 130.2,
+   "last3": 130.2,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 9,
+    "l": 2
+   },
+   "allPlayPct": 81.8,
+   "expectedWins": 0.8,
+   "luck": 0.2,
+   "espnProjectedRank": 7,
+   "draftDayProjectedRank": 8,
+   "rosStrength": 1611.8,
+   "projTotal": 1742,
+   "benchLeftTotal": 6.4,
+   "lineupEfficiency": 95.3,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 0,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 69.4,
+    "opponents": [
+     "FRUM",
+     "TACO",
+     "PAPA",
+     "Bake",
+     "DH$ ",
+     "Hess",
+     "HHP",
+     "Bake",
+     "MD23",
+     "DG3",
+     "DAH",
+     "HUDS",
+     "TACO"
+    ],
+    "rank": 10
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 72.1
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 130.2,
+     "proj": 103.9,
+     "opp": 11,
+     "oppPts": 119.7,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 9,
+     "allPlayL": 2,
+     "weekRank": 3
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 130.2,
+    "optimalLineup": 136.6,
+    "benchLeft": 6.4,
+    "starters": [
+     {
+      "name": "Trey McBride",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 20,
+      "proj": 11.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ladd McConkey",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 16.7,
+      "proj": 11.4,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Amon-Ra St. Brown",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 23.7,
+      "proj": 15.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kyren Williams",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 14,
+      "proj": 12.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "David Montgomery",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 27.4,
+      "proj": 11.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "DK Metcalf",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 6,
+      "proj": 10.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jared Goff",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 16.4,
+      "proj": 15.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Harrison Mevis",
+      "pos": "K",
+      "slot": "K",
+      "pts": 1,
+      "proj": 9.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Eagles D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 5,
+      "proj": 6.1,
+      "injury": "NORMAL"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Blake Corum",
+      "pos": "RB",
+      "pts": 5.4,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Wan'Dale Robinson",
+      "pos": "WR",
+      "pts": 6.3,
+      "proj": 8.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jonah Coleman",
+      "pos": "RB",
+      "pts": 0,
+      "proj": 3.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jacory Croskey-Merritt",
+      "pos": "RB",
+      "pts": 12.1,
+      "proj": 7.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "De'Zhaun Stribling",
+      "pos": "WR",
+      "pts": 0,
+      "proj": 7.9,
+      "injury": "DOUBTFUL"
+     },
+     {
+      "name": "Malik Willis",
+      "pos": "QB",
+      "pts": 16.7,
+      "proj": 15,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 5,
+     "playerId": 4361307,
+     "player": "Trey McBride",
+     "pos": "TE",
+     "cost": 29,
+     "seasonPts": 20,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.69
+    },
+    {
+     "teamId": 5,
+     "playerId": 4612826,
+     "player": "Ladd McConkey",
+     "pos": "WR",
+     "cost": 18,
+     "seasonPts": 16.7,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.93
+    }
+   ],
+   "draftGrade": {
+    "rank": 9,
+    "grade": "C+",
+    "owner": "Foy",
+    "team": "Dr. Millgan's Finger Salsa",
+    "spent": "$200",
+    "value": "$197",
+    "surplus": "(+5)",
+    "starters": "1,735 pts",
+    "best": "DK Metcalf $6",
+    "worst": "Jonah Coleman $5",
+    "ownerKey": "Brett F."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "your son rip  on line toot"
+    },
+    {
+     "year": 2012,
+     "name": "50 shades of Heyward Bay "
+    },
+    {
+     "year": 2013,
+     "name": "Pimpin aint Bre esy, Marshans!"
+    },
+    {
+     "year": 2014,
+     "name": "Mynt and Forte  Forte Clubbin"
+    },
+    {
+     "year": 2015,
+     "name": "#FeelinPerky for the Swish"
+    },
+    {
+     "year": 2016,
+     "name": "LuckDynasty and The Flip Phones"
+    },
+    {
+     "year": 2017,
+     "name": "KeepersFromThe BeerViewMirror"
+    },
+    {
+     "year": 2018,
+     "name": "Fernet and The Music Hall Mack"
+    },
+    {
+     "year": 2019,
+     "name": "Le Swish -   Baby Come Mack!"
+    },
+    {
+     "year": 2020,
+     "name": "Reuben'sRevenge  Time to Rye"
+    },
+    {
+     "year": 2021,
+     "name": "Book of Matthew -the chosen 1's"
+    },
+    {
+     "year": 2022,
+     "name": "Kirking the  Donny Dust Up"
+    },
+    {
+     "year": 2023,
+     "name": "Micro Dotson with the Boys"
+    },
+    {
+     "year": 2024,
+     "name": "Homemade Dak-ro Dose"
+    },
+    {
+     "year": 2025,
+     "name": "Dr. Millgan's Finger Salsa"
+    }
+   ],
+   "commentary": "Two straight trip titles, a C+ draft grade, and a team name that sounds like a British sitcom character. Foy doesn't care. David Montgomery more than doubled his projection, Amon-Ra went for 24, and Trey McBride paid the keeper rent. The only real blemish was kicker Harrison Mevis scoring a single point, which is the kind of thing that ends a \"LuckDynasty.\" The lineup was 95% efficient and required zero transactions, so the Table Shepherd is either a genius or asleep, and the results say genius for now."
+  },
+  {
+   "id": 2,
+   "rank": 5,
+   "previousRank": 9,
+   "movement": 4,
+   "power": 74,
+   "components": {
+    "results": 82.2,
+    "projection": 65.5,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Ammonia Coladas",
+   "abbrev": "HHP",
+   "owner": "Mark P.",
+   "ownerId": "{57989C57-902E-476F-A96B-D8957DE1872F}",
+   "logo": "https://www.colorado.edu/coloradan/sites/default/files/article-image/young-ralphie.jpg",
+   "division": "Black",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 121.3,
+   "pa": 94.2,
+   "avg": 121.3,
+   "last3": 121.3,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 7,
+    "l": 4
+   },
+   "allPlayPct": 63.6,
+   "expectedWins": 0.6,
+   "luck": 0.4,
+   "espnProjectedRank": 8,
+   "draftDayProjectedRank": 9,
+   "rosStrength": 1580.6,
+   "projTotal": 1701.9,
+   "benchLeftTotal": 6.5,
+   "lineupEfficiency": 94.9,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 2,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70.5,
+    "opponents": [
+     "TACO",
+     "DH$ ",
+     "DAH",
+     "FRUM",
+     "PAPA",
+     "Bake",
+     "TSMP",
+     "FRUM",
+     "HUDS",
+     "MD23",
+     "Hess",
+     "DG3",
+     "DH$ "
+    ],
+    "rank": 5
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 71.1
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 121.3,
+     "proj": 97.4,
+     "opp": 12,
+     "oppPts": 94.2,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 7,
+     "allPlayL": 4,
+     "weekRank": 5
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 121.3,
+    "optimalLineup": 127.8,
+    "benchLeft": 6.5,
+    "starters": [
+     {
+      "name": "Bucky Irving",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 16.8,
+      "proj": 12.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Malik Nabers",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 9.9,
+      "proj": 10.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Lamar Jackson",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 24.8,
+      "proj": 19,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Nico Collins",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 17.7,
+      "proj": 12.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Sam LaPorta",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 7.3,
+      "proj": 8.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tee Higgins",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 7.4,
+      "proj": 10.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Eddy Pineiro",
+      "pos": "K",
+      "slot": "K",
+      "pts": 11,
+      "proj": 8.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kyle Monangai",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 19.4,
+      "proj": 9.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Patriots D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 7,
+      "proj": 4.7,
+      "injury": "NORMAL"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Drake Maye",
+      "pos": "QB",
+      "pts": 9.7,
+      "proj": 16.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Mike Evans",
+      "pos": "WR",
+      "pts": 13.9,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kenny Gainwell",
+      "pos": "RB",
+      "pts": 2.3,
+      "proj": 10.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Brian Robinson Jr.",
+      "pos": "RB",
+      "pts": 3.1,
+      "proj": 4.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kaelon Black",
+      "pos": "RB",
+      "pts": 7.5,
+      "proj": 4.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Samaje Perine",
+      "pos": "RB",
+      "pts": 6.5,
+      "proj": 5.4,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 2,
+     "playerId": 4596448,
+     "player": "Bucky Irving",
+     "pos": "RB",
+     "cost": 15,
+     "seasonPts": 16.8,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.12
+    },
+    {
+     "teamId": 2,
+     "playerId": 4431452,
+     "player": "Drake Maye",
+     "pos": "QB",
+     "cost": 10,
+     "seasonPts": 9.7,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.97
+    }
+   ],
+   "draftGrade": {
+    "rank": 7,
+    "grade": "B",
+    "owner": "Mark",
+    "team": "Perkins Last Float",
+    "spent": "$200",
+    "value": "$244",
+    "surplus": "+$44",
+    "starters": "1,732 pts",
+    "best": "Lamar Jackson $17",
+    "worst": "Kaelon Black $4",
+    "ownerKey": "Mark P."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "HHP = Handsome Healthy P-Unit"
+    },
+    {
+     "year": 2012,
+     "name": "High Horse Rides Again"
+    },
+    {
+     "year": 2013,
+     "name": "Double Timed by DT"
+    },
+    {
+     "year": 2014,
+     "name": "Cooper's Power"
+    },
+    {
+     "year": 2015,
+     "name": "Full Moon Beach Monstars"
+    },
+    {
+     "year": 2016,
+     "name": "Take off Handcuffs!!!"
+    },
+    {
+     "year": 2017,
+     "name": "Scrubs City"
+    },
+    {
+     "year": 2018,
+     "name": "The Knockoffs"
+    },
+    {
+     "year": 2019,
+     "name": "Time to get Dirty"
+    },
+    {
+     "year": 2020,
+     "name": "Kittle Me Softly"
+    },
+    {
+     "year": 2021,
+     "name": "Team Skeptisass"
+    },
+    {
+     "year": 2022,
+     "name": "Diggsy Smush Papa"
+    },
+    {
+     "year": 2023,
+     "name": "HHP"
+    },
+    {
+     "year": 2024,
+     "name": "OpenAI Top Anthropic Bottom"
+    },
+    {
+     "year": 2025,
+     "name": "Perkins Last Float"
+    }
+   ],
+   "commentary": "The man who brought you \"OpenAI Top Anthropic Bottom\" in 2024 is now being ranked fifth by Anthropic, and the algorithm is being very professional about it. Lamar Jackson at $17 was the draft's best value and looked it with 25. Kyle Monangai doubled his projection, Bucky Irving covered his keeper cost in a single week, and a Patriots defense ranked 11th of 12 by projection outscored half the league. Mike Evans out-scored Tee Higgins from the bench, but a 27-point win over the preseason favorite buys a lot of forgiveness. Ammonia Coladas is the best rebrand from \"Perkins Last Float,\" which apparently was not the last float."
+  },
+  {
+   "id": 9,
+   "rank": 6,
+   "previousRank": 11,
+   "movement": 5,
+   "power": 72.9,
+   "components": {
+    "results": 95.7,
+    "projection": 49.3,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "$200 Dolla Holla",
+   "abbrev": "DH$ ",
+   "owner": "David H.",
+   "ownerId": "{2DAED436-E1AF-4574-BED1-2111AFFB5937}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/3019f120-ac00-11f1-8ef0-19c1af2548f8",
+   "division": "Black",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 140.2,
+   "pa": 106.4,
+   "avg": 140.2,
+   "last3": 140.2,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 10,
+    "l": 1
+   },
+   "allPlayPct": 90.9,
+   "expectedWins": 0.9,
+   "luck": 0.1,
+   "espnProjectedRank": 12,
+   "draftDayProjectedRank": 11,
+   "rosStrength": 1529,
+   "projTotal": 1669.2,
+   "benchLeftTotal": 10.9,
+   "lineupEfficiency": 92.8,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 68.4,
+    "opponents": [
+     "PAPA",
+     "HHP",
+     "DG3",
+     "MD23",
+     "TSMP",
+     "DAH",
+     "HUDS",
+     "MD23",
+     "TACO",
+     "FRUM",
+     "Bake",
+     "Hess",
+     "HHP"
+    ],
+    "rank": 11
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 65.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 140.2,
+     "proj": 97.6,
+     "opp": 3,
+     "oppPts": 106.4,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 10,
+     "allPlayL": 1,
+     "weekRank": 2
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 140.2,
+    "optimalLineup": 151.1,
+    "benchLeft": 10.9,
+    "starters": [
+     {
+      "name": "James Cook III",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.4,
+      "proj": 14.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "A.J. Brown",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 4.1,
+      "proj": 11.5,
+      "injury": "INJURY_RESERVE"
+     },
+     {
+      "name": "D'Andre Swift",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 31.9,
+      "proj": 11.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Emeka Egbuka",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 8.8,
+      "proj": 11.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Christian Watson",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 29.7,
+      "proj": 9.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "George Kittle",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 2.2,
+      "proj": 6.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Caleb Williams",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 37.1,
+      "proj": 16.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jaguars D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 14,
+      "proj": 8.2,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Wil Lutz",
+      "pos": "K",
+      "slot": "K",
+      "pts": 4,
+      "proj": 7.7,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Alec Pierce",
+      "pos": "WR",
+      "pts": 8.1,
+      "proj": 8.1,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "J.K. Dobbins",
+      "pos": "RB",
+      "pts": 3.6,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Brock Purdy",
+      "pos": "QB",
+      "pts": 21.1,
+      "proj": 15.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Josh Downs",
+      "pos": "WR",
+      "pts": 4.7,
+      "proj": 7.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Deebo Samuel Sr.",
+      "pos": "WR",
+      "pts": 15,
+      "proj": 7.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ray Davis",
+      "pos": "RB",
+      "pts": 0.3,
+      "proj": 4.5,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 9,
+     "playerId": 4379399,
+     "player": "James Cook III",
+     "pos": "RB",
+     "cost": 49,
+     "seasonPts": 8.4,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.17
+    },
+    {
+     "teamId": 9,
+     "playerId": 4360078,
+     "player": "Alec Pierce",
+     "pos": "WR",
+     "cost": 10,
+     "seasonPts": 8.1,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.81
+    }
+   ],
+   "draftGrade": {
+    "rank": 10,
+    "grade": "C+",
+    "owner": "Hearn",
+    "team": "Cade's Band Of Hippies",
+    "spent": "$199",
+    "value": "$207",
+    "surplus": "+$8",
+    "starters": "1,699 pts",
+    "best": "J.K. Dobbins $5",
+    "worst": "D'Andre Swift $24",
+    "ownerKey": "David H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "Godfather and Sahns"
+    },
+    {
+     "year": 2012,
+     "name": "DubSteppin On  Yo Neck "
+    },
+    {
+     "year": 2013,
+     "name": "#58  BONG MILLER"
+    },
+    {
+     "year": 2014,
+     "name": "Dildo Islanders "
+    },
+    {
+     "year": 2015,
+     "name": "Russell and Flow"
+    },
+    {
+     "year": 2016,
+     "name": "Dezbian  Lover"
+    },
+    {
+     "year": 2017,
+     "name": "BUTT FIRST"
+    },
+    {
+     "year": 2018,
+     "name": "Tangled Up In Drew"
+    },
+    {
+     "year": 2019,
+     "name": "WatSAHNS LFG "
+    },
+    {
+     "year": 2020,
+     "name": "ELECTRIC CLYDE ⚡️⚡️"
+    },
+    {
+     "year": 2021,
+     "name": "Hurts So Good   (In the Fields)"
+    },
+    {
+     "year": 2022,
+     "name": "Daddy SwishSKO"
+    },
+    {
+     "year": 2023,
+     "name": "Swift Serbian Schnitzel"
+    },
+    {
+     "year": 2024,
+     "name": "RALPHIE'S REVENGE"
+    },
+    {
+     "year": 2025,
+     "name": "Cade's Band of Hippies"
+    }
+   ],
+   "commentary": "ESPN projects this team to finish twelfth. ESPN also watched Caleb Williams score 37, D'Andre Swift score 32, and Christian Watson score 30 for the second-best total of the week. The name history includes \"Swift Serbian Schnitzel,\" so the Swift loyalty is real and is currently being rewarded. The receipts department notes that A.J. Brown was started while on injured reserve with Deebo Samuel scoring 15 on the bench, and that James Cook was a $49 keeper who produced 8. The projection side of the formula is why a 10-1 all-play week lands sixth instead of first. Prove the model wrong, Hearn. The \"$200 Dolla Holla\" energy is undefeated so far."
+  },
+  {
+   "id": 11,
+   "rank": 7,
+   "previousRank": 4,
+   "movement": -3,
+   "power": 66.2,
+   "components": {
+    "results": 43.7,
+    "projection": 89.4,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Los Desperados Sudados",
+   "abbrev": "DG3",
+   "owner": "Daniel G.",
+   "ownerId": "{0375DB18-0592-4DA9-A580-2263B7EA8511}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/7a3ce2c0-aa67-11f1-bc05-dd37ff031f6c",
+   "division": "Silver",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 119.7,
+   "pa": 130.2,
+   "avg": 119.7,
+   "last3": 119.7,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 6,
+    "l": 5
+   },
+   "allPlayPct": 54.5,
+   "expectedWins": 0.5,
+   "luck": -0.5,
+   "espnProjectedRank": 3,
+   "draftDayProjectedRank": 4,
+   "rosStrength": 1758.2,
+   "projTotal": 1877.9,
+   "benchLeftTotal": 14.1,
+   "lineupEfficiency": 89.5,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70.1,
+    "opponents": [
+     "Hess",
+     "Bake",
+     "DH$ ",
+     "TACO",
+     "DAH",
+     "MD23",
+     "FRUM",
+     "TACO",
+     "PAPA",
+     "TSMP",
+     "HUDS",
+     "HHP",
+     "Bake"
+    ],
+    "rank": 8
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 74.1
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 119.7,
+     "proj": 107.5,
+     "opp": 5,
+     "oppPts": 130.2,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 6,
+     "allPlayL": 5,
+     "weekRank": 6
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 119.7,
+    "optimalLineup": 133.8,
+    "benchLeft": 14.1,
+    "starters": [
+     {
+      "name": "Chase Brown",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 16.3,
+      "proj": 14.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Travis Etienne Jr.",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 11.3,
+      "proj": 13.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "CeeDee Lamb",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 12.9,
+      "proj": 14.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ashton Jeanty",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 29.7,
+      "proj": 16.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Broncos D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 2,
+      "proj": 5.9,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Joe Burrow",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 14,
+      "proj": 18,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "DJ Moore",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 18.5,
+      "proj": 9.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tucker Kraft",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 8,
+      "proj": 7.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jake Bates",
+      "pos": "K",
+      "slot": "K",
+      "pts": 7,
+      "proj": 8.8,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Rome Odunze",
+      "pos": "WR",
+      "pts": 6.2,
+      "proj": 10.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Courtland Sutton",
+      "pos": "WR",
+      "pts": 2.1,
+      "proj": 9.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Matthew Golden",
+      "pos": "WR",
+      "pts": 12.5,
+      "proj": 9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Dalton Kincaid",
+      "pos": "TE",
+      "pts": 15.5,
+      "proj": 6.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Rachaad White",
+      "pos": "RB",
+      "pts": 3.7,
+      "proj": 7.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jordan Love",
+      "pos": "QB",
+      "pts": 19.4,
+      "proj": 14.7,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 11,
+     "playerId": 4362238,
+     "player": "Chase Brown",
+     "pos": "RB",
+     "cost": 19,
+     "seasonPts": 16.3,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.86
+    },
+    {
+     "teamId": 11,
+     "playerId": 4239996,
+     "player": "Travis Etienne Jr.",
+     "pos": "RB",
+     "cost": 10,
+     "seasonPts": 11.3,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.13
+    }
+   ],
+   "draftGrade": {
+    "rank": 3,
+    "grade": "A-",
+    "owner": "Danny",
+    "team": "Dad's High-Alpine Hostage Hike",
+    "spent": "$200",
+    "value": "$258",
+    "surplus": "+$58",
+    "starters": "1,845 pts",
+    "best": "Joe Burrow $10",
+    "worst": "Broncos D/ST $5",
+    "ownerKey": "Daniel G."
+   },
+   "nameHistory": [
+    {
+     "year": 2013,
+     "name": "Laces Out Dan!"
+    },
+    {
+     "year": 2014,
+     "name": "It's On Like Gronky Kong!"
+    },
+    {
+     "year": 2015,
+     "name": "Consensus Greatness"
+    },
+    {
+     "year": 2016,
+     "name": "Naked Bootleggers"
+    },
+    {
+     "year": 2017,
+     "name": "Team Dad Bod"
+    },
+    {
+     "year": 2018,
+     "name": "Back to the Well"
+    },
+    {
+     "year": 2019,
+     "name": "The Unlucky Golumpkis"
+    },
+    {
+     "year": 2020,
+     "name": "Gang of Grimies"
+    },
+    {
+     "year": 2021,
+     "name": "Return to Concensus"
+    },
+    {
+     "year": 2022,
+     "name": "Not Not Dry Aged Beef"
+    },
+    {
+     "year": 2023,
+     "name": "We Coming for T Swish"
+    },
+    {
+     "year": 2024,
+     "name": "Pink Palace Posse"
+    },
+    {
+     "year": 2025,
+     "name": "Dad's High-Alpine Hostage Hike"
+    }
+   ],
+   "commentary": "Toughest loss of the week: 119.7 points, sixth best in the league, and it lost to the third best. \"The Unlucky Golumpkis\" was the team name in 2019, and the brand endures. The A-minus draft is intact, Jeanty looks like a star, and Chase Brown covered his keeper price. The bench tells a slightly different story: Jordan Love outscored Joe Burrow and Dalton Kincaid nearly doubled Tucker Kraft. Danny's $5 Broncos defense, flagged as his worst pick on draft day, scored 2, and the division around him is brutal. ESPN's third-ranked roster has plenty of runway. It just needs to stop getting robbed."
+  },
+  {
+   "id": 12,
+   "rank": 8,
+   "previousRank": 1,
+   "movement": -7,
+   "power": 60.5,
+   "components": {
+    "results": 25.8,
+    "projection": 96.4,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Cachasol Cartel ",
+   "abbrev": "MD23",
+   "owner": "Michael D.",
+   "ownerId": "{21978BC2-7D3D-47C6-920D-3D994C56F074}",
+   "logo": "https://i.postimg.cc/jjcNbXvP/MD2.jpg",
+   "division": "Black",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 94.2,
+   "pa": 121.3,
+   "avg": 94.2,
+   "last3": 94.2,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 2,
+    "l": 9
+   },
+   "allPlayPct": 18.2,
+   "expectedWins": 0.2,
+   "luck": -0.2,
+   "espnProjectedRank": 2,
+   "draftDayProjectedRank": 1,
+   "rosStrength": 1859.8,
+   "projTotal": 1954,
+   "benchLeftTotal": 13.3,
+   "lineupEfficiency": 87.6,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 0,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 71.7,
+    "opponents": [
+     "HUDS",
+     "FRUM",
+     "Bake",
+     "DH$ ",
+     "Hess",
+     "DG3",
+     "DAH",
+     "DH$ ",
+     "TSMP",
+     "HHP",
+     "TACO",
+     "PAPA",
+     "FRUM"
+    ],
+    "rank": 3
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 74.2
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 94.2,
+     "proj": 110.7,
+     "opp": 2,
+     "oppPts": 121.3,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 2,
+     "allPlayL": 9,
+     "weekRank": 10
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 94.2,
+    "optimalLineup": 107.5,
+    "benchLeft": 13.3,
+    "starters": [
+     {
+      "name": "George Pickens",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 4.3,
+      "proj": 12.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Javonte Williams",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 21.7,
+      "proj": 14.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ja'Marr Chase",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 2.2,
+      "proj": 16.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jayden Daniels",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 17.5,
+      "proj": 16.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Derrick Henry",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 34.8,
+      "proj": 15.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Texans D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": -4,
+      "proj": 5.3,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Cam Skattebo",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 14.1,
+      "proj": 12.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Brandon Aubrey",
+      "pos": "K",
+      "slot": "K",
+      "pts": 2,
+      "proj": 10.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jake Ferguson",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 1.6,
+      "proj": 7.6,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Dak Prescott",
+      "pos": "QB",
+      "pts": 14.4,
+      "proj": 16.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Terry McLaurin",
+      "pos": "WR",
+      "pts": 2.4,
+      "proj": 10,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Alvin Kamara",
+      "pos": "RB",
+      "pts": 0,
+      "proj": 0,
+      "injury": "OUT"
+     },
+     {
+      "name": "Keaton Mitchell",
+      "pos": "RB",
+      "pts": 0.9,
+      "proj": 5.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Juwan Johnson",
+      "pos": "TE",
+      "pts": 12.9,
+      "proj": 6.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jalen Nailor",
+      "pos": "WR",
+      "pts": 4.2,
+      "proj": 7.6,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 12,
+     "playerId": 4426354,
+     "player": "George Pickens",
+     "pos": "WR",
+     "cost": 22,
+     "seasonPts": 4.3,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.2
+    },
+    {
+     "teamId": 12,
+     "playerId": 4361579,
+     "player": "Javonte Williams",
+     "pos": "RB",
+     "cost": 10,
+     "seasonPts": 21.7,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 2.17
+    }
+   ],
+   "draftGrade": {
+    "rank": 1,
+    "grade": "A+",
+    "owner": "Mike D",
+    "team": "Deja Deux",
+    "spent": "$200",
+    "value": "$248",
+    "surplus": "+$48",
+    "starters": "1,941 pts",
+    "best": "Jayden Daniels $8",
+    "worst": "Derrick Henry $39",
+    "ownerKey": "Michael D."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "Getcha Vick Wet"
+    },
+    {
+     "year": 2012,
+     "name": "MÃ¼nchen  on BÃ¼ndchen"
+    },
+    {
+     "year": 2013,
+     "name": "Suck My  Peter-Sahn"
+    },
+    {
+     "year": 2014,
+     "name": "Tickle Me  AL-MO"
+    },
+    {
+     "year": 2015,
+     "name": "Switch Hitters"
+    },
+    {
+     "year": 2016,
+     "name": "Hands Off My Fleener"
+    },
+    {
+     "year": 2017,
+     "name": "Jordy Wan Kenobi"
+    },
+    {
+     "year": 2018,
+     "name": "Christian Missionaries"
+    },
+    {
+     "year": 2019,
+     "name": "Christian and the CLAWS"
+    },
+    {
+     "year": 2020,
+     "name": "C u M C back KIDZ!!!"
+    },
+    {
+     "year": 2021,
+     "name": "LJ DoubleHJs"
+    },
+    {
+     "year": 2022,
+     "name": "Deja  Vu Crew"
+    },
+    {
+     "year": 2023,
+     "name": "Shiva Shiva "
+    },
+    {
+     "year": 2024,
+     "name": "ATOMIC Fathers"
+    },
+    {
+     "year": 2025,
+     "name": "Deja Deux"
+    }
+   ],
+   "commentary": "Draft grade A-plus. ESPN preseason favorite. Ninety-four points. The Texans defense scored negative four, which is not a typo, and it was the worst defense start in the league by a wide margin. Ja'Marr Chase managed 2.2, Brandon Aubrey 2, and Jake Ferguson 1.6 while Juwan Johnson put up 13 on the bench. George Pickens, a $22 keeper, contributed 4. The one thing the model called wrong was Derrick Henry: labeled the worst pick at $39, he ran for 35 points. Deja Deux has become Deja Vu, and the Cartel now has the third-hardest remaining schedule. The roster is still ranked second in rest-of-season strength, which is the only reason this isn't a bottom-three team on the board."
+  },
+  {
+   "id": 1,
+   "rank": 9,
+   "previousRank": 2,
+   "movement": -7,
+   "power": 58.1,
+   "components": {
+    "results": 31,
+    "projection": 86.1,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Captain Casper's Low Risk Tacos",
+   "abbrev": "TACO",
+   "owner": "Brett A.",
+   "ownerId": "{691768BD-FEF6-4631-96B6-657E9D470FD7}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/ea454e10-aa42-11f1-8ecc-d1c52c68c30a",
+   "division": "Silver",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 104.4,
+   "pa": 126.9,
+   "avg": 104.4,
+   "last3": 104.4,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 3,
+    "l": 8
+   },
+   "allPlayPct": 27.3,
+   "expectedWins": 0.3,
+   "luck": -0.3,
+   "espnProjectedRank": 4,
+   "draftDayProjectedRank": 2,
+   "rosStrength": 1767.3,
+   "projTotal": 1871.7,
+   "benchLeftTotal": 11.3,
+   "lineupEfficiency": 90.2,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 72.4,
+    "opponents": [
+     "HHP",
+     "TSMP",
+     "HUDS",
+     "DG3",
+     "FRUM",
+     "PAPA",
+     "Hess",
+     "DG3",
+     "DH$ ",
+     "Bake",
+     "MD23",
+     "DAH",
+     "TSMP"
+    ],
+    "rank": 1
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 79.9
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 104.4,
+     "proj": 112.1,
+     "opp": 14,
+     "oppPts": 126.9,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 3,
+     "allPlayL": 8,
+     "weekRank": 9
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 104.4,
+    "optimalLineup": 115.7,
+    "benchLeft": 11.3,
+    "starters": [
+     {
+      "name": "DeVonta Smith",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 6.8,
+      "proj": 12.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chris Olave",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 23.2,
+      "proj": 12,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Saquon Barkley",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.5,
+      "proj": 16.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Josh Allen",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 35.5,
+      "proj": 19.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "De'Von Achane",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.6,
+      "proj": 16.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ka'imi Fairbairn",
+      "pos": "K",
+      "slot": "K",
+      "pts": 9,
+      "proj": 9.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Kyle Pitts Sr.",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 0,
+      "proj": 7.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jaylen Warren",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 7.8,
+      "proj": 11.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Lions D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 5,
+      "proj": 7.3,
+      "injury": "NORMAL"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Travis Kelce",
+      "pos": "TE",
+      "pts": 8.6,
+      "proj": 7.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Michael Pittman Jr.",
+      "pos": "WR",
+      "pts": 7.3,
+      "proj": 9.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Aaron Jones Sr.",
+      "pos": "RB",
+      "pts": 10,
+      "proj": 9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chris Godwin Jr.",
+      "pos": "WR",
+      "pts": 6.3,
+      "proj": 8.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "RJ Harvey",
+      "pos": "RB",
+      "pts": 6.1,
+      "proj": 7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Brian Thomas Jr.",
+      "pos": "WR",
+      "pts": 5.5,
+      "proj": 8.5,
+      "injury": "QUESTIONABLE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 1,
+     "playerId": 4241478,
+     "player": "DeVonta Smith",
+     "pos": "WR",
+     "cost": 19,
+     "seasonPts": 6.8,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.36
+    },
+    {
+     "teamId": 1,
+     "playerId": 4361370,
+     "player": "Chris Olave",
+     "pos": "WR",
+     "cost": 11,
+     "seasonPts": 23.2,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 2.11
+    }
+   ],
+   "draftGrade": {
+    "rank": 2,
+    "grade": "A",
+    "owner": "Brett A",
+    "team": "Han Solo Elk Berger",
+    "spent": "$194",
+    "value": "$269",
+    "surplus": "+$75",
+    "starters": "1,865 pts",
+    "best": "Brian Thomas Jr. $2",
+    "worst": "Saquon Barkley $51",
+    "ownerKey": "Brett A."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "The Karate Kitna"
+    },
+    {
+     "year": 2012,
+     "name": "Matt Millen's Miracles "
+    },
+    {
+     "year": 2013,
+     "name": "Titus's  Young Sahns"
+    },
+    {
+     "year": 2014,
+     "name": "Bobby Layne and The McClains"
+    },
+    {
+     "year": 2015,
+     "name": "Commitment, Focus, Kitna"
+    },
+    {
+     "year": 2016,
+     "name": "Marvin Jonesin' 4 Swish Snatch"
+    },
+    {
+     "year": 2017,
+     "name": "Coach Caldwells Kitty Cats"
+    },
+    {
+     "year": 2018,
+     "name": "Coach Matty Ps D In Swishs V"
+    },
+    {
+     "year": 2019,
+     "name": "Cooper Cuddles Snoring Stefon"
+    },
+    {
+     "year": 2020,
+     "name": "Direct Swiftness"
+    },
+    {
+     "year": 2021,
+     "name": "Shaughnasty Naturals"
+    },
+    {
+     "year": 2022,
+     "name": "Perkins' Porch Pi$$ing Posse"
+    },
+    {
+     "year": 2023,
+     "name": "Molcajete For The Boys"
+    },
+    {
+     "year": 2024,
+     "name": "Mom Waters For The Boys"
+    },
+    {
+     "year": 2025,
+     "name": "Han Solo Elk Berger"
+    }
+   ],
+   "commentary": "The reigning champ, holder of the Swish, and owner of the league's best draft value at plus $75, opened the defense of his title by getting 17 combined points out of Saquon Barkley and De'Von Achane. That's $97 of running back. \"Low Risk Tacos\" is a bold name for a roster whose two biggest bets no-showed in the same week. Josh Allen's 36 and Chris Olave's 23 kept it respectable, but Kyle Pitts posted a zero at tight end while Travis Kelce sat, and the Lions defense you've been loyal to since the Karate Kitna era did Lions things. The bad news: the hardest remaining schedule in the league and the toughest set of division foes. The good news is the site owner can't fire the algorithm."
+  },
+  {
+   "id": 3,
+   "rank": 10,
+   "previousRank": 10,
+   "movement": 0,
+   "power": 46.9,
+   "components": {
+    "results": 34.6,
+    "projection": 59.5,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Dad Bellies Doin' Salt Smellies",
+   "abbrev": "FRUM",
+   "owner": "David F.",
+   "ownerId": "{E2E0FDE1-8BD3-4678-93FE-1BD95759A591}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/2b810f30-ac9c-11f1-9afc-5feb43d211a1",
+   "division": "Black",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 106.4,
+   "pa": 140.2,
+   "avg": 106.4,
+   "last3": 106.4,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 4,
+    "l": 7
+   },
+   "allPlayPct": 36.4,
+   "expectedWins": 0.4,
+   "luck": -0.4,
+   "espnProjectedRank": 10,
+   "draftDayProjectedRank": 10,
+   "rosStrength": 1618.5,
+   "projTotal": 1724.9,
+   "benchLeftTotal": 13,
+   "lineupEfficiency": 89.1,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 2,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 2
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70.4,
+    "opponents": [
+     "TSMP",
+     "MD23",
+     "Hess",
+     "HHP",
+     "TACO",
+     "HUDS",
+     "DG3",
+     "HHP",
+     "DAH",
+     "DH$ ",
+     "PAPA",
+     "Bake",
+     "MD23"
+    ],
+    "rank": 7
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 70.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 106.4,
+     "proj": 105.4,
+     "opp": 9,
+     "oppPts": 140.2,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 4,
+     "allPlayL": 7,
+     "weekRank": 8
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 106.4,
+    "optimalLineup": 119.4,
+    "benchLeft": 13,
+    "starters": [
+     {
+      "name": "Zay Flowers",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 23.5,
+      "proj": 11.7,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Kenneth Walker III",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 32.6,
+      "proj": 13.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Colston Loveland",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 0,
+      "proj": 9.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jaylen Waddle",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 0.7,
+      "proj": 10,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jason Myers",
+      "pos": "K",
+      "slot": "K",
+      "pts": 7,
+      "proj": 9.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Justin Herbert",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 13.1,
+      "proj": 18.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jadarian Price",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 6.8,
+      "proj": 13.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Steelers D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 19,
+      "proj": 7.2,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "MarShawn Lloyd",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 3.7,
+      "proj": 11.9,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Bhayshul Tuten",
+      "pos": "RB",
+      "pts": 9.3,
+      "proj": 10.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Michael Wilson",
+      "pos": "WR",
+      "pts": 8.1,
+      "proj": 8.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Makai Lemon",
+      "pos": "WR",
+      "pts": 1,
+      "proj": 7.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Quentin Johnston",
+      "pos": "WR",
+      "pts": 2.7,
+      "proj": 8.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Woody Marks",
+      "pos": "RB",
+      "pts": 4.5,
+      "proj": 7.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Chris Rodriguez Jr.",
+      "pos": "RB",
+      "pts": 2.3,
+      "proj": 5.5,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 3,
+     "playerId": 4429615,
+     "player": "Zay Flowers",
+     "pos": "WR",
+     "cost": 21,
+     "seasonPts": 23.5,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.12
+    },
+    {
+     "teamId": 3,
+     "playerId": 4567048,
+     "player": "Kenneth Walker III",
+     "pos": "RB",
+     "cost": 39,
+     "seasonPts": 32.6,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.84
+    }
+   ],
+   "draftGrade": {
+    "rank": 12,
+    "grade": "C-",
+    "owner": "Frum",
+    "team": "NixOut4TheBoys",
+    "spent": "$200",
+    "value": "$192",
+    "surplus": "(+6)",
+    "starters": "1,709 pts",
+    "best": "Michael Wilson $2",
+    "worst": "Zach Charbonnet $12",
+    "ownerKey": "David F."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "The Heemophiliacs"
+    },
+    {
+     "year": 2012,
+     "name": "The Nahhhstia Luikin's"
+    },
+    {
+     "year": 2013,
+     "name": "Anquan's Boldin Showers"
+    },
+    {
+     "year": 2014,
+     "name": "The Papa Perkensteins"
+    },
+    {
+     "year": 2015,
+     "name": "DAMN IT  DAVID!"
+    },
+    {
+     "year": 2016,
+     "name": "Lots of ??? But Tons of Upside!"
+    },
+    {
+     "year": 2017,
+     "name": "Hobbit House Hooligans "
+    },
+    {
+     "year": 2018,
+     "name": "Wilson!?!? WILSON IM SORRY"
+    },
+    {
+     "year": 2019,
+     "name": "Los Padres De  Fleece "
+    },
+    {
+     "year": 2020,
+     "name": "Pontoon Platter And Ploo Patrol"
+    },
+    {
+     "year": 2021,
+     "name": "La Jolla Jolla! Lemme Jollatcha"
+    },
+    {
+     "year": 2022,
+     "name": "Susie Q's  Wiggly Warpigs "
+    },
+    {
+     "year": 2023,
+     "name": "Poopy Wake Up Call On Line Toot"
+    },
+    {
+     "year": 2024,
+     "name": "The Best Butt of the Bunch"
+    },
+    {
+     "year": 2025,
+     "name": "NixOut4TheBoys NixOut4TheBoys"
+    }
+   ],
+   "commentary": "Kenneth Walker went for 33 and Zay Flowers for 24, and the Steelers defense was the best in the league at 19, and Frum still lost by 34 because Colston Loveland scored zero, Jaylen Waddle scored 0.7, and MarShawn Lloyd scored 3.7. Three starters, 4.4 points. The draft model handed this roster a C-minus, the lowest in the league, and Week 1 did nothing to argue with it. The name is a downgrade from \"Poopy Wake Up Call On Line Toot,\" but at least it's honest about the vibe. \"DAMN IT DAVID!\" from 2015 remains the most accurate team name in league history."
+  },
+  {
+   "id": 4,
+   "rank": 11,
+   "previousRank": 5,
+   "movement": -6,
+   "power": 42.8,
+   "components": {
+    "results": 22.1,
+    "projection": 64.3,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "Quintosss... Amigo? ",
+   "abbrev": "HUDS",
+   "owner": "Jeff H.",
+   "ownerId": "{D659BE3A-FA0F-4E8F-A0AC-A8C00842B87F}",
+   "logo": "https://mcusercontent.com/04693d836632a8e708d1e21fd/images/894b02f5-9a35-bfdd-77f8-6472c9fb3f80.png",
+   "division": "Gold",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 92,
+   "pa": 108.9,
+   "avg": 92,
+   "last3": 92,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 1,
+    "l": 10
+   },
+   "allPlayPct": 9.1,
+   "expectedWins": 0.1,
+   "luck": -0.1,
+   "espnProjectedRank": 9,
+   "draftDayProjectedRank": 5,
+   "rosStrength": 1653.6,
+   "projTotal": 1745.6,
+   "benchLeftTotal": 2.5,
+   "lineupEfficiency": 97.4,
+   "transactions": {
+    "acquisitions": 1,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 71.7,
+    "opponents": [
+     "MD23",
+     "DAH",
+     "TACO",
+     "Hess",
+     "Bake",
+     "FRUM",
+     "DH$ ",
+     "Hess",
+     "HHP",
+     "PAPA",
+     "DG3",
+     "TSMP",
+     "DAH"
+    ],
+    "rank": 2
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 69.8
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 92,
+     "proj": 105.7,
+     "opp": 6,
+     "oppPts": 108.9,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 1,
+     "allPlayL": 10,
+     "weekRank": 11
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 92,
+    "optimalLineup": 94.5,
+    "benchLeft": 2.5,
+    "starters": [
+     {
+      "name": "Quinshon Judkins",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 6,
+      "proj": 12.2,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Drake London",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 4.5,
+      "proj": 11,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Breece Hall",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 18.8,
+      "proj": 15,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Rashee Rice",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 8.9,
+      "proj": 11.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tetairoa McMillan",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 8,
+      "proj": 12.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jalen Hurts",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 24.6,
+      "proj": 20.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Harrison Butker",
+      "pos": "K",
+      "slot": "K",
+      "pts": 7,
+      "proj": 8.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ravens D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 8,
+      "proj": 6.6,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Michael Mayer",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 6.2,
+      "proj": 7.3,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Tony Pollard",
+      "pos": "RB",
+      "pts": 3.9,
+      "proj": 10.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Patrick Mahomes",
+      "pos": "QB",
+      "pts": 21.5,
+      "proj": 15.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tyjae Spears",
+      "pos": "RB",
+      "pts": 3.4,
+      "proj": 7.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Khalil Shakir",
+      "pos": "WR",
+      "pts": 7,
+      "proj": 7.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tank Bigsby",
+      "pos": "RB",
+      "pts": 0.3,
+      "proj": 4.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Braelon Allen",
+      "pos": "RB",
+      "pts": 4,
+      "proj": 4.3,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 4,
+     "playerId": 4685702,
+     "player": "Quinshon Judkins",
+     "pos": "RB",
+     "cost": 12,
+     "seasonPts": 6,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.5
+    },
+    {
+     "teamId": 4,
+     "playerId": 4432665,
+     "player": "Brock Bowers",
+     "pos": "TE",
+     "cost": 16,
+     "seasonPts": 0,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0
+    }
+   ],
+   "draftGrade": {
+    "rank": 5,
+    "grade": "B+",
+    "owner": "Jeff",
+    "team": "Brockin' Big Tetas",
+    "spent": "$200",
+    "value": "$222",
+    "surplus": "+$22",
+    "starters": "1,825 pts",
+    "best": "Rashee Rice $26",
+    "worst": "Breece Hall $35",
+    "ownerKey": "Jeff H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "IllSellMySoul ForAWin"
+    },
+    {
+     "year": 2012,
+     "name": "The Bryce is Right"
+    },
+    {
+     "year": 2013,
+     "name": "Fear My BOWEner"
+    },
+    {
+     "year": 2014,
+     "name": "DuJuan2 PhilMyJohnson"
+    },
+    {
+     "year": 2015,
+     "name": "DuJuan Ressurected"
+    },
+    {
+     "year": 2016,
+     "name": "#LiveYour DuJuan"
+    },
+    {
+     "year": 2017,
+     "name": "Jacquizz On  Your Faceadia"
+    },
+    {
+     "year": 2018,
+     "name": "Eat. Pray.  DuJuan. "
+    },
+    {
+     "year": 2019,
+     "name": "DuJuan  LeCock "
+    },
+    {
+     "year": 2020,
+     "name": "Just a lil  DuJuan"
+    },
+    {
+     "year": 2021,
+     "name": "La Venganza  De DuJuan"
+    },
+    {
+     "year": 2022,
+     "name": "DuJuan's  Slow Play "
+    },
+    {
+     "year": 2023,
+     "name": "Crass Serbian Lass"
+    },
+    {
+     "year": 2024,
+     "name": "Stage 6: Popsicles"
+    },
+    {
+     "year": 2025,
+     "name": "Brockin' Big Tetas "
+    }
+   ],
+   "commentary": "The saddest line in this week's data: lineup efficiency 97.4%. Jeff started almost exactly the right guys and scored 92, which means the roster did that on its own. Brock Bowers, a $16 keeper and the namesake of last year's \"Brockin' Big Tetas,\" produced zero. Quinshon Judkins, the other keeper, produced 6. Drake London 4.5. The DuJuan era ran nine seasons and never had a week where 11 of 12 teams outscored it, but that's where \"Quintosss... Amigo?\" sits after one. ESPN still likes the roster more than the results do, and the second-hardest remaining schedule is waiting."
+  },
+  {
+   "id": 10,
+   "rank": 12,
+   "previousRank": 6,
+   "movement": -6,
+   "power": 34.6,
+   "components": {
+    "results": 10.2,
+    "projection": 59.9,
+    "resultsWeight": 0.508,
+    "projectionWeight": 0.49200000000000005
+   },
+   "name": "For Heaven Sakes, Woman",
+   "abbrev": "Hess",
+   "owner": "Jeremy H.",
+   "ownerId": "{AA3B3E58-2EF4-4363-9029-BBCBDA0ECAA0}",
+   "logo": "https://lh3.googleusercontent.com/MLTBgMSP0IaNz4c_Z6NXgLZA3kkaOzPY5KLHjX5EroShBk3gNtgiwZ1nBOT0JY2M9OeXp_wQJPVTB6-AnJgG4_tod7oFaDpBezd_GpDHtENxRZnJsGl2RoGhNjJgzmzJqV_UyFgG-GNz2_a4RYEdGdFMeBjs89uCZh0PIUjmCuOwuc0Cuijus_o-0HMJMpxFqHzMRj9q7Pt5TO6yMlwTIF4sCEx7kTVxXge5bZO7O6ZtDtSIIvTWnGfP0LPxcvnzIvaCycw4jBpParIWwamC_jTpxhxgPH5MwJ0StMwRuXt8OmQPJu4TJm-kenTTdQ0FBNj0QfB_C2KMAKz7eoy4-Acj6NH9wpXRekVeMIV_b-H-rk6z0Wu684ucl1uPRb1jezpPCHle_iyjWuHcjXjzVn2EnshUN1G_GiWMcPfpUM8_HwJBJFQn2Ld76dCT0Yra25MaT6FZPQXmNWln49BfV9IE2IeEAO7bFI_dTTfEqctiBfGaUNe57MansUz1J2wvgIwJGjaIzbK7U3Kl4iALVbsJKrVgtySqM3hABMUuSV6vLbiowQVX0JamBkNN26QphcsNnjSOhc_52WWlRb0MT3TAfuj0dUD-MvB5pMSifmNO2QLyAbLhs1QBxtw34Ejp4tFStBm5FWP-bY1FK0ft_PIMimk0HUONmkOXqypO5OhHJ5NMKek-0h4GJIvsMg=w854-h958-no?.jpg",
+   "division": "Gold",
+   "record": {
+    "wins": 0,
+    "losses": 1,
+    "ties": 0
+   },
+   "pf": 49.5,
+   "pa": 145.7,
+   "avg": 49.5,
+   "last3": 49.5,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 0,
+    "l": 11
+   },
+   "allPlayPct": 0,
+   "expectedWins": 0,
+   "luck": 0,
+   "espnProjectedRank": 11,
+   "draftDayProjectedRank": 6,
+   "rosStrength": 1742.8,
+   "projTotal": 1792.3,
+   "benchLeftTotal": 26.3,
+   "lineupEfficiency": 65.3,
+   "transactions": {
+    "acquisitions": 1,
+    "drops": 3,
+    "trades": 0,
+    "lineupMoves": 2,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 70.5,
+    "opponents": [
+     "DG3",
+     "PAPA",
+     "FRUM",
+     "HUDS",
+     "MD23",
+     "TSMP",
+     "TACO",
+     "HUDS",
+     "Bake",
+     "DAH",
+     "HHP",
+     "DH$ ",
+     "PAPA"
+    ],
+    "rank": 6
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 66.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 49.5,
+     "proj": 105.3,
+     "opp": 13,
+     "oppPts": 145.7,
+     "won": false,
+     "tied": false,
+     "final": false,
+     "allPlayW": 0,
+     "allPlayL": 11,
+     "weekRank": 12
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 49.5,
+    "optimalLineup": 75.8,
+    "benchLeft": 26.3,
+    "starters": [
+     {
+      "name": "Puka Nacua",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 9.9,
+      "proj": 17.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Christian McCaffrey",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 11.3,
+      "proj": 16.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Rams D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 1,
+      "proj": 6.2,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Davante Adams",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 4.1,
+      "proj": 11.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Cameron Dicker",
+      "pos": "K",
+      "slot": "K",
+      "pts": 2,
+      "proj": 10.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Matthew Stafford",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 4.1,
+      "proj": 17.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jonathon Brooks",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 6.7,
+      "proj": 9.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Mark Andrews",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 6.9,
+      "proj": 8.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jayden Reed",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 3.5,
+      "proj": 8.1,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "TreVeyon Henderson",
+      "pos": "RB",
+      "pts": 0,
+      "proj": 0,
+      "injury": "OUT"
+     },
+     {
+      "name": "Travis Hunter",
+      "pos": "WR",
+      "pts": 1.6,
+      "proj": 0,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Dylan Sampson",
+      "pos": "RB",
+      "pts": 0,
+      "proj": 4.1,
+      "injury": "OUT"
+     },
+     {
+      "name": "Jalen Coker",
+      "pos": "WR",
+      "pts": 29.8,
+      "proj": 7.4,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Jordan James",
+      "pos": "RB",
+      "pts": 0,
+      "proj": 0,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tre Tucker",
+      "pos": "WR",
+      "pts": 3.7,
+      "proj": 8.4,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [],
+   "draftGrade": {
+    "rank": 8,
+    "grade": "B-",
+    "owner": "Hess",
+    "team": "Dr. Hannah Milligan",
+    "spent": "$200",
+    "value": "$191",
+    "surplus": "(+5)",
+    "starters": "1,772 pts",
+    "best": "Jayden Reed $1",
+    "worst": "Matthew Stafford $9",
+    "ownerKey": "Jeremy H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "Lick My Hessties"
+    },
+    {
+     "year": 2012,
+     "name": "This Hescalated Quickly"
+    },
+    {
+     "year": 2013,
+     "name": "Natural Born Spiller?"
+    },
+    {
+     "year": 2014,
+     "name": "Bang Foy's Fam"
+    },
+    {
+     "year": 2015,
+     "name": "Still Busy?"
+    },
+    {
+     "year": 2016,
+     "name": "My Super Sweet Christeen"
+    },
+    {
+     "year": 2017,
+     "name": "One game Winning ztreke"
+    },
+    {
+     "year": 2018,
+     "name": "Jay-Zeke (Ft. Drake)"
+    },
+    {
+     "year": 2019,
+     "name": "Blue Belliot Guice Cream"
+    },
+    {
+     "year": 2020,
+     "name": "Best Available"
+    },
+    {
+     "year": 2021,
+     "name": "Himalayan Pink Shenault"
+    },
+    {
+     "year": 2022,
+     "name": "A Kia full of Elk"
+    },
+    {
+     "year": 2023,
+     "name": "Pittman's Shrimp and Pitts"
+    },
+    {
+     "year": 2024,
+     "name": "MOM Squad"
+    },
+    {
+     "year": 2025,
+     "name": "Dr. Hannah Milligan"
+    }
+   ],
+   "commentary": "Forty-nine and a half points. Zero all-play wins. Lineup efficiency of 65%, the worst in the league. Jalen Coker scored 30 on the bench while Jayden Reed scored 3.5 in the flex, the bench bomb of the week and a swing that still wouldn't have gotten him to 80. Matthew Stafford, flagged as the worst pick in the draft at $9, scored 4.1 to prove the model right. Cameron Dicker scored 2. The Rams defense scored 1. Hess was the only manager to keep nobody and walk into the auction with a full $200, and the name went from \"Dr. Hannah Milligan\" to \"For Heaven Sakes, Woman,\" which is now the entire league's reaction. Two roster spots are holding players who are OUT. It can only go up from here, mathematically."
+  }
+ ],
+ "receipts": {
+  "benchBombs": [
+   {
+    "week": 1,
+    "teamId": 1,
+    "benched": "Travis Kelce",
+    "benchedPos": "TE",
+    "benchedPts": 8.6,
+    "started": "Kyle Pitts Sr.",
+    "startedPos": "TE",
+    "startedPts": 0,
+    "swing": 8.6,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 1,
+    "benched": "Michael Pittman Jr.",
+    "benchedPos": "WR",
+    "benchedPts": 7.3,
+    "started": "DeVonta Smith",
+    "startedPos": "WR",
+    "startedPts": 6.8,
+    "swing": 0.5,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 1,
+    "benched": "Aaron Jones Sr.",
+    "benchedPos": "RB",
+    "benchedPts": 10,
+    "started": "Jaylen Warren",
+    "startedPos": "RB",
+    "startedPts": 7.8,
+    "swing": 2.2,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 2,
+    "benched": "Mike Evans",
+    "benchedPos": "WR",
+    "benchedPts": 13.9,
+    "started": "Tee Higgins",
+    "startedPos": "WR",
+    "startedPts": 7.4,
+    "swing": 6.5,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "benched": "Bhayshul Tuten",
+    "benchedPos": "RB",
+    "benchedPts": 9.3,
+    "started": "MarShawn Lloyd",
+    "startedPos": "RB",
+    "startedPts": 3.7,
+    "swing": 5.6,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "benched": "Michael Wilson",
+    "benchedPos": "WR",
+    "benchedPts": 8.1,
+    "started": "Jaylen Waddle",
+    "startedPos": "WR",
+    "startedPts": 0.7,
+    "swing": 7.4,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "benched": "Makai Lemon",
+    "benchedPos": "WR",
+    "benchedPts": 1,
+    "started": "Jaylen Waddle",
+    "startedPos": "WR",
+    "startedPts": 0.7,
+    "swing": 0.3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "benched": "Quentin Johnston",
+    "benchedPos": "WR",
+    "benchedPts": 2.7,
+    "started": "Jaylen Waddle",
+    "startedPos": "WR",
+    "startedPts": 0.7,
+    "swing": 2,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "benched": "Woody Marks",
+    "benchedPos": "RB",
+    "benchedPts": 4.5,
+    "started": "MarShawn Lloyd",
+    "startedPos": "RB",
+    "startedPts": 3.7,
+    "swing": 0.8,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 4,
+    "benched": "Khalil Shakir",
+    "benchedPos": "WR",
+    "benchedPts": 7,
+    "started": "Drake London",
+    "startedPos": "WR",
+    "startedPts": 4.5,
+    "swing": 2.5,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "benched": "Wan'Dale Robinson",
+    "benchedPos": "WR",
+    "benchedPts": 6.3,
+    "started": "DK Metcalf",
+    "startedPos": "WR",
+    "startedPts": 6,
+    "swing": 0.3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "benched": "Jacory Croskey-Merritt",
+    "benchedPos": "RB",
+    "benchedPts": 12.1,
+    "started": "DK Metcalf",
+    "startedPos": "WR",
+    "startedPts": 6,
+    "swing": 6.1,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "benched": "Malik Willis",
+    "benchedPos": "QB",
+    "benchedPts": 16.7,
+    "started": "Jared Goff",
+    "startedPos": "QB",
+    "startedPts": 16.4,
+    "swing": 0.3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 6,
+    "benched": "Stefon Diggs",
+    "benchedPos": "WR",
+    "benchedPts": 13.5,
+    "started": "Garrett Wilson",
+    "startedPos": "WR",
+    "startedPts": 10.9,
+    "swing": 2.6,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "benched": "Alec Pierce",
+    "benchedPos": "WR",
+    "benchedPts": 8.1,
+    "started": "A.J. Brown",
+    "startedPos": "WR",
+    "startedPts": 4.1,
+    "swing": 4,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "benched": "Josh Downs",
+    "benchedPos": "WR",
+    "benchedPts": 4.7,
+    "started": "A.J. Brown",
+    "startedPos": "WR",
+    "startedPts": 4.1,
+    "swing": 0.6,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "benched": "Deebo Samuel Sr.",
+    "benchedPos": "WR",
+    "benchedPts": 15,
+    "started": "A.J. Brown",
+    "startedPos": "WR",
+    "startedPts": 4.1,
+    "swing": 10.9,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 10,
+    "benched": "Jalen Coker",
+    "benchedPos": "WR",
+    "benchedPts": 29.8,
+    "started": "Jayden Reed",
+    "startedPos": "WR",
+    "startedPts": 3.5,
+    "swing": 26.3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 10,
+    "benched": "Tre Tucker",
+    "benchedPos": "WR",
+    "benchedPts": 3.7,
+    "started": "Jayden Reed",
+    "startedPos": "WR",
+    "startedPts": 3.5,
+    "swing": 0.2,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 11,
+    "benched": "Dalton Kincaid",
+    "benchedPos": "TE",
+    "benchedPts": 15.5,
+    "started": "Tucker Kraft",
+    "startedPos": "TE",
+    "startedPts": 8,
+    "swing": 7.5,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 11,
+    "benched": "Jordan Love",
+    "benchedPos": "QB",
+    "benchedPts": 19.4,
+    "started": "Joe Burrow",
+    "startedPos": "QB",
+    "startedPts": 14,
+    "swing": 5.4,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "benched": "Terry McLaurin",
+    "benchedPos": "WR",
+    "benchedPts": 2.4,
+    "started": "Ja'Marr Chase",
+    "startedPos": "WR",
+    "startedPts": 2.2,
+    "swing": 0.2,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "benched": "Juwan Johnson",
+    "benchedPos": "TE",
+    "benchedPts": 12.9,
+    "started": "Jake Ferguson",
+    "startedPos": "TE",
+    "startedPts": 1.6,
+    "swing": 11.3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "benched": "Jalen Nailor",
+    "benchedPos": "WR",
+    "benchedPts": 4.2,
+    "started": "Ja'Marr Chase",
+    "startedPos": "WR",
+    "startedPts": 2.2,
+    "swing": 2,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "benched": "Buccaneers D/ST",
+    "benchedPos": "D/ST",
+    "benchedPts": 8,
+    "started": "Vikings D/ST",
+    "startedPos": "D/ST",
+    "startedPts": 5,
+    "swing": 3,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "benched": "Chiefs D/ST",
+    "benchedPos": "D/ST",
+    "benchedPts": 13,
+    "started": "Vikings D/ST",
+    "startedPos": "D/ST",
+    "startedPts": 5,
+    "swing": 8,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "benched": "Chuba Hubbard",
+    "benchedPos": "RB",
+    "benchedPts": 22.2,
+    "started": "Rico Dowdle",
+    "startedPos": "RB",
+    "startedPts": 3.1,
+    "swing": 19.1,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "benched": "Hunter Henry",
+    "benchedPos": "TE",
+    "benchedPts": 4.1,
+    "started": "Harold Fannin Jr.",
+    "startedPos": "TE",
+    "startedPts": 3.1,
+    "swing": 1,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "benched": "Jakobi Meyers",
+    "benchedPos": "WR",
+    "benchedPts": 11.2,
+    "started": "Marvin Harrison Jr.",
+    "startedPos": "WR",
+    "startedPts": 3.8,
+    "swing": 7.4,
+    "flippedMatchup": false
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "benched": "Dallas Goedert",
+    "benchedPos": "TE",
+    "benchedPts": 21.7,
+    "started": "Harold Fannin Jr.",
+    "startedPos": "TE",
+    "startedPts": 3.1,
+    "swing": 18.6,
+    "flippedMatchup": false
+   }
+  ],
+  "questionableStarts": [],
+  "injuredStarters": [],
+  "defenses": [
+   {
+    "week": 1,
+    "teamId": 1,
+    "defense": "Lions D/ST",
+    "proj": 7.3,
+    "pts": 5,
+    "projRank": 3,
+    "of": 12,
+    "ptsRank": 6
+   },
+   {
+    "week": 1,
+    "teamId": 2,
+    "defense": "Patriots D/ST",
+    "proj": 4.7,
+    "pts": 7,
+    "projRank": 11,
+    "of": 12,
+    "ptsRank": 5
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "defense": "Steelers D/ST",
+    "proj": 7.2,
+    "pts": 19,
+    "projRank": 4,
+    "of": 12,
+    "ptsRank": 1
+   },
+   {
+    "week": 1,
+    "teamId": 4,
+    "defense": "Ravens D/ST",
+    "proj": 6.6,
+    "pts": 8,
+    "projRank": 6,
+    "of": 12,
+    "ptsRank": 4
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "defense": "Eagles D/ST",
+    "proj": 6.1,
+    "pts": 5,
+    "projRank": 8,
+    "of": 12,
+    "ptsRank": 7
+   },
+   {
+    "week": 1,
+    "teamId": 6,
+    "defense": "Chargers D/ST",
+    "proj": 7.4,
+    "pts": 0,
+    "projRank": 2,
+    "of": 12,
+    "ptsRank": 11
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "defense": "Jaguars D/ST",
+    "proj": 8.2,
+    "pts": 14,
+    "projRank": 1,
+    "of": 12,
+    "ptsRank": 2
+   },
+   {
+    "week": 1,
+    "teamId": 10,
+    "defense": "Rams D/ST",
+    "proj": 6.2,
+    "pts": 1,
+    "projRank": 7,
+    "of": 12,
+    "ptsRank": 10
+   },
+   {
+    "week": 1,
+    "teamId": 11,
+    "defense": "Broncos D/ST",
+    "proj": 5.9,
+    "pts": 2,
+    "projRank": 9,
+    "of": 12,
+    "ptsRank": 9
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "defense": "Texans D/ST",
+    "proj": 5.3,
+    "pts": -4,
+    "projRank": 10,
+    "of": 12,
+    "ptsRank": 12
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "defense": "Vikings D/ST",
+    "proj": 4.4,
+    "pts": 5,
+    "projRank": 12,
+    "of": 12,
+    "ptsRank": 8
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "defense": "Seahawks D/ST",
+    "proj": 7.2,
+    "pts": 14,
+    "projRank": 5,
+    "of": 12,
+    "ptsRank": 3
+   }
+  ],
+  "busts": [
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "Colston Loveland",
+    "pos": "TE",
+    "proj": 9.7,
+    "pts": 0,
+    "delta": -9.7
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "Jaylen Waddle",
+    "pos": "WR",
+    "proj": 10,
+    "pts": 0.7,
+    "delta": -9.3
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "MarShawn Lloyd",
+    "pos": "RB",
+    "proj": 11.9,
+    "pts": 3.7,
+    "delta": -8.2
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "player": "Harrison Mevis",
+    "pos": "K",
+    "proj": 9.5,
+    "pts": 1,
+    "delta": -8.5
+   },
+   {
+    "week": 1,
+    "teamId": 6,
+    "player": "Bo Nix",
+    "pos": "QB",
+    "proj": 16.1,
+    "pts": 5.4,
+    "delta": -10.7
+   },
+   {
+    "week": 1,
+    "teamId": 10,
+    "player": "Cameron Dicker",
+    "pos": "K",
+    "proj": 10.4,
+    "pts": 2,
+    "delta": -8.4
+   },
+   {
+    "week": 1,
+    "teamId": 10,
+    "player": "Matthew Stafford",
+    "pos": "QB",
+    "proj": 17.3,
+    "pts": 4.1,
+    "delta": -13.2
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "player": "Ja'Marr Chase",
+    "pos": "WR",
+    "proj": 16.4,
+    "pts": 2.2,
+    "delta": -14.2
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "player": "Brandon Aubrey",
+    "pos": "K",
+    "proj": 10.1,
+    "pts": 2,
+    "delta": -8.1
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "player": "Rico Dowdle",
+    "pos": "RB",
+    "proj": 11.6,
+    "pts": 3.1,
+    "delta": -8.5
+   }
+  ],
+  "booms": [
+   {
+    "week": 1,
+    "teamId": 1,
+    "player": "Chris Olave",
+    "pos": "WR",
+    "proj": 12,
+    "pts": 23.2,
+    "delta": 11.2
+   },
+   {
+    "week": 1,
+    "teamId": 1,
+    "player": "Josh Allen",
+    "pos": "QB",
+    "proj": 19.2,
+    "pts": 35.5,
+    "delta": 16.3
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "Zay Flowers",
+    "pos": "WR",
+    "proj": 11.7,
+    "pts": 23.5,
+    "delta": 11.8
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "Kenneth Walker III",
+    "pos": "RB",
+    "proj": 13.3,
+    "pts": 32.6,
+    "delta": 19.3
+   },
+   {
+    "week": 1,
+    "teamId": 3,
+    "player": "Steelers D/ST",
+    "pos": "D/ST",
+    "proj": 7.2,
+    "pts": 19,
+    "delta": 11.8
+   },
+   {
+    "week": 1,
+    "teamId": 5,
+    "player": "David Montgomery",
+    "pos": "RB",
+    "proj": 11.7,
+    "pts": 27.4,
+    "delta": 15.7
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "player": "D'Andre Swift",
+    "pos": "RB",
+    "proj": 11.4,
+    "pts": 31.9,
+    "delta": 20.5
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "player": "Christian Watson",
+    "pos": "WR",
+    "proj": 9.3,
+    "pts": 29.7,
+    "delta": 20.4
+   },
+   {
+    "week": 1,
+    "teamId": 9,
+    "player": "Caleb Williams",
+    "pos": "QB",
+    "proj": 16.4,
+    "pts": 37.1,
+    "delta": 20.7
+   },
+   {
+    "week": 1,
+    "teamId": 11,
+    "player": "Ashton Jeanty",
+    "pos": "RB",
+    "proj": 16.2,
+    "pts": 29.7,
+    "delta": 13.5
+   },
+   {
+    "week": 1,
+    "teamId": 12,
+    "player": "Derrick Henry",
+    "pos": "RB",
+    "proj": 15.7,
+    "pts": 34.8,
+    "delta": 19.1
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "player": "Bijan Robinson",
+    "pos": "RB",
+    "proj": 16.8,
+    "pts": 27.3,
+    "delta": 10.5
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "player": "Isaiah Likely",
+    "pos": "TE",
+    "proj": 7.6,
+    "pts": 23.8,
+    "delta": 16.2
+   },
+   {
+    "week": 1,
+    "teamId": 13,
+    "player": "Evan McPherson",
+    "pos": "K",
+    "proj": 8.6,
+    "pts": 19,
+    "delta": 10.4
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "player": "Jahmyr Gibbs",
+    "pos": "RB",
+    "proj": 20.5,
+    "pts": 31.1,
+    "delta": 10.6
+   },
+   {
+    "week": 1,
+    "teamId": 14,
+    "player": "Justin Jefferson",
+    "pos": "WR",
+    "proj": 13.8,
+    "pts": 27.2,
+    "delta": 13.4
+   }
+  ],
+  "luck": []
+ },
+ "awards": {
+  "highScore": {
+   "teamId": 13,
+   "pts": 145.7
+  },
+  "lowScore": {
+   "teamId": 10,
+   "pts": 49.5
+  },
+  "benchBomb": {
+   "week": 1,
+   "teamId": 10,
+   "benched": "Jalen Coker",
+   "benchedPos": "WR",
+   "benchedPts": 29.8,
+   "started": "Jayden Reed",
+   "startedPos": "WR",
+   "startedPts": 3.5,
+   "swing": 26.3,
+   "flippedMatchup": false
+  },
+  "questionableStart": null,
+  "worstDefense": {
+   "week": 1,
+   "teamId": 12,
+   "defense": "Texans D/ST",
+   "proj": 5.3,
+   "pts": -4,
+   "projRank": 10,
+   "of": 12,
+   "ptsRank": 12
+  },
+  "bestDefense": {
+   "week": 1,
+   "teamId": 3,
+   "defense": "Steelers D/ST",
+   "proj": 7.2,
+   "pts": 19,
+   "projRank": 4,
+   "of": 12,
+   "ptsRank": 1
+  },
+  "boom": {
+   "week": 1,
+   "teamId": 9,
+   "player": "Caleb Williams",
+   "pos": "QB",
+   "proj": 16.4,
+   "pts": 37.1,
+   "delta": 20.7
+  },
+  "bust": {
+   "week": 1,
+   "teamId": 12,
+   "player": "Ja'Marr Chase",
+   "pos": "WR",
+   "proj": 16.4,
+   "pts": 2.2,
+   "delta": -14.2
+  },
+  "luckiestWin": {
+   "teamId": 6,
+   "pts": 108.9,
+   "oppPts": 92,
+   "weekRank": 7
+  },
+  "toughestLoss": {
+   "teamId": 11,
+   "pts": 119.7,
+   "oppPts": 130.2,
+   "weekRank": 6
+  },
+  "blowout": {
+   "teamId": 13,
+   "margin": 96.2,
+   "opp": 10
+  },
+  "closest": {
+   "teamId": 5,
+   "margin": 10.5,
+   "opp": 11
+  }
+ },
+ "commentary": {
+  "author": "Claude",
+  "intro": "Week 1 of the Fadunkadunk season is in the books, and the draft model has some explaining to do. The two rosters it graded highest, Mike D.'s A-plus Cartel and Brett A.'s A-grade Tacos, both lost. Two of the three it liked least, Sam's C and Hearn's C-plus, put up 145.7 and 140.2, the top two scores in the league. One week is one week, and the formula still leans about half on projections this early, which is why the Cartel and the Tacos are eighth and ninth rather than eleventh and twelfth. But the all-play column doesn't lie: Sam beat every team in the league this week, Hess beat none of them, and Jordan won with the seventh-best score. Below, the receipts.",
+  "awards": {
+   "highScore": "Christopher Dootron, 145.7. ESPN had this roster ranked last in the preseason.",
+   "lowScore": "For Heaven Sakes, Woman, 49.5. Fewer points than Sam's running backs and tight end combined.",
+   "benchBomb": "Hess benched Jalen Coker (29.8) for Jayden Reed (3.5). A 26-point swing in a game he lost by 96.",
+   "worstDefense": "Mike D. started the Texans, who finished at negative four. A bye week would have scored higher.",
+   "bestDefense": "Frum's Steelers put up 19, the best defensive score of the week, in a game he lost by 34.",
+   "boom": "Caleb Williams: projected 16.4, scored 37.1 for Hearn. The single biggest overperformance of the week.",
+   "bust": "Ja'Marr Chase: projected 16.4, scored 2.2 for Mike D. The preseason favorite's WR1 was outscored by his own kicker's projection.",
+   "luckiestWin": "Jordan won with 108.9, the seventh-best score of the week. Six teams would have beaten him. He drew the one that didn't.",
+   "toughestLoss": "Danny scored 119.7, sixth-best in the league, and lost by 10.5. The Golumpkis remain unlucky.",
+   "blowout": "Sam over Hess by 96.2. Not quite the biggest beatdown in league history, but it happened in Week 1.",
+   "closest": "Brett F. over Danny by 10.5. The closest game of the week was still a two-score game."
+  },
+  "outro": "Things to watch in Week 2: whether Baker starts Chuba Hubbard, whether Mike D. finds a defense that scores positive points, and whether Sam's Dootron magic survives a roster the model still doesn't trust. Keeper Corner opens in a few weeks once the sample is real, but the early read is that the $10 keepers (Dart, Washington, Etienne, Javonte) are doing the heavy lifting and the $70-plus running backs are earning their money one week at a time. Rankings and commentary refresh every Tuesday morning once ESPN finalizes the week."
+ },
+ "previousBuild": {
+  "generatedAt": "2026-09-15T03:46:44.314Z",
+  "finalized": false,
+  "order": [
+   13,
+   6,
+   14,
+   5,
+   2,
+   9,
+   11,
+   12,
+   1,
+   3,
+   4,
+   10
+  ]
+ }
+}
