@@ -132,10 +132,12 @@ class PowerRankings {
             ['blowout', 'Blowout', A.blowout && `${name(A.blowout.teamId)} · by ${A.blowout.margin}`],
             ['closest', 'Nail-Biter', A.closest && `${name(A.closest.teamId)} · by ${A.closest.margin}`]
         ].filter(x => x[2]);
-        const awards = awardDefs.length ? `
+        const featured = Array.isArray(c.featured) && c.featured.length ? c.featured : null;
+        const shown = featured ? featured.map(k => awardDefs.find(a => a[0] === k)).filter(Boolean) : awardDefs;
+        const awards = shown.length ? `
             <h3 class="pr-h3">Week ${d.week} Receipts</h3>
             <div class="pr-awards">
-                ${awardDefs.map(([key, label, line]) => `
+                ${shown.map(([key, label, line]) => `
                 <div class="pr-award">
                     <div class="pr-award-label">${label}</div>
                     <div class="pr-award-line">${line}</div>

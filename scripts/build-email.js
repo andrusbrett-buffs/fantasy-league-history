@@ -39,6 +39,22 @@ const awardRows = [
     ['Blowout', A.blowout && `${nm(A.blowout.teamId)} by ${A.blowout.margin}`, c.awards?.blowout],
     ['Nail-Biter', A.closest && `${nm(A.closest.teamId)} by ${A.closest.margin}`, c.awards?.closest]
 ].filter(r => r[1]);
+const AWARD_KEYS = ['highScore', 'lowScore', 'benchBomb', 'questionableStart', 'worstDefense', 'bestDefense', 'boom', 'bust', 'luckiestWin', 'toughestLoss', 'blowout', 'closest'];
+const allRows = [
+    ['High Score', A.highScore && `${nm(A.highScore.teamId)}, ${A.highScore.pts}`, c.awards?.highScore],
+    ['Low Score', A.lowScore && `${nm(A.lowScore.teamId)}, ${A.lowScore.pts}`, c.awards?.lowScore],
+    ['Bench Bomb', A.benchBomb && `${nm(A.benchBomb.teamId)}: ${A.benchBomb.benched} ${A.benchBomb.benchedPts} sat behind ${A.benchBomb.started} ${A.benchBomb.startedPts}`, c.awards?.benchBomb],
+    ['Questionable Start', A.questionableStart && `${nm(A.questionableStart.teamId)}: ${A.questionableStart.started} over ${A.questionableStart.benched}`, c.awards?.questionableStart],
+    ['Ill-Advised Defense', A.worstDefense && `${nm(A.worstDefense.teamId)}: ${A.worstDefense.defense} ${A.worstDefense.pts}`, c.awards?.worstDefense],
+    ['Defense of the Week', A.bestDefense && `${nm(A.bestDefense.teamId)}: ${A.bestDefense.defense} ${A.bestDefense.pts}`, c.awards?.bestDefense],
+    ['Boom', A.boom && `${nm(A.boom.teamId)}: ${A.boom.player} ${A.boom.pts} (proj ${A.boom.proj})`, c.awards?.boom],
+    ['Bust', A.bust && `${nm(A.bust.teamId)}: ${A.bust.player} ${A.bust.pts} (proj ${A.bust.proj})`, c.awards?.bust],
+    ['Luckiest Win', A.luckiestWin && `${nm(A.luckiestWin.teamId)}, won with the #${A.luckiestWin.weekRank} score`, c.awards?.luckiestWin],
+    ['Toughest Loss', A.toughestLoss && `${nm(A.toughestLoss.teamId)}, lost with the #${A.toughestLoss.weekRank} score`, c.awards?.toughestLoss],
+    ['Blowout', A.blowout && `${nm(A.blowout.teamId)} by ${A.blowout.margin}`, c.awards?.blowout],
+    ['Nail-Biter', A.closest && `${nm(A.closest.teamId)} by ${A.closest.margin}`, c.awards?.closest]
+];
+const featuredRows = Array.isArray(c.featured) && c.featured.length ? c.featured.map(k => allRows[AWARD_KEYS.indexOf(k)]).filter(r => r && r[1]) : awardRows;
 
 const subject = `Fadunkadunk Power Rankings: Week ${WEEK}`;
 const html = `
@@ -61,8 +77,8 @@ const html = `
       <td style="padding:8px;text-align:right;font-weight:700">${t.power.toFixed(1)}</td></tr>`).join('')}
   </table>
 
-  ${awardRows.length ? `<h2 style="font-size:18px;margin:0 0 10px">Week ${WEEK} Receipts</h2>
-  ${awardRows.map(([label, line, blurb]) => `<div style="margin:0 0 12px"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08d1f">${label}</div><div style="font-weight:600">${esc(line)}</div>${blurb ? `<div style="color:#555;font-size:13px">${esc(blurb)}</div>` : ''}</div>`).join('')}` : ''}
+  ${featuredRows.length ? `<h2 style="font-size:18px;margin:0 0 10px">Week ${WEEK} Receipts</h2>
+  ${featuredRows.map(([label, line, blurb]) => `<div style="margin:0 0 12px"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08d1f">${label}</div><div style="font-weight:600">${esc(line)}</div>${blurb ? `<div style="color:#555;font-size:13px">${esc(blurb)}</div>` : ''}</div>`).join('')}` : ''}
 
   <h2 style="font-size:18px;margin:28px 0 10px">Team by Team</h2>
   ${d.teams.map(t => `<div style="margin:0 0 20px;padding:0 0 16px;border-bottom:1px solid #eee">
@@ -78,7 +94,7 @@ const text = [
     `FADUNKADUNK POWER RANKINGS — WEEK ${WEEK}`, '',
     c.intro || '', '',
     ...d.teams.map(t => `${String(t.rank).padStart(2)}. ${t.name} (${t.owner}) ${mvText(t)}  ${t.record.wins}-${t.record.losses}  avg ${t.avg.toFixed(1)}  all-play ${t.allPlay.w}-${t.allPlay.l}  power ${t.power.toFixed(1)}`), '',
-    `WEEK ${WEEK} RECEIPTS`, ...awardRows.map(([l, line, b]) => `- ${l}: ${line}${b ? ' — ' + b : ''}`), '',
+    `WEEK ${WEEK} RECEIPTS`, ...featuredRows.map(([l, line, b]) => `- ${l}: ${line}${b ? ' — ' + b : ''}`), '',
     'TEAM BY TEAM', ...d.teams.flatMap(t => [`${t.rank}. ${t.name} (${t.owner})`, t.commentary || '', '']),
     c.outro || '', '', `Full site: ${SITE}`
 ].join('\n');
