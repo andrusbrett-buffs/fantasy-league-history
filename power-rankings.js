@@ -157,11 +157,17 @@ class PowerRankings {
             teams.sort((a, b) => hasProj
                 ? (a.projectedRank || 99) - (b.projectedRank || 99)
                 : a.seed - b.seed);
-            this.subtitle.textContent = hasProj
-                ? 'Preseason projections from ESPN. Real rankings kick in after Week 1.'
-                : 'No games yet. Real rankings kick in after Week 1.';
-            this.content.innerHTML = toolbar('Preseason') + `
-                <div class="cs-notice">No games have been played, so this is ESPN's preseason projection. Once Week 1 is in the books, these become Fadunkadunk's own power rankings.</div>
+            const week = status.currentMatchupPeriod || 1;
+            const inProgress = currentSeason.weekInProgress(raw, week);
+            this.subtitle.textContent = inProgress
+                ? `Week ${week} is underway. The first real rankings drop once ESPN finalizes the week.`
+                : hasProj
+                    ? 'Preseason projections from ESPN. Real rankings kick in after Week 1.'
+                    : 'No games yet. Real rankings kick in after Week 1.';
+            this.content.innerHTML = toolbar(inProgress ? `Week ${week} in progress` : 'Preseason') + `
+                <div class="cs-notice">${inProgress
+                    ? `Week ${week} is still being played, so these are ESPN's preseason projections for now. Fadunkadunk's own rankings take over once the week is final.`
+                    : `No games have been played, so this is ESPN's preseason projection. Once Week 1 is in the books, these become Fadunkadunk's own power rankings.`}</div>
                 <div class="pr-list">
                     ${teams.map((t, i) => `
                     <div class="pr-row ${i === 0 ? 'pr-top' : ''}">

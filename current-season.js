@@ -125,6 +125,50 @@ class CurrentSeason {
         );
     }
 
+
+    /** Matchups for a given week with the best available score (live during the week, final after) */
+    weekMatchups(raw, week) {
+        const teams = new Map(this.buildTeams(raw).map(t => [t.id, t]));
+        return (raw.schedule || [])
+            .filter(m => m.matchupPeriodId === week && m.home && m.away && m.home.teamId && m.away.teamId)
+            .map(m => {
+                const score = (side) => {
+                    if (m.winner && m.winner !== 'UNDECIDED') return side.totalPoints || 0;
+                    if (typeof side.totalPointsLive === 'number') return side.totalPointsLive;
+                    return side.totalPoints || 0;
+                };
+                return {
+                    home: teams.get(m.home.teamId), away: teams.get(m.away.teamId),
+                    homeScore: score(m.home), awayScore: score(m.away),
+                    final: !!(m.winner && m.winner !== 'UNDECIDED'),
+                    playoff: (m.playoffTierType || 'NONE') !== 'NONE'
+                };
+            })
+            .filter(m => m.home && m.away);
+    }
+
+    /** True while the given week has points on the board but ESPN hasn't finalized it */
+    weekInProgress(raw, week) {
+        return this.weekMatchups(raw, week).some(m => !m.final && (m.homeScore > 0 || m.awayScore > 0));
+    }
+
+    matchupCard(m) {
+        const side = (t, pts, leading) => `
+            <div class="cs-mu-side ${leading ? 'leading' : ''}">
+                ${this.teamCell(t)}
+                <div class="cs-mu-score">${pts.toFixed(1)}</div>
+            </div>`;
+        const started = m.homeScore > 0 || m.awayScore > 0;
+        const status = m.final ? 'Final' : started ? 'Live' : 'Upcoming';
+        return `
+            <div class="cs-matchup ${m.final ? 'final' : started ? 'live' : ''}">
+                <div class="cs-mu-status">${status}</div>
+                ${side(m.home, m.homeScore, started && m.homeScore > m.awayScore)}
+                <div class="cs-mu-vs">vs</div>
+                ${side(m.away, m.awayScore, started && m.awayScore > m.homeScore)}
+            </div>`;
+    }
+
     render(raw, year) {
         const teams = this.buildTeams(raw);
         const settings = raw.settings || {};
@@ -154,9 +198,19 @@ class CurrentSeason {
                 <button id="cs-refresh" class="btn btn-secondary cs-refresh">Refresh</button>
             </div>`;
 
-        const notice = preseason
-            ? `<div class="cs-notice">The season hasn't kicked off yet. Records and points will start filling in after Week 1 wraps up.</div>`
-            : '';
+        const matchups = this.weekMatchups(raw, week);
+        const inProgress = this.weekInProgress(raw, week);
+        const notice = preseason && inProgress
+            ? `<div class="cs-notice">Week ${week} is underway. Records and standings lock in once ESPN finalizes the week, usually Tuesday morning. Live scores are below.</div>`
+            : preseason
+                ? `<div class="cs-notice">The season hasn't kicked off yet. Records and points will start filling in after Week 1 wraps up.</div>`
+                : '';
+
+        const matchupBlock = matchups.length ? `
+            <div class="card cs-matchups-card">
+                <div class="card-header"><h3><span class="card-icon"><svg class="icon icon-amber"><use href="#icon-swords"/></svg></span> Week ${week} Matchups${inProgress ? ' <span class="cs-hint cs-live-dot">● live scoring</span>' : ''}</h3></div>
+                <div class="cs-matchups">${matchups.map(m => this.matchupCard(m)).join('')}</div>
+            </div>` : '';
 
         const divisionCards = divisions.length ? `
             <div class="cs-divisions">
@@ -209,7 +263,7 @@ class CurrentSeason {
                 </div>
             </div>`;
 
-        this.content.innerHTML = toolbar + notice + divisionCards + overall;
+        this.content.innerHTML = toolbar + notice + matchupBlock + divisionCards + overall;
     }
 
     teamCell(t) {
