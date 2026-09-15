@@ -3,337 +3,26 @@
  "week": 1,
  "totalWeeks": 14,
  "playoffSpots": 7,
- "generatedAt": "2026-09-15T03:52:41.265Z",
+ "generatedAt": "2026-09-15T04:03:13.582Z",
  "finalized": false,
  "method": {
-  "resultsWeight": 50.8,
-  "projectionWeight": 49.2,
+  "resultsWeight": 38.3,
+  "projectionWeight": 61.7,
   "movementBasis": "preseason",
   "leaguePtsPerDollar": 2.12
  },
  "teams": [
   {
-   "id": 13,
-   "rank": 1,
-   "previousRank": 12,
-   "movement": 11,
-   "power": 86.2,
-   "components": {
-    "results": 100,
-    "projection": 71.9,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
-   },
-   "name": "Christopher Dootron",
-   "abbrev": "DAH",
-   "owner": "Sam H.",
-   "ownerId": "{961895BA-00CF-4DC9-8A38-61A2924B6643}",
-   "logo": "http://cdn2.sbnation.com/entry_photo_images/4459356/126540825_extra_large_medium.jpg",
-   "division": "Gold",
-   "record": {
-    "wins": 1,
-    "losses": 0,
-    "ties": 0
-   },
-   "pf": 145.7,
-   "pa": 49.5,
-   "avg": 145.7,
-   "last3": 145.7,
-   "stdDev": 0,
-   "allPlay": {
-    "w": 11,
-    "l": 0
-   },
-   "allPlayPct": 100,
-   "expectedWins": 1,
-   "luck": 0,
-   "espnProjectedRank": 6,
-   "draftDayProjectedRank": 12,
-   "rosStrength": 1553.3,
-   "projTotal": 1699,
-   "benchLeftTotal": 8,
-   "lineupEfficiency": 94.8,
-   "transactions": {
-    "acquisitions": 0,
-    "drops": 5,
-    "trades": 0,
-    "lineupMoves": 2,
-    "faabSpent": 1
-   },
-   "remaining": {
-    "games": 13,
-    "avgOppStrength": 67.1,
-    "opponents": [
-     "Bake",
-     "HUDS",
-     "HHP",
-     "PAPA",
-     "DG3",
-     "DH$ ",
-     "MD23",
-     "PAPA",
-     "FRUM",
-     "Hess",
-     "TSMP",
-     "TACO",
-     "HUDS"
-    ],
-    "rank": 12
-   },
-   "divisionFoes": {
-    "games": 5,
-    "avgStrength": 57.7
-   },
-   "games": [
-    {
-     "week": 1,
-     "pts": 145.7,
-     "proj": 100.4,
-     "opp": 10,
-     "oppPts": 49.5,
-     "won": true,
-     "tied": false,
-     "final": false,
-     "allPlayW": 11,
-     "allPlayL": 0,
-     "weekRank": 1
-    }
-   ],
-   "thisWeek": {
-    "actualLineup": 145.7,
-    "optimalLineup": 153.7,
-    "benchLeft": 8,
-    "starters": [
-     {
-      "name": "Jaxson Dart",
-      "pos": "QB",
-      "slot": "QB",
-      "pts": 26.6,
-      "proj": 18.5,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Parker Washington",
-      "pos": "WR",
-      "slot": "WR",
-      "pts": 16.8,
-      "proj": 9.5,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Bijan Robinson",
-      "pos": "RB",
-      "slot": "RB",
-      "pts": 27.3,
-      "proj": 16.8,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Omarion Hampton",
-      "pos": "RB",
-      "slot": "RB",
-      "pts": 8.3,
-      "proj": 16.1,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Luther Burden III",
-      "pos": "WR",
-      "slot": "WR",
-      "pts": 7,
-      "proj": 9.8,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Isaiah Likely",
-      "pos": "TE",
-      "slot": "TE",
-      "pts": 23.8,
-      "proj": 7.6,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Jordan Mason",
-      "pos": "RB",
-      "slot": "FLEX",
-      "pts": 11.9,
-      "proj": 9.1,
-      "injury": "QUESTIONABLE"
-     },
-     {
-      "name": "Vikings D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "pts": 5,
-      "proj": 4.4,
-      "injury": "NORMAL"
-     },
-     {
-      "name": "Evan McPherson",
-      "pos": "K",
-      "slot": "K",
-      "pts": 19,
-      "proj": 8.6,
-      "injury": "ACTIVE"
-     }
-    ],
-    "bench": [
-     {
-      "name": "Jordan Addison",
-      "pos": "WR",
-      "pts": 0,
-      "proj": 8.1,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Tyler Allgeier",
-      "pos": "RB",
-      "pts": 8,
-      "proj": 6.8,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Buccaneers D/ST",
-      "pos": "D/ST",
-      "pts": 8,
-      "proj": 4.5,
-      "injury": "NORMAL"
-     },
-     {
-      "name": "Chiefs D/ST",
-      "pos": "D/ST",
-      "pts": 13,
-      "proj": 5.3,
-      "injury": "NORMAL"
-     },
-     {
-      "name": "Terrance Ferguson",
-      "pos": "TE",
-      "pts": 0,
-      "proj": 6.7,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Cyrus Allen",
-      "pos": "WR",
-      "pts": 0,
-      "proj": 2.4,
-      "injury": "ACTIVE"
-     }
-    ]
-   },
-   "keepers": [
-    {
-     "teamId": 13,
-     "playerId": 4689114,
-     "player": "Jaxson Dart",
-     "pos": "QB",
-     "cost": 10,
-     "seasonPts": 26.6,
-     "stillOnTeam": true,
-     "onSomeoneElse": false,
-     "ptsPerDollar": 2.66
-    },
-    {
-     "teamId": 13,
-     "playerId": 4432620,
-     "player": "Parker Washington",
-     "pos": "WR",
-     "cost": 10,
-     "seasonPts": 16.8,
-     "stillOnTeam": true,
-     "onSomeoneElse": false,
-     "ptsPerDollar": 1.68
-    }
-   ],
-   "draftGrade": {
-    "rank": 11,
-    "grade": "C",
-    "owner": "Sam",
-    "team": "Christopher Dootron",
-    "spent": "$200",
-    "value": "$172",
-    "surplus": "(+3)",
-    "starters": "1,712 pts",
-    "best": "Luther Burden III $15",
-    "worst": "Omarion Hampton $59",
-    "ownerKey": "Sam H."
-   },
-   "nameHistory": [
-    {
-     "year": 2011,
-     "name": "QueensFoul PonderBaby"
-    },
-    {
-     "year": 2012,
-     "name": "QueensLookin Saucy?"
-    },
-    {
-     "year": 2013,
-     "name": "Demetrius Servlekowskis"
-    },
-    {
-     "year": 2014,
-     "name": "The Sonny Mclainies"
-    },
-    {
-     "year": 2015,
-     "name": "Ploohookers: Resurgence"
-    },
-    {
-     "year": 2016,
-     "name": "Extreme Duke [DOOO]"
-    },
-    {
-     "year": 2017,
-     "name": "FreshPloo Incorporated"
-    },
-    {
-     "year": 2018,
-     "name": "PlooOnA RainyDoo"
-    },
-    {
-     "year": 2019,
-     "name": "stories of a magnificentdong"
-    },
-    {
-     "year": 2020,
-     "name": "Seattle Slew"
-    },
-    {
-     "year": 2021,
-     "name": "Dennis Platter"
-    },
-    {
-     "year": 2022,
-     "name": "Jeremiah Fondlelowski"
-    },
-    {
-     "year": 2023,
-     "name": "Stackin Steaks N Sats "
-    },
-    {
-     "year": 2024,
-     "name": "Platsky and Hutch"
-    },
-    {
-     "year": 2025,
-     "name": "Richard Platter III"
-    }
-   ],
-   "commentary": "Fifteen years of Ploos, Platters, and one \"magnificentdong\" later, Sam finally dropped the bit and named his team after a guy named Christopher Dootron, and Christopher Dootron went 11-0 in the all-play with the week's top score. The draft model gave this roster a C and ESPN had it dead last, which is exactly what you'd expect from a team that starts the 12th-ranked Vikings defense while the Chiefs D/ST sits on the bench scoring 13. Doesn't matter when Bijan drops 27, Isaiah Likely triples his projection, and both $10 keepers pay off. Enjoy the top spot, Sam. Your remaining schedule is the softest in the league, so you might actually keep it."
-  },
-  {
    "id": 6,
-   "rank": 2,
+   "rank": 1,
    "previousRank": 3,
-   "movement": 1,
-   "power": 85.9,
+   "movement": 2,
+   "power": 89.1,
    "components": {
     "results": 73.3,
     "projection": 98.9,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Papas McButt Nuggets",
    "abbrev": "PAPA",
@@ -593,7 +282,7 @@
     },
     {
      "year": 2016,
-     "name": "MattDÄz Nutz"
+     "name": "MattD\u00c4\u0093z Nutz"
     },
     {
      "year": 2017,
@@ -632,19 +321,330 @@
      "name": "boot juice'n boogie"
     }
    ],
-   "commentary": "The Nuggets scored the seventh-best total of the week and got a win out of it anyway, which is the Jordan P. experience in one sentence. ESPN still has this roster projected first and the rest-of-season strength backs that up, so the algorithm is willing to overlook a Chargers defense that put up a clean zero and a Bo Nix line that read like a typo. Jonathan Taylor earned every one of his $48 keeper dollars. The three-time trip champ has gone from \"Pleasure Party Table\" to \"thank you for the blessings\" to McButt Nuggets, and honestly the blessings continue."
+   "commentary": "The Nuggets scored the seventh-best total of the week and got a win out of it anyway, which is the Jordan P. experience in one sentence. ESPN still has this roster projected first and the rest-of-season strength backs that up, which is how the seventh-best score of the week ends up ranked first, and why the algorithm is willing to overlook a Chargers defense that put up a clean zero and a Bo Nix line that read like a typo. Jonathan Taylor earned every one of his $48 keeper dollars. The three-time trip champ has gone from \"Pleasure Party Table\" to \"thank you for the blessings\" to McButt Nuggets, and honestly the blessings continue."
+  },
+  {
+   "id": 13,
+   "rank": 2,
+   "previousRank": 12,
+   "movement": 10,
+   "power": 82.7,
+   "components": {
+    "results": 100,
+    "projection": 71.9,
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
+   },
+   "name": "Christopher Dootron",
+   "abbrev": "DAH",
+   "owner": "Sam H.",
+   "ownerId": "{961895BA-00CF-4DC9-8A38-61A2924B6643}",
+   "logo": "http://cdn2.sbnation.com/entry_photo_images/4459356/126540825_extra_large_medium.jpg",
+   "division": "Gold",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 145.7,
+   "pa": 49.5,
+   "avg": 145.7,
+   "last3": 145.7,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 11,
+    "l": 0
+   },
+   "allPlayPct": 100,
+   "expectedWins": 1,
+   "luck": 0,
+   "espnProjectedRank": 6,
+   "draftDayProjectedRank": 12,
+   "rosStrength": 1552.3,
+   "projTotal": 1698,
+   "benchLeftTotal": 9,
+   "lineupEfficiency": 94.2,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 5,
+    "trades": 0,
+    "lineupMoves": 2,
+    "faabSpent": 1
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 67.1,
+    "opponents": [
+     "Bake",
+     "HUDS",
+     "HHP",
+     "PAPA",
+     "DG3",
+     "DH$ ",
+     "MD23",
+     "PAPA",
+     "FRUM",
+     "Hess",
+     "TSMP",
+     "TACO",
+     "HUDS"
+    ],
+    "rank": 12
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 57.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 145.7,
+     "proj": 100.4,
+     "opp": 10,
+     "oppPts": 49.5,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 11,
+     "allPlayL": 0,
+     "weekRank": 1
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 145.7,
+    "optimalLineup": 154.7,
+    "benchLeft": 9,
+    "starters": [
+     {
+      "name": "Jaxson Dart",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 26.6,
+      "proj": 18.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Parker Washington",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 16.8,
+      "proj": 9.5,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Bijan Robinson",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 27.3,
+      "proj": 16.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Omarion Hampton",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.3,
+      "proj": 16.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Luther Burden III",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 7,
+      "proj": 9.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Isaiah Likely",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 23.8,
+      "proj": 7.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jordan Mason",
+      "pos": "RB",
+      "slot": "FLEX",
+      "pts": 11.9,
+      "proj": 9.1,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "Vikings D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 5,
+      "proj": 4.4,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Evan McPherson",
+      "pos": "K",
+      "slot": "K",
+      "pts": 19,
+      "proj": 8.6,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Jordan Addison",
+      "pos": "WR",
+      "pts": 0,
+      "proj": 8.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Tyler Allgeier",
+      "pos": "RB",
+      "pts": 8,
+      "proj": 6.8,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Buccaneers D/ST",
+      "pos": "D/ST",
+      "pts": 8,
+      "proj": 4.5,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Chiefs D/ST",
+      "pos": "D/ST",
+      "pts": 14,
+      "proj": 5.3,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Terrance Ferguson",
+      "pos": "TE",
+      "pts": 0,
+      "proj": 6.7,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Cyrus Allen",
+      "pos": "WR",
+      "pts": 0,
+      "proj": 2.4,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 13,
+     "playerId": 4689114,
+     "player": "Jaxson Dart",
+     "pos": "QB",
+     "cost": 10,
+     "seasonPts": 26.6,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 2.66
+    },
+    {
+     "teamId": 13,
+     "playerId": 4432620,
+     "player": "Parker Washington",
+     "pos": "WR",
+     "cost": 10,
+     "seasonPts": 16.8,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 1.68
+    }
+   ],
+   "draftGrade": {
+    "rank": 11,
+    "grade": "C",
+    "owner": "Sam",
+    "team": "Christopher Dootron",
+    "spent": "$200",
+    "value": "$172",
+    "surplus": "(+3)",
+    "starters": "1,712 pts",
+    "best": "Luther Burden III $15",
+    "worst": "Omarion Hampton $59",
+    "ownerKey": "Sam H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "QueensFoul PonderBaby"
+    },
+    {
+     "year": 2012,
+     "name": "QueensLookin Saucy?"
+    },
+    {
+     "year": 2013,
+     "name": "Demetrius Servlekowskis"
+    },
+    {
+     "year": 2014,
+     "name": "The Sonny Mclainies"
+    },
+    {
+     "year": 2015,
+     "name": "Ploohookers: Resurgence"
+    },
+    {
+     "year": 2016,
+     "name": "Extreme Duke [DOOO]"
+    },
+    {
+     "year": 2017,
+     "name": "FreshPloo Incorporated"
+    },
+    {
+     "year": 2018,
+     "name": "PlooOnA RainyDoo"
+    },
+    {
+     "year": 2019,
+     "name": "stories of a magnificentdong"
+    },
+    {
+     "year": 2020,
+     "name": "Seattle Slew"
+    },
+    {
+     "year": 2021,
+     "name": "Dennis Platter"
+    },
+    {
+     "year": 2022,
+     "name": "Jeremiah Fondlelowski"
+    },
+    {
+     "year": 2023,
+     "name": "Stackin Steaks N Sats "
+    },
+    {
+     "year": 2024,
+     "name": "Platsky and Hutch"
+    },
+    {
+     "year": 2025,
+     "name": "Richard Platter III"
+    }
+   ],
+   "commentary": "Fifteen years of Ploos, Platters, and one \"magnificentdong\" later, Sam finally dropped the bit and named his team after a guy named Christopher Dootron, and Christopher Dootron went 11-0 in the all-play with the week's top score. Nobody had this roster among the draft favorites, a C grade in August and dead last in ESPN's preseason projection, which is exactly what you'd expect from a team that starts the 12th-ranked Vikings defense while the Chiefs D/ST sits on the bench scoring 13. Doesn't matter when Bijan drops 27, Isaiah Likely triples his projection, and both $10 keepers pay off. Only Jordan's rest-of-season projections keep Sam out of the top spot, and the softest remaining schedule in the league says he'll get his shot at it."
   },
   {
    "id": 14,
    "rank": 3,
    "previousRank": 7,
    "movement": 4,
-   "power": 83.4,
+   "power": 82.6,
    "components": {
     "results": 86.6,
     "projection": 80.1,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "DINO NUGGETS",
    "abbrev": "Bake",
@@ -934,12 +934,12 @@
    "rank": 4,
    "previousRank": 8,
    "movement": 4,
-   "power": 80.5,
+   "power": 77.9,
    "components": {
     "results": 90.4,
     "projection": 70.2,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Table Shepherds McPie ",
    "abbrev": "TSMP",
@@ -1245,12 +1245,12 @@
    "rank": 5,
    "previousRank": 9,
    "movement": 4,
-   "power": 74,
+   "power": 71.9,
    "components": {
     "results": 82.2,
     "projection": 65.5,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Ammonia Coladas",
    "abbrev": "HHP",
@@ -1552,327 +1552,16 @@
    "commentary": "The man who brought you \"OpenAI Top Anthropic Bottom\" in 2024 is now being ranked fifth by Anthropic, and the algorithm is being very professional about it. Lamar Jackson at $17 was the draft's best value and looked it with 25. Kyle Monangai doubled his projection, Bucky Irving covered his keeper cost in a single week, and a Patriots defense ranked 11th of 12 by projection outscored half the league. Mike Evans out-scored Tee Higgins from the bench, but a 27-point win over the preseason favorite buys a lot of forgiveness. Ammonia Coladas is the best rebrand from \"Perkins Last Float,\" which apparently was not the last float."
   },
   {
-   "id": 9,
-   "rank": 6,
-   "previousRank": 11,
-   "movement": 5,
-   "power": 72.9,
-   "components": {
-    "results": 95.7,
-    "projection": 49.3,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
-   },
-   "name": "$200 Dolla Holla",
-   "abbrev": "DH$ ",
-   "owner": "David H.",
-   "ownerId": "{2DAED436-E1AF-4574-BED1-2111AFFB5937}",
-   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/3019f120-ac00-11f1-8ef0-19c1af2548f8",
-   "division": "Black",
-   "record": {
-    "wins": 1,
-    "losses": 0,
-    "ties": 0
-   },
-   "pf": 140.2,
-   "pa": 106.4,
-   "avg": 140.2,
-   "last3": 140.2,
-   "stdDev": 0,
-   "allPlay": {
-    "w": 10,
-    "l": 1
-   },
-   "allPlayPct": 90.9,
-   "expectedWins": 0.9,
-   "luck": 0.1,
-   "espnProjectedRank": 12,
-   "draftDayProjectedRank": 11,
-   "rosStrength": 1529,
-   "projTotal": 1669.2,
-   "benchLeftTotal": 10.9,
-   "lineupEfficiency": 92.8,
-   "transactions": {
-    "acquisitions": 0,
-    "drops": 0,
-    "trades": 0,
-    "lineupMoves": 1,
-    "faabSpent": 0
-   },
-   "remaining": {
-    "games": 13,
-    "avgOppStrength": 68.4,
-    "opponents": [
-     "PAPA",
-     "HHP",
-     "DG3",
-     "MD23",
-     "TSMP",
-     "DAH",
-     "HUDS",
-     "MD23",
-     "TACO",
-     "FRUM",
-     "Bake",
-     "Hess",
-     "HHP"
-    ],
-    "rank": 11
-   },
-   "divisionFoes": {
-    "games": 5,
-    "avgStrength": 65.7
-   },
-   "games": [
-    {
-     "week": 1,
-     "pts": 140.2,
-     "proj": 97.6,
-     "opp": 3,
-     "oppPts": 106.4,
-     "won": true,
-     "tied": false,
-     "final": false,
-     "allPlayW": 10,
-     "allPlayL": 1,
-     "weekRank": 2
-    }
-   ],
-   "thisWeek": {
-    "actualLineup": 140.2,
-    "optimalLineup": 151.1,
-    "benchLeft": 10.9,
-    "starters": [
-     {
-      "name": "James Cook III",
-      "pos": "RB",
-      "slot": "RB",
-      "pts": 8.4,
-      "proj": 14.6,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "A.J. Brown",
-      "pos": "WR",
-      "slot": "WR",
-      "pts": 4.1,
-      "proj": 11.5,
-      "injury": "INJURY_RESERVE"
-     },
-     {
-      "name": "D'Andre Swift",
-      "pos": "RB",
-      "slot": "RB",
-      "pts": 31.9,
-      "proj": 11.4,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Emeka Egbuka",
-      "pos": "WR",
-      "slot": "FLEX",
-      "pts": 8.8,
-      "proj": 11.9,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Christian Watson",
-      "pos": "WR",
-      "slot": "WR",
-      "pts": 29.7,
-      "proj": 9.3,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "George Kittle",
-      "pos": "TE",
-      "slot": "TE",
-      "pts": 2.2,
-      "proj": 6.6,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Caleb Williams",
-      "pos": "QB",
-      "slot": "QB",
-      "pts": 37.1,
-      "proj": 16.4,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Jaguars D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "pts": 14,
-      "proj": 8.2,
-      "injury": "NORMAL"
-     },
-     {
-      "name": "Wil Lutz",
-      "pos": "K",
-      "slot": "K",
-      "pts": 4,
-      "proj": 7.7,
-      "injury": "ACTIVE"
-     }
-    ],
-    "bench": [
-     {
-      "name": "Alec Pierce",
-      "pos": "WR",
-      "pts": 8.1,
-      "proj": 8.1,
-      "injury": "QUESTIONABLE"
-     },
-     {
-      "name": "J.K. Dobbins",
-      "pos": "RB",
-      "pts": 3.6,
-      "proj": 8.9,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Brock Purdy",
-      "pos": "QB",
-      "pts": 21.1,
-      "proj": 15.4,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Josh Downs",
-      "pos": "WR",
-      "pts": 4.7,
-      "proj": 7.1,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Deebo Samuel Sr.",
-      "pos": "WR",
-      "pts": 15,
-      "proj": 7.4,
-      "injury": "ACTIVE"
-     },
-     {
-      "name": "Ray Davis",
-      "pos": "RB",
-      "pts": 0.3,
-      "proj": 4.5,
-      "injury": "ACTIVE"
-     }
-    ]
-   },
-   "keepers": [
-    {
-     "teamId": 9,
-     "playerId": 4379399,
-     "player": "James Cook III",
-     "pos": "RB",
-     "cost": 49,
-     "seasonPts": 8.4,
-     "stillOnTeam": true,
-     "onSomeoneElse": false,
-     "ptsPerDollar": 0.17
-    },
-    {
-     "teamId": 9,
-     "playerId": 4360078,
-     "player": "Alec Pierce",
-     "pos": "WR",
-     "cost": 10,
-     "seasonPts": 8.1,
-     "stillOnTeam": true,
-     "onSomeoneElse": false,
-     "ptsPerDollar": 0.81
-    }
-   ],
-   "draftGrade": {
-    "rank": 10,
-    "grade": "C+",
-    "owner": "Hearn",
-    "team": "Cade's Band Of Hippies",
-    "spent": "$199",
-    "value": "$207",
-    "surplus": "+$8",
-    "starters": "1,699 pts",
-    "best": "J.K. Dobbins $5",
-    "worst": "D'Andre Swift $24",
-    "ownerKey": "David H."
-   },
-   "nameHistory": [
-    {
-     "year": 2011,
-     "name": "Godfather and Sahns"
-    },
-    {
-     "year": 2012,
-     "name": "DubSteppin On  Yo Neck "
-    },
-    {
-     "year": 2013,
-     "name": "#58  BONG MILLER"
-    },
-    {
-     "year": 2014,
-     "name": "Dildo Islanders "
-    },
-    {
-     "year": 2015,
-     "name": "Russell and Flow"
-    },
-    {
-     "year": 2016,
-     "name": "Dezbian  Lover"
-    },
-    {
-     "year": 2017,
-     "name": "BUTT FIRST"
-    },
-    {
-     "year": 2018,
-     "name": "Tangled Up In Drew"
-    },
-    {
-     "year": 2019,
-     "name": "WatSAHNS LFG "
-    },
-    {
-     "year": 2020,
-     "name": "ELECTRIC CLYDE ⚡️⚡️"
-    },
-    {
-     "year": 2021,
-     "name": "Hurts So Good   (In the Fields)"
-    },
-    {
-     "year": 2022,
-     "name": "Daddy SwishSKO"
-    },
-    {
-     "year": 2023,
-     "name": "Swift Serbian Schnitzel"
-    },
-    {
-     "year": 2024,
-     "name": "RALPHIE'S REVENGE"
-    },
-    {
-     "year": 2025,
-     "name": "Cade's Band of Hippies"
-    }
-   ],
-   "commentary": "ESPN projects this team to finish twelfth. ESPN also watched Caleb Williams score 37, D'Andre Swift score 32, and Christian Watson score 30 for the second-best total of the week. The name history includes \"Swift Serbian Schnitzel,\" so the Swift loyalty is real and is currently being rewarded. The receipts department notes that A.J. Brown was started while on injured reserve with Deebo Samuel scoring 15 on the bench, and that James Cook was a $49 keeper who produced 8. The projection side of the formula is why a 10-1 all-play week lands sixth instead of first. Prove the model wrong, Hearn. The \"$200 Dolla Holla\" energy is undefeated so far."
-  },
-  {
    "id": 11,
-   "rank": 7,
+   "rank": 6,
    "previousRank": 4,
-   "movement": -3,
-   "power": 66.2,
+   "movement": -2,
+   "power": 71.9,
    "components": {
     "results": 43.7,
     "projection": 89.4,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Los Desperados Sudados",
    "abbrev": "DG3",
@@ -2167,15 +1856,15 @@
   },
   {
    "id": 12,
-   "rank": 8,
+   "rank": 7,
    "previousRank": 1,
-   "movement": -7,
-   "power": 60.5,
+   "movement": -6,
+   "power": 69.3,
    "components": {
     "results": 25.8,
     "projection": 96.4,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Cachasol Cartel ",
    "abbrev": "MD23",
@@ -2419,7 +2108,7 @@
     },
     {
      "year": 2012,
-     "name": "MÃ¼nchen  on BÃ¼ndchen"
+     "name": "M\u00c3\u00bcnchen  on B\u00c3\u00bcndchen"
     },
     {
      "year": 2013,
@@ -2474,19 +2163,330 @@
      "name": "Deja Deux"
     }
    ],
-   "commentary": "Draft grade A-plus. ESPN preseason favorite. Ninety-four points. The Texans defense scored negative four, which is not a typo, and it was the worst defense start in the league by a wide margin. Ja'Marr Chase managed 2.2, Brandon Aubrey 2, and Jake Ferguson 1.6 while Juwan Johnson put up 13 on the bench. George Pickens, a $22 keeper, contributed 4. The one thing the model called wrong was Derrick Henry: labeled the worst pick at $39, he ran for 35 points. Deja Deux has become Deja Vu, and the Cartel now has the third-hardest remaining schedule. The roster is still ranked second in rest-of-season strength, which is the only reason this isn't a bottom-three team on the board."
+   "commentary": "The draft favorite, A-plus grade and ESPN's preseason number one, scored ninety-four points. The Texans defense scored negative four, which is not a typo, and it was the worst defense start in the league by a wide margin. Ja'Marr Chase managed 2.2, Brandon Aubrey 2, and Jake Ferguson 1.6 while Juwan Johnson put up 13 on the bench. George Pickens, a $22 keeper, contributed 4. The one draft-day knock that missed was Derrick Henry: flagged as his worst pick at $39, he ran for 35 points. Deja Deux has become Deja Vu, and the Cartel now has the third-hardest remaining schedule. The roster is still ranked second in rest-of-season strength, which is the only reason this isn't a bottom-three team on the board."
+  },
+  {
+   "id": 9,
+   "rank": 8,
+   "previousRank": 11,
+   "movement": 3,
+   "power": 67.1,
+   "components": {
+    "results": 95.7,
+    "projection": 49.3,
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
+   },
+   "name": "$200 Dolla Holla",
+   "abbrev": "DH$ ",
+   "owner": "David H.",
+   "ownerId": "{2DAED436-E1AF-4574-BED1-2111AFFB5937}",
+   "logo": "https://mystique-api.fantasy.espn.com/apis/v1/domains/lm/images/3019f120-ac00-11f1-8ef0-19c1af2548f8",
+   "division": "Black",
+   "record": {
+    "wins": 1,
+    "losses": 0,
+    "ties": 0
+   },
+   "pf": 140.2,
+   "pa": 106.4,
+   "avg": 140.2,
+   "last3": 140.2,
+   "stdDev": 0,
+   "allPlay": {
+    "w": 10,
+    "l": 1
+   },
+   "allPlayPct": 90.9,
+   "expectedWins": 0.9,
+   "luck": 0.1,
+   "espnProjectedRank": 12,
+   "draftDayProjectedRank": 11,
+   "rosStrength": 1529,
+   "projTotal": 1669.2,
+   "benchLeftTotal": 10.9,
+   "lineupEfficiency": 92.8,
+   "transactions": {
+    "acquisitions": 0,
+    "drops": 0,
+    "trades": 0,
+    "lineupMoves": 1,
+    "faabSpent": 0
+   },
+   "remaining": {
+    "games": 13,
+    "avgOppStrength": 68.4,
+    "opponents": [
+     "PAPA",
+     "HHP",
+     "DG3",
+     "MD23",
+     "TSMP",
+     "DAH",
+     "HUDS",
+     "MD23",
+     "TACO",
+     "FRUM",
+     "Bake",
+     "Hess",
+     "HHP"
+    ],
+    "rank": 11
+   },
+   "divisionFoes": {
+    "games": 5,
+    "avgStrength": 65.7
+   },
+   "games": [
+    {
+     "week": 1,
+     "pts": 140.2,
+     "proj": 97.6,
+     "opp": 3,
+     "oppPts": 106.4,
+     "won": true,
+     "tied": false,
+     "final": false,
+     "allPlayW": 10,
+     "allPlayL": 1,
+     "weekRank": 2
+    }
+   ],
+   "thisWeek": {
+    "actualLineup": 140.2,
+    "optimalLineup": 151.1,
+    "benchLeft": 10.9,
+    "starters": [
+     {
+      "name": "James Cook III",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 8.4,
+      "proj": 14.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "A.J. Brown",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 4.1,
+      "proj": 11.5,
+      "injury": "INJURY_RESERVE"
+     },
+     {
+      "name": "D'Andre Swift",
+      "pos": "RB",
+      "slot": "RB",
+      "pts": 31.9,
+      "proj": 11.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Emeka Egbuka",
+      "pos": "WR",
+      "slot": "FLEX",
+      "pts": 8.8,
+      "proj": 11.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Christian Watson",
+      "pos": "WR",
+      "slot": "WR",
+      "pts": 29.7,
+      "proj": 9.3,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "George Kittle",
+      "pos": "TE",
+      "slot": "TE",
+      "pts": 2.2,
+      "proj": 6.6,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Caleb Williams",
+      "pos": "QB",
+      "slot": "QB",
+      "pts": 37.1,
+      "proj": 16.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Jaguars D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "pts": 14,
+      "proj": 8.2,
+      "injury": "NORMAL"
+     },
+     {
+      "name": "Wil Lutz",
+      "pos": "K",
+      "slot": "K",
+      "pts": 4,
+      "proj": 7.7,
+      "injury": "ACTIVE"
+     }
+    ],
+    "bench": [
+     {
+      "name": "Alec Pierce",
+      "pos": "WR",
+      "pts": 8.1,
+      "proj": 8.1,
+      "injury": "QUESTIONABLE"
+     },
+     {
+      "name": "J.K. Dobbins",
+      "pos": "RB",
+      "pts": 3.6,
+      "proj": 8.9,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Brock Purdy",
+      "pos": "QB",
+      "pts": 21.1,
+      "proj": 15.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Josh Downs",
+      "pos": "WR",
+      "pts": 4.7,
+      "proj": 7.1,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Deebo Samuel Sr.",
+      "pos": "WR",
+      "pts": 15,
+      "proj": 7.4,
+      "injury": "ACTIVE"
+     },
+     {
+      "name": "Ray Davis",
+      "pos": "RB",
+      "pts": 0.3,
+      "proj": 4.5,
+      "injury": "ACTIVE"
+     }
+    ]
+   },
+   "keepers": [
+    {
+     "teamId": 9,
+     "playerId": 4379399,
+     "player": "James Cook III",
+     "pos": "RB",
+     "cost": 49,
+     "seasonPts": 8.4,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.17
+    },
+    {
+     "teamId": 9,
+     "playerId": 4360078,
+     "player": "Alec Pierce",
+     "pos": "WR",
+     "cost": 10,
+     "seasonPts": 8.1,
+     "stillOnTeam": true,
+     "onSomeoneElse": false,
+     "ptsPerDollar": 0.81
+    }
+   ],
+   "draftGrade": {
+    "rank": 10,
+    "grade": "C+",
+    "owner": "Hearn",
+    "team": "Cade's Band Of Hippies",
+    "spent": "$199",
+    "value": "$207",
+    "surplus": "+$8",
+    "starters": "1,699 pts",
+    "best": "J.K. Dobbins $5",
+    "worst": "D'Andre Swift $24",
+    "ownerKey": "David H."
+   },
+   "nameHistory": [
+    {
+     "year": 2011,
+     "name": "Godfather and Sahns"
+    },
+    {
+     "year": 2012,
+     "name": "DubSteppin On  Yo Neck "
+    },
+    {
+     "year": 2013,
+     "name": "#58  BONG MILLER"
+    },
+    {
+     "year": 2014,
+     "name": "Dildo Islanders "
+    },
+    {
+     "year": 2015,
+     "name": "Russell and Flow"
+    },
+    {
+     "year": 2016,
+     "name": "Dezbian  Lover"
+    },
+    {
+     "year": 2017,
+     "name": "BUTT FIRST"
+    },
+    {
+     "year": 2018,
+     "name": "Tangled Up In Drew"
+    },
+    {
+     "year": 2019,
+     "name": "WatSAHNS LFG "
+    },
+    {
+     "year": 2020,
+     "name": "ELECTRIC CLYDE \u26a1\ufe0f\u26a1\ufe0f"
+    },
+    {
+     "year": 2021,
+     "name": "Hurts So Good   (In the Fields)"
+    },
+    {
+     "year": 2022,
+     "name": "Daddy SwishSKO"
+    },
+    {
+     "year": 2023,
+     "name": "Swift Serbian Schnitzel"
+    },
+    {
+     "year": 2024,
+     "name": "RALPHIE'S REVENGE"
+    },
+    {
+     "year": 2025,
+     "name": "Cade's Band of Hippies"
+    }
+   ],
+   "commentary": "ESPN projects this team to finish twelfth. ESPN also watched Caleb Williams score 37, D'Andre Swift score 32, and Christian Watson score 30 for the second-best total of the week. The name history includes \"Swift Serbian Schnitzel,\" so the Swift loyalty is real and is currently being rewarded. The receipts department notes that A.J. Brown was started while on injured reserve with Deebo Samuel scoring 15 on the bench, and that James Cook was a $49 keeper who produced 8. Rest-of-season projections are the only reason a 10-1 all-play week lands eighth instead of first. Prove the projections wrong, Hearn. The \"$200 Dolla Holla\" energy is undefeated so far."
   },
   {
    "id": 1,
    "rank": 9,
    "previousRank": 2,
    "movement": -7,
-   "power": 58.1,
+   "power": 65,
    "components": {
     "results": 31,
     "projection": 86.1,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Captain Casper's Low Risk Tacos",
    "abbrev": "TACO",
@@ -2526,7 +2526,7 @@
    },
    "remaining": {
     "games": 13,
-    "avgOppStrength": 72.4,
+    "avgOppStrength": 72.3,
     "opponents": [
      "HHP",
      "TSMP",
@@ -2792,12 +2792,12 @@
    "rank": 10,
    "previousRank": 10,
    "movement": 0,
-   "power": 46.9,
+   "power": 50,
    "components": {
     "results": 34.6,
     "projection": 59.5,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Dad Bellies Doin' Salt Smellies",
    "abbrev": "FRUM",
@@ -3096,19 +3096,19 @@
      "name": "NixOut4TheBoys NixOut4TheBoys"
     }
    ],
-   "commentary": "Kenneth Walker went for 33 and Zay Flowers for 24, and the Steelers defense was the best in the league at 19, and Frum still lost by 34 because Colston Loveland scored zero, Jaylen Waddle scored 0.7, and MarShawn Lloyd scored 3.7. Three starters, 4.4 points. The draft model handed this roster a C-minus, the lowest in the league, and Week 1 did nothing to argue with it. The name is a downgrade from \"Poopy Wake Up Call On Line Toot,\" but at least it's honest about the vibe. \"DAMN IT DAVID!\" from 2015 remains the most accurate team name in league history."
+   "commentary": "Kenneth Walker went for 33 and Zay Flowers for 24, and the Steelers defense was the best in the league at 19, and Frum still lost by 34 because Colston Loveland scored zero, Jaylen Waddle scored 0.7, and MarShawn Lloyd scored 3.7. Three starters, 4.4 points. This roster drew the lowest draft grade in the league, a C-minus, and Week 1 did nothing to argue with it. The name is a downgrade from \"Poopy Wake Up Call On Line Toot,\" but at least it's honest about the vibe. \"DAMN IT DAVID!\" from 2015 remains the most accurate team name in league history."
   },
   {
    "id": 4,
    "rank": 11,
    "previousRank": 5,
    "movement": -6,
-   "power": 42.8,
+   "power": 48.1,
    "components": {
     "results": 22.1,
     "projection": 64.3,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "Quintosss... Amigo? ",
    "abbrev": "HUDS",
@@ -3414,12 +3414,12 @@
    "rank": 12,
    "previousRank": 6,
    "movement": -6,
-   "power": 34.6,
+   "power": 40.8,
    "components": {
     "results": 10.2,
     "projection": 59.9,
-    "resultsWeight": 0.508,
-    "projectionWeight": 0.49200000000000005
+    "resultsWeight": 0.38299999999999995,
+    "projectionWeight": 0.617
    },
    "name": "For Heaven Sakes, Woman",
    "abbrev": "Hess",
@@ -3695,7 +3695,7 @@
      "name": "Dr. Hannah Milligan"
     }
    ],
-   "commentary": "Forty-nine and a half points. Zero all-play wins. Lineup efficiency of 65%, the worst in the league. Jalen Coker scored 30 on the bench while Jayden Reed scored 3.5 in the flex, the bench bomb of the week and a swing that still wouldn't have gotten him to 80. Matthew Stafford, flagged as the worst pick in the draft at $9, scored 4.1 to prove the model right. Cameron Dicker scored 2. The Rams defense scored 1. Hess was the only manager to keep nobody and walk into the auction with a full $200, and the name went from \"Dr. Hannah Milligan\" to \"For Heaven Sakes, Woman,\" which is now the entire league's reaction. Two roster spots are holding players who are OUT. It can only go up from here, mathematically."
+   "commentary": "Forty-nine and a half points. Zero all-play wins. Lineup efficiency of 65%, the worst in the league. Jalen Coker scored 30 on the bench while Jayden Reed scored 3.5 in the flex, the bench bomb of the week and a swing that still wouldn't have gotten him to 80. Matthew Stafford, flagged on draft day as his worst pick at $9, scored 4.1. Cameron Dicker scored 2. The Rams defense scored 1. Hess was the only manager to keep nobody and walk into the auction with a full $200, and the name went from \"Dr. Hannah Milligan\" to \"For Heaven Sakes, Woman,\" which is now the entire league's reaction. Two roster spots are holding players who are OUT. It can only go up from here, mathematically."
   }
  ],
  "receipts": {
@@ -4005,11 +4005,11 @@
     "teamId": 13,
     "benched": "Chiefs D/ST",
     "benchedPos": "D/ST",
-    "benchedPts": 13,
+    "benchedPts": 14,
     "started": "Vikings D/ST",
     "startedPos": "D/ST",
     "startedPts": 5,
-    "swing": 8,
+    "swing": 9,
     "flippedMatchup": false
    },
    {
@@ -4510,7 +4510,7 @@
  },
  "commentary": {
   "author": "Claude",
-  "intro": "Week 1 of the Fadunkadunk season is in the books, and the draft model has some explaining to do. The two rosters it graded highest, Mike D.'s A-plus Cartel and Brett A.'s A-grade Tacos, both lost. Two of the three it liked least, Sam's C and Hearn's C-plus, put up 145.7 and 140.2, the top two scores in the league. One week is one week, and the formula still leans about half on projections this early, which is why the Cartel and the Tacos are eighth and ninth rather than eleventh and twelfth. But the all-play column doesn't lie: Sam beat every team in the league this week, Hess beat none of them, and Jordan won with the seventh-best score. Below, the receipts.",
+  "intro": "Week 1 of the Fadunkadunk season is in the books, and the draft favorites have some explaining to do. Mike D.'s A-plus Cartel and Brett A.'s A-grade Tacos, the two best-graded rosters in August, both lost. Sam's C-grade Dootron and Hearn's C-plus Dolla Holla put up 145.7 and 140.2, the top two scores in the league. One week is one week, and these rankings lean on rest-of-season projections until the sample is real. But the all-play column doesn't lie: Sam beat every team in the league this week, Hess beat none of them, and Jordan won with the seventh-best score. Below, the receipts.",
   "awards": {
    "highScore": "Christopher Dootron, 145.7. ESPN had this roster ranked last in the preseason.",
    "lowScore": "For Heaven Sakes, Woman, 49.5. Fewer points than Sam's running backs and tight end combined.",
@@ -4527,7 +4527,7 @@
   "outro": "Things to watch in Week 2: whether Baker starts Chuba Hubbard, whether Mike D. finds a defense that scores positive points, and whether Sam's Dootron magic survives a roster the model still doesn't trust. Keeper Corner opens in a few weeks once the sample is real, but the early read is that the $10 keepers (Dart, Washington, Etienne, Javonte) are doing the heavy lifting and the $70-plus running backs are earning their money one week at a time. Rankings and commentary refresh every Tuesday morning once ESPN finalizes the week."
  },
  "previousBuild": {
-  "generatedAt": "2026-09-15T03:46:44.314Z",
+  "generatedAt": "2026-09-15T03:52:41.265Z",
   "finalized": false,
   "order": [
    13,

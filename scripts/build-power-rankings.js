@@ -235,7 +235,7 @@ function optimalLineup(players, counts) {
 
     // ---- power score ----
     const maxAvg = Math.max(...Object.values(teams).map(t => t.avg)) || 1;
-    const R = 0.45 + 0.35 * Math.min(WEEK, 6) / 6; // results weight ramps from ~0.5 (wk1) to 0.8 (wk6+)
+    const R = 0.30 + 0.50 * Math.min(WEEK, 6) / 6; // results weight ramps from ~0.38 (wk1) to 0.8 (wk6+); projections carry early weeks
     const P = 1 - R;
     Object.values(teams).forEach(t => {
         const results = 0.35 * t.winPct + 0.35 * t.allPlayPct + 0.30 * (t.avg / maxAvg);
