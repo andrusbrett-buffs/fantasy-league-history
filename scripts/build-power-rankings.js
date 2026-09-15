@@ -101,7 +101,7 @@ function optimalLineup(players, counts) {
     const n = Object.keys(teams).length;
 
     // ---- games, lineups, receipts ----
-    const receipts = { benchBombs: [], questionableStarts: [], injuredStarters: [], defenses: [], busts: [], booms: [], luck: [] };
+    const receipts = { benchBombs: [], questionableStarts: [], injuredStarters: [], defenses: [], busts: [], booms: [], luck: [], injuries: [] };
     for (let w = 1; w <= WEEK; w++) {
         const wk = weekly[w];
         const matchups = (wk.schedule || []).filter(m => m.matchupPeriodId === w && m.home && m.away && (m.playoffTierType || 'NONE') === 'NONE');
@@ -166,6 +166,11 @@ function optimalLineup(players, counts) {
             // injured / inactive starters that scored zero
             starters.filter(s => s.pts === 0 && ['OUT', 'INJURY_RESERVE', 'SUSPENSION', 'DOUBTFUL'].includes(s.injury)).forEach(s =>
                 receipts.injuredStarters.push({ week: w, teamId: t.id, player: s.name, pos: s.pos, status: s.injury }));
+            // injury report (current statuses as of the latest week's roster pull)
+            if (w === WEEK) {
+                players.filter(p => !['ACTIVE', 'NORMAL', undefined, null, ''].includes(p.injury)).forEach(p =>
+                    receipts.injuries.push({ teamId: t.id, player: p.name, pos: p.pos, slot: p.slotName, status: p.injury, weekPts: p.pts, seasonProj: p.seasonProj }));
+            }
             // defense
             const d = starters.find(s => s.slot === SLOT.DST);
             if (d) receipts.defenses.push({ week: w, teamId: t.id, defense: d.name, proj: d.proj, pts: d.pts });
