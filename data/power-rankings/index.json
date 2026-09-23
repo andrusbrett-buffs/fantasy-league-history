@@ -2,12 +2,13 @@
  "seasons": {
   "2026": {
    "weeks": [
-    1
+    1,
+    2
    ]
   }
  },
  "latest": {
   "season": 2026,
-  "week": 1
+  "week": 2
  }
 }
