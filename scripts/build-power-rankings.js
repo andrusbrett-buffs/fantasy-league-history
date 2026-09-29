@@ -101,7 +101,7 @@ function optimalLineup(players, counts) {
     const n = Object.keys(teams).length;
 
     // ---- games, lineups, receipts ----
-    const receipts = { benchBombs: [], questionableStarts: [], injuredStarters: [], defenses: [], busts: [], booms: [], luck: [], injuries: [] };
+    const receipts = { benchBombs: [], questionableStarts: [], injuredStarters: [], defenses: [], busts: [], booms: [], luck: [], injuries: [], pickups: [], drops: [], depth: [], tradeIdeas: [] };
     for (let w = 1; w <= WEEK; w++) {
         const wk = weekly[w];
         const matchups = (wk.schedule || []).filter(m => m.matchupPeriodId === w && m.home && m.away && (m.playoffTierType || 'NONE') === 'NONE');
@@ -139,7 +139,7 @@ function optimalLineup(players, counts) {
                     eligible: p.eligibleSlots || [], injury: p.injuryStatus || e.injuryStatus || 'ACTIVE',
                     pts: r1(stat(p, w, 0)), proj: r1(stat(p, w, 1)),
                     seasonPts: r1(stat(p, 0, 0)), seasonProj: r1(stat(p, 0, 1)),
-                    proTeamId: p.proTeamId
+                    proTeamId: p.proTeamId, acquisitionType: e.acquisitionType || 'DRAFT', acquisitionDate: e.acquisitionDate || null
                 };
             });
             const starters = players.filter(p => p.slot !== SLOT.BENCH && p.slot !== SLOT.IR);
@@ -147,7 +147,8 @@ function optimalLineup(players, counts) {
             const actual = r1(starters.reduce((s, p) => s + p.pts, 0));
             const optimal = r1(optimalLineup(players.filter(p => p.slot !== SLOT.IR), slotCounts));
             const g = t.games.find(x => x.week === w) || {};
-            const wkInfo = { actualLineup: actual, optimalLineup: optimal, benchLeft: r1(optimal - actual), starters, bench };
+            const ir = players.filter(p => p.slot === SLOT.IR);
+            const wkInfo = { actualLineup: actual, optimalLineup: optimal, benchLeft: r1(optimal - actual), starters, bench, ir };
             t.weeks[w] = wkInfo;
 
             // bench bomb: single benched player who out-scored a starter he could have replaced
@@ -199,6 +200,63 @@ function optimalLineup(players, counts) {
     // league-wide comparison: points per dollar for all drafted starters-ish
     const allPicks = (league.draftDetail?.picks || []).map(p => { const pl = rosterIndex[p.playerId]?.player; return pl && p.bidAmount ? stat(pl, 0, 0) / p.bidAmount : null; }).filter(x => x !== null);
     const leaguePtsPerDollar = allPicks.length ? Math.round(allPicks.reduce((a, b) => a + b, 0) / allPicks.length * 100) / 100 : null;
+
+
+    // ---- roster moves: pickups (with points since) and drops (week over week) ----
+    const laborDay = (y) => { const d = new Date(Date.UTC(y, 8, 1)); while (d.getUTCDay() !== 1) d.setUTCDate(d.getUTCDate() + 1); return d; };
+    const week1Tue = laborDay(SEASON); week1Tue.setUTCDate(week1Tue.getUTCDate() + 1);
+    const weekStart = new Date(week1Tue); weekStart.setUTCDate(weekStart.getUTCDate() + (WEEK - 1) * 7); // Tuesday before this week's games
+    const weekOf = (ms) => Math.max(1, Math.floor((ms - week1Tue.getTime()) / (7 * 86400000)) + 1);
+    Object.values(teams).forEach(t => {
+        const cur = t.weeks[WEEK]; if (!cur) return;
+        [...cur.starters, ...cur.bench].filter(p => p.acquisitionType && p.acquisitionType !== 'DRAFT' && p.acquisitionDate).forEach(p => {
+            const wk = weekOf(p.acquisitionDate);
+            let since = 0;
+            for (let w = wk; w <= WEEK; w++) { const r = t.weeks[w]; if (!r) continue; const q = [...r.starters, ...r.bench].find(x => x.id === p.id); if (q) since += q.pts; }
+            receipts.pickups.push({ teamId: t.id, player: p.name, pos: p.pos, type: p.acquisitionType, date: new Date(p.acquisitionDate).toISOString().slice(0, 10), acquiredWeek: wk, thisWeek: p.acquisitionDate >= weekStart.getTime(), startedThisWeek: cur.starters.some(x => x.id === p.id), weekPts: p.pts, ptsSince: r1(since) });
+        });
+        const prev = t.weeks[WEEK - 1];
+        if (prev) {
+            const nowIds = new Set([...cur.starters, ...cur.bench, ...(cur.ir || [])].map(x => x.id));
+            [...prev.starters, ...prev.bench, ...(prev.ir || [])].filter(x => !nowIds.has(x.id)).forEach(x => {
+                let nowOn = null, weekPts = null;
+                Object.values(teams).forEach(o => { const r = o.weeks[WEEK]; if (!r) return; const q = [...r.starters, ...r.bench, ...(r.ir || [])].find(y => y.id === x.id); if (q) { nowOn = o.id; weekPts = q.pts; } });
+                receipts.drops.push({ teamId: t.id, player: x.name, pos: x.pos, lastWeekPts: x.pts, nowOnTeamId: nowOn, weekPtsElsewhere: weekPts });
+            });
+        }
+    });
+
+    // ---- roster depth, injuries by position, trade ideas ----
+    const POS_REQ = { QB: 1, RB: 2, WR: 2, TE: 1, K: 1, 'D/ST': 1 }; // plus one FLEX among RB/WR/TE
+    const UNAVAILABLE = ['OUT', 'INJURY_RESERVE', 'DOUBTFUL', 'SUSPENSION'];
+    const nflWeeksLeft = Math.max(1, 17 - WEEK);
+    Object.values(teams).forEach(t => {
+        const cur = t.weeks[WEEK]; if (!cur) return;
+        const all = [...cur.starters, ...cur.bench, ...(cur.ir || [])];
+        const entry = { teamId: t.id, positions: {}, gaps: [], thin: [], surplus: [], injuredWithBackup: [] };
+        Object.keys(POS_REQ).forEach(pos => {
+            const group = all.filter(p => p.pos === pos).map(p => ({ name: p.name, status: p.injury, onIR: p.slotName === 'IR', available: !UNAVAILABLE.includes(p.injury) && p.slotName !== 'IR', rosPerGame: r1(Math.max(0, p.seasonProj - p.seasonPts) / nflWeeksLeft), weekPts: p.pts, seasonPts: p.seasonPts })).sort((a, b) => b.rosPerGame - a.rosPerGame);
+            const avail = group.filter(g => g.available);
+            const req = POS_REQ[pos];
+            entry.positions[pos] = { required: req, available: avail.length, players: group };
+            if (avail.length < req) entry.gaps.push({ pos, available: avail.length, required: req, bestAvailable: avail[0]?.name || null });
+            else if (['RB', 'WR', 'TE'].includes(pos) && (avail.length === req || (avail[req] && avail[req].rosPerGame < 6))) entry.thin.push({ pos, backup: avail[req]?.name || null, backupRosPerGame: avail[req]?.rosPerGame ?? null });
+            if (avail.length >= req + 2 && avail[req].rosPerGame >= 8 && ['RB', 'WR', 'TE', 'QB'].includes(pos)) entry.surplus.push({ pos, spare: avail[req].name, spareRosPerGame: avail[req].rosPerGame, secondSpare: avail[req + 1]?.name || null });
+            group.filter(g => !g.available).forEach(g => entry.injuredWithBackup.push({ pos, player: g.name, status: g.onIR && g.status === 'DAY_TO_DAY' ? 'IR (day-to-day)' : g.status, backup: avail.length > req ? avail[req].name : (avail.length === req ? `${avail[req - 1]?.name || 'none'} (no bench depth)` : 'NONE, roster gap'), backupRosPerGame: avail[req]?.rosPerGame ?? null }));
+        });
+        receipts.depth.push(entry);
+    });
+    receipts.depth.forEach(e => {
+        [...e.gaps.map(g => g.pos), ...e.thin.map(g => g.pos)].forEach(pos => {
+            const partners = receipts.depth.filter(o => o.teamId !== e.teamId && o.surplus.some(su => su.pos === pos)).map(o => {
+                const spare = o.surplus.find(su => su.pos === pos);
+                const theyNeed = [...o.gaps.map(g => g.pos), ...o.thin.map(g => g.pos)];
+                const offer = e.surplus.find(su => theyNeed.includes(su.pos)) || e.surplus[0] || null;
+                return { teamId: o.teamId, spare: spare.spare, spareRosPerGame: spare.spareRosPerGame, theyNeed, couldOffer: offer ? `${offer.spare} (${offer.pos})` : null, fit: !!(offer && theyNeed.includes(offer.pos)) };
+            }).sort((a, b) => (b.fit - a.fit) || (b.spareRosPerGame - a.spareRosPerGame)).slice(0, 3);
+            if (partners.length) receipts.tradeIdeas.push({ teamId: e.teamId, need: pos, severity: e.gaps.some(g => g.pos === pos) ? 'gap' : 'thin', partners });
+        });
+    });
 
     // ---- season totals per team ----
     Object.values(teams).forEach(t => {
@@ -272,7 +330,7 @@ function optimalLineup(players, counts) {
     } catch (e) { console.warn('name history unavailable:', e.message); }
     let grades = [];
     try { grades = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', `draft-grades-${SEASON}.json`), 'utf8')); } catch (e) { }
-    const gradeFor = (t) => grades.find(g => g.ownerKey && g.ownerKey === t.owner) || grades.find(g => g.team && g.team.toLowerCase() === t.name.toLowerCase()) || null;
+    const gradeFor = (t) => grades.find(g => (g.ownerKeys || [g.ownerKey]).includes(t.owner)) || grades.find(g => g.team && g.team.toLowerCase() === t.name.toLowerCase()) || null;
 
     // ---- awards ----
     const wkNow = WEEK;
@@ -309,7 +367,8 @@ function optimalLineup(players, counts) {
             games: t.games,
             thisWeek: t.weeks[WEEK] ? { actualLineup: t.weeks[WEEK].actualLineup, optimalLineup: t.weeks[WEEK].optimalLineup, benchLeft: t.weeks[WEEK].benchLeft,
                 starters: t.weeks[WEEK].starters.map(p => ({ name: p.name, pos: p.pos, slot: p.slotName, pts: p.pts, proj: p.proj, injury: p.injury })),
-                bench: t.weeks[WEEK].bench.map(p => ({ name: p.name, pos: p.pos, pts: p.pts, proj: p.proj, injury: p.injury })) } : null,
+                bench: t.weeks[WEEK].bench.map(p => ({ name: p.name, pos: p.pos, pts: p.pts, proj: p.proj, injury: p.injury })),
+                ir: (t.weeks[WEEK].ir || []).map(p => ({ name: p.name, pos: p.pos, injury: p.injury })) } : null,
             keepers: keepers.filter(k => k.teamId === t.id),
             draftGrade: gradeFor(t),
             nameHistory: (nameHistory[t.ownerId] || []).filter(h => h.year < SEASON),

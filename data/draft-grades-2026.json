@@ -127,7 +127,11 @@
   "starters": "1,699 pts",
   "best": "J.K. Dobbins $5",
   "worst": "D'Andre Swift $24",
-  "ownerKey": "David H."
+  "ownerKey": "David H.",
+  "ownerKeys": [
+   "David H.",
+   "Dave H."
+  ]
  },
  {
   "rank": 11,
