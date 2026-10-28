@@ -4,7 +4,7 @@
  "totalWeeks": 14,
  "playoffSpots": 7,
  "generatedAt": "2026-10-20T03:25:55.753Z",
- "finalized": false,
+ "finalized": true,
  "method": {
   "resultsWeight": 80,
   "projectionWeight": 20,
