@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
  * Render a published power rankings week into an email (HTML + plain text).
- *   node scripts/build-email.js --week 1 [--season 2026] --out /path/email.json
+ *   node scripts/build-email.js --week 1 [--season 2026] --out /path/email.json [--archive /path/entry.json]
  * Writes {subject, html, text} as JSON to --out (or stdout).
+ * --archive adds a "From the Archive" photo block before the outro. The entry is
+ * {kicker, caption, alt, src?}; src defaults to cid:att0, the first inline attachment of the email.
  */
 const fs = require('fs');
 const path = require('path');
@@ -56,6 +58,17 @@ const allRows = [
 ];
 const featuredRows = Array.isArray(c.featured) && c.featured.length ? c.featured.map(k => allRows[AWARD_KEYS.indexOf(k)]).filter(r => r && r[1]) : awardRows;
 
+const ARCHIVE = argVal('--archive', null);
+const arch = ARCHIVE ? JSON.parse(fs.readFileSync(ARCHIVE, 'utf8')) : null;
+const archHtml = arch ? `<h2 style="font-size:18px;margin:28px 0 10px">From the Archive</h2>
+  <div style="border:1px solid #eee;border-radius:6px;overflow:hidden;margin:0 0 24px">
+    <img src="${esc(arch.src || 'cid:att0')}" alt="${esc(arch.alt || 'A photo from the league archive')}" width="640" style="display:block;width:100%;max-width:640px;height:auto">
+    <div style="padding:12px 14px 14px">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08d1f">${esc(arch.kicker)}</div>
+      <div style="font-size:14px;margin-top:4px">${esc(arch.caption)}</div>
+    </div>
+  </div>` : '';
+
 const subject = `Fadunkadunk Power Rankings: Week ${WEEK}`;
 const html = `
 <div style="max-width:680px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1c1c1c;line-height:1.55">
@@ -86,6 +99,7 @@ const html = `
     ${t.commentary ? paras(t.commentary, 'margin:8px 0 0;font-size:14px') : ''}
   </div>`).join('')}
 
+  ${archHtml}
   ${c.outro ? `<div style="border-left:3px solid #0d7a6f;padding:2px 0 2px 14px;margin:8px 0 24px">${paras(c.outro)}</div>` : ''}
   <div style="font-size:12px;color:#999">Rankings blend results and rest-of-season projections; commentary${c.author ? ' by ' + esc(c.author) : ''}. Full breakdown, chips, and past weeks at <a href="${SITE}" style="color:#0d7a6f">${SITE}</a></div>
 </div>`;
@@ -96,6 +110,7 @@ const text = [
     ...d.teams.map(t => `${String(t.rank).padStart(2)}. ${t.name} (${t.owner}) ${mvText(t)}  ${t.record.wins}-${t.record.losses}  avg ${t.avg.toFixed(1)}  all-play ${t.allPlay.w}-${t.allPlay.l}  power ${t.power.toFixed(1)}`), '',
     `WEEK ${WEEK} RECEIPTS`, ...featuredRows.map(([l, line, b]) => `- ${l}: ${line}${b ? ' — ' + b : ''}`), '',
     'TEAM BY TEAM', ...d.teams.flatMap(t => [`${t.rank}. ${t.name} (${t.owner})`, t.commentary || '', '']),
+    ...(arch ? ['FROM THE ARCHIVE', `${arch.kicker}: ${arch.caption}`, ''] : []),
     c.outro || '', '', `Full site: ${SITE}`
 ].join('\n');
 
