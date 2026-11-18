@@ -5,6 +5,9 @@
  * Writes {subject, html, text} as JSON to --out (or stdout).
  * --archive adds a "From the Archive" photo block before the outro. The entry is
  * {kicker, caption, alt, src?}; src defaults to cid:att0, the first inline attachment of the email.
+ * --archive-queue /path/queue.json uses the queue's next unused photo instead and adds an
+ * `archive` object (path, sha256, contentRef) to the output for attaching it inline.
+ * Add --mark-used (with --archive-queue and --week) after the email is sent to retire that photo.
  */
 const fs = require('fs');
 const path = require('path');
@@ -58,8 +61,32 @@ const allRows = [
 ];
 const featuredRows = Array.isArray(c.featured) && c.featured.length ? c.featured.map(k => allRows[AWARD_KEYS.indexOf(k)]).filter(r => r && r[1]) : awardRows;
 
+// "From the Archive" photo. Either a single entry (--archive entry.json) or a queue
+// (--archive-queue queue.json: the first photo whose usedWeek is null is used).
+// With --mark-used the queue's next photo is stamped with this week and nothing is built.
 const ARCHIVE = argVal('--archive', null);
-const arch = ARCHIVE ? JSON.parse(fs.readFileSync(ARCHIVE, 'utf8')) : null;
+const QUEUE = argVal('--archive-queue', null);
+let arch = ARCHIVE ? JSON.parse(fs.readFileSync(ARCHIVE, 'utf8')) : null;
+let archiveOut = null;
+if (QUEUE) {
+    const queue = JSON.parse(fs.readFileSync(QUEUE, 'utf8'));
+    const next = (queue.photos || []).find(p => p.usedWeek == null) || null;
+    if (args.includes('--mark-used')) {
+        if (!next) { console.log('No unused archive photo to mark'); process.exit(0); }
+        next.usedWeek = WEEK; next.usedOn = new Date().toISOString().slice(0, 10);
+        fs.writeFileSync(QUEUE, JSON.stringify(queue, null, 1));
+        console.log(`Marked ${next.file} as used for week ${WEEK}`);
+        process.exit(0);
+    }
+    if (next) {
+        const file = path.join(path.dirname(path.resolve(QUEUE)), next.file);
+        const sha = fs.existsSync(file) ? require('crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex') : null;
+        if (sha && sha === next.sha256) {
+            arch = next;
+            archiveOut = { path: file, filename: next.file, mimeType: 'image/jpeg', sha256: sha, contentRef: `sha256:${sha}:${file}`, kicker: next.kicker, caption: next.caption };
+        } else console.error(`Archive photo skipped: ${next.file} is missing or does not match its sha256`);
+    } else console.error('Archive photo skipped: the queue has no unused photos');
+}
 const archHtml = arch ? `<h2 style="font-size:18px;margin:28px 0 10px">From the Archive</h2>
   <div style="border:1px solid #eee;border-radius:6px;overflow:hidden;margin:0 0 24px">
     <img src="${esc(arch.src || 'cid:att0')}" alt="${esc(arch.alt || 'A photo from the league archive')}" width="640" style="display:block;width:100%;max-width:640px;height:auto">
@@ -114,5 +141,5 @@ const text = [
     c.outro || '', '', `Full site: ${SITE}`
 ].join('\n');
 
-const out = JSON.stringify({ subject, html, text }, null, 1);
+const out = JSON.stringify(archiveOut ? { subject, html, text, archive: archiveOut } : { subject, html, text }, null, 1);
 if (OUT) { fs.writeFileSync(OUT, out); console.log(`Wrote ${OUT} (${html.length} chars html)`); } else process.stdout.write(out);
